@@ -1,0 +1,7 @@
+{
+  "import": ["tonyfettes/encoding"],
+  "targets": {
+    "ffi.wasm.mbt": ["wasm"],
+    "ffi.wasm-gc.mbt": ["wasm-gc"]
+  }
+}
