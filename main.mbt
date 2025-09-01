@@ -7,7 +7,7 @@ fn main {
 pub fn boot() -> Unit {
   @firefly.log_debug("boot")
   let name = @firefly.get_name(0)
-  @firefly.log_debug("name: '" + name)
+  @firefly.log_debug("name: " + name)
 }
 
 ///| update is called ~60 times per second.
