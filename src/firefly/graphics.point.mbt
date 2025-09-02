@@ -63,5 +63,5 @@ pub fn Point::is_in_bounds(self : Point) -> Bool {
 ///|
 /// Render a single pixel.
 pub fn Point::draw(self : Point, color : Color) -> Unit {
-  @ffi.draw_point(self.x, self.y, color.to_int())
+  draw_point(self.x, self.y, color)
 }

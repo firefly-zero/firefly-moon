@@ -4,4 +4,4 @@ author_name = "Applejag"
 app_name = "MoonBit test"
 
 [files]
-_bin = { path = "./target/wasm/release/build/firefly_game.wasm", copy = true }
+_bin = { path = "./target/wasm/release/build/superfly.wasm", copy = true }

@@ -14,5 +14,5 @@ pub fn LineStyle::new(color : Color, width : Int) -> LineStyle {
 ///|
 /// Draw a line from `a` to `b` using this style.
 pub fn LineStyle::draw(self : LineStyle, a : Point, b : Point) -> Unit {
-  @ffi.draw_line(a.x, a.y, b.x, b.y, self.color.to_int(), self.width)
+  draw_line(a, b, self)
 }

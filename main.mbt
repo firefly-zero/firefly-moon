@@ -9,8 +9,13 @@ pub fn boot() -> Unit {
   @ff.log_debug("boot")
   let name = @ff.get_name(0)
   @ff.log_debug("name: " + name)
-  let p = @ff.Point::new(5, 10)
-
+  let p = @ff.Point::new(0, 0)
+  @ff.draw_ellipse(p, @ff.Size::new(50, 80), @ff.Style::new_outlined(Red, 3))
+  @ff.draw_circle(
+    @ff.Point::new(120, 60),
+    85,
+    @ff.Style::new_outlined(Green, 1),
+  )
 }
 
 ///|

@@ -34,7 +34,7 @@ pub(all) enum Color {
   Gray
   /// Dark gray color: #333C57.
   DarkGray
-} derive(Show)
+} derive(Show, Eq)
 
 ///|
 pub fn Color::to_byte(color : Color) -> Byte {
@@ -65,7 +65,7 @@ pub fn Color::to_int(color : Color) -> Int {
 }
 
 ///|
-pub fn Color::of_byte(byte : Byte) -> Color {
+pub fn Color::from_byte(byte : Byte) -> Color {
   match byte {
     1 => Black
     2 => Purple
@@ -85,4 +85,9 @@ pub fn Color::of_byte(byte : Byte) -> Color {
     16 => DarkGray
     _ => None
   }
+}
+
+///|
+pub fn Color::from_int(int : Int) -> Color {
+  Color::from_byte(int.to_byte())
 }

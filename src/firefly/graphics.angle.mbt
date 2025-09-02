@@ -12,25 +12,25 @@ pub struct Angle(Float)
 
 ///|
 /// Define an Angle in radians (0-2π).
-pub fn Angle::of_rad(self : Float) -> Angle {
+pub fn Angle::from_rad(self : Float) -> Angle {
   Angle(self)
 }
 
 ///|
 /// Define an Angle in degrees (0-360).
-pub fn Angle::of_deg(self : Float) -> Angle {
+pub fn Angle::from_deg(self : Float) -> Angle {
   Angle(self * PI / 180)
 }
 
 ///|
 /// Get the angle value in radians (0-2π).
-pub fn Angle::rad(self : Angle) -> Float {
+pub fn Angle::to_rad(self : Angle) -> Float {
   self.inner()
 }
 
 ///|
 /// Get the angle value in degrees (0-360).
-pub fn Angle::deg(self : Angle) -> Float {
+pub fn Angle::to_deg(self : Angle) -> Float {
   180 * self.inner() / PI
 }
 

@@ -4,3 +4,8 @@ pub struct SubImage {
   point : Point
   size : Size
 }
+
+///|
+pub fn SubImage::draw(self : SubImage, point : Point) -> Unit {
+  ...
+}
