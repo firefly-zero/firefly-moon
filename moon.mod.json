@@ -1,5 +1,5 @@
 {
-  "name": "applejag/firefly_game",
+  "name": "applejag/superfly",
   "version": "0.1.0",
   "deps": {
     "tonyfettes/encoding": "0.3.6"

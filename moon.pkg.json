@@ -1,6 +1,6 @@
 {
   "is-main": true,
-  "import": ["applejag/firefly_game/src/firefly"],
+  "import": [{ "path": "applejag/superfly/src/firefly", "alias": "ff" }],
   "link": {
     "wasm": {
       "exports": ["boot", "update"],

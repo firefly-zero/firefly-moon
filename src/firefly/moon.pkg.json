@@ -1,7 +1,3 @@
 {
-  "import": ["tonyfettes/encoding"],
-  "targets": {
-    "ffi.wasm.mbt": ["wasm"],
-    "ffi.wasm-gc.mbt": ["wasm-gc"]
-  }
+  "import": ["tonyfettes/encoding", "applejag/superfly/src/firefly/ffi"]
 }
