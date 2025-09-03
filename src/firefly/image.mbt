@@ -71,6 +71,26 @@
 pub(all) struct Image(FixedArray[Byte])
 
 ///|
+/// Create a new blank image.
+pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
+  let header_size = 5U + bpp.to_uint() * 2
+  let body_size = size.w * size.h * bpp.to_uint() / 8
+  let arr = FixedArray::make(
+    (header_size + body_size).reinterpret_as_int(),
+    Byte::default(),
+  )
+  arr[0] = 0x21 // magic number
+  arr[1] = bpp
+  arr[2] = size.w.to_byte()
+  arr[3] = (size.w >> 8).to_byte()
+  arr[4] = 255 // transparency
+  for i in 0..<(2 * bpp.to_int()) {
+    arr[5 + i] = (((i * 2) << 4) | (i * 2 + 1)).to_byte()
+  }
+  Image(arr)
+}
+
+///|
 /// Convert the `Image` to a `File`.
 pub fn Image::as_file(self : Image) -> File {
   File(self.inner())
