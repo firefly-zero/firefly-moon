@@ -2,12 +2,31 @@
 /// A loaded font file.
 ///
 /// Can be loaded using `Font::load`
-pub struct Font(FixedArray[Byte])
+pub(all) struct Font(FixedArray[Byte])
 
 ///|
-/// Load a file as a font.
-pub fn Font::load(path : String) -> Font {
-  ...
+/// Convert the `Font` to a `File`.
+pub fn Font::as_file(self : Font) -> File {
+  File(self.inner())
+}
+
+///|
+/// Load a `Font` from ROM or the data directory.
+#inline
+pub fn Font::load(path : String) -> Font? {
+  load_file_to_font(path)
+}
+
+///|
+/// Write the `Font` to the given path in the data directory.
+///
+/// - If the Font exists, it will be overritten.
+/// - If it doesn't exist, it will be created.
+///
+/// Returns the number of bytes written.
+#inline
+pub fn Font::dump(self : Font, path : String) -> UInt {
+  dump_font_to_file(path, self)
 }
 
 ///|

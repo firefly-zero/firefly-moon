@@ -2,12 +2,31 @@
 /// A loaded image file.
 ///
 /// Can be loaded using `Image::load`
-pub struct Image(FixedArray[Byte])
+pub(all) struct Image(FixedArray[Byte])
+
+///|
+/// Convert the `Image` to a `File`.
+pub fn Image::as_file(self : Image) -> File {
+  File(self.inner())
+}
 
 ///|
 /// Load a file as an image.
-pub fn Image::load(path : String) -> Image {
-  ...
+#inline
+pub fn Image::load(path : String) -> Image? {
+  load_file_to_image(path)
+}
+
+///|
+/// Write the `Image` to the given path in the data directory.
+///
+/// - If the file exists, it will be overritten.
+/// - If it doesn't exist, it will be created.
+///
+/// Returns the number of bytes written.
+#inline
+pub fn Image::dump(self : Image, path : String) -> UInt {
+  dump_image_to_file(path, self)
 }
 
 ///|
