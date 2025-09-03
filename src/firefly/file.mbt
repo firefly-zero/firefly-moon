@@ -2,7 +2,13 @@
 /// A loaded file.
 ///
 /// Can be loaded using `File::load`
-pub(all) struct File(FixedArray[Byte])
+pub struct File(FixedArray[Byte])
+
+///|
+/// Creates a `File` from a fixed-sized byte array.
+pub fn File::of(arr : FixedArray[Byte]) -> File {
+  File(arr)
+}
 
 ///|
 /// Get the size of the file in bytes.

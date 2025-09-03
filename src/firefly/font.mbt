@@ -2,7 +2,14 @@
 /// A loaded font file.
 ///
 /// Can be loaded using `Font::load`
-pub(all) struct Font(FixedArray[Byte])
+pub struct Font(FixedArray[Byte])
+
+///|
+/// Creates a `Font` from a fixed-sized byte array.
+#inline
+pub fn Font::of(arr : FixedArray[Byte]) -> Font {
+  Font(arr)
+}
 
 ///|
 /// Convert the `Font` to a `File`.

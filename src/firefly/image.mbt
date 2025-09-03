@@ -68,10 +68,12 @@
 /// 0x40 0x08 0x80 0x99 0x66 0x08 0x82 0x07 ┤ ─► row 4
 /// ...                                     ┤ ...etc
 /// ```
-pub(all) struct Image(FixedArray[Byte])
+pub struct Image(FixedArray[Byte])
 
 ///|
 /// Create a new blank image.
+///
+/// By default the image uses 4 bits-per-pixel (`bpp`).
 pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
   let header_size = 5U + bpp.to_uint() * 2
   let body_size = size.w * size.h * bpp.to_uint() / 8
@@ -87,6 +89,13 @@ pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
   for i in 0..<(2 * bpp.to_int()) {
     arr[5 + i] = (((i * 2) << 4) | (i * 2 + 1)).to_byte()
   }
+  Image(arr)
+}
+
+///|
+/// Creates an `Image` from a fixed-sized byte array.
+#inline
+pub fn Image::of(arr : FixedArray[Byte]) -> Image {
   Image(arr)
 }
 
