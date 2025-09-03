@@ -1,5 +1,6 @@
 ///|
 /// The RGB (Red, Green, Blue) value of a color in the palette.
+#valtype
 pub(all) struct RGB {
   r : Byte
   g : Byte

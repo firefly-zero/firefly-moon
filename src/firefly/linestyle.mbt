@@ -1,5 +1,6 @@
 ///|
 /// Style of a line used when drawing.
+#valtype
 pub(all) struct LineStyle {
   color : Color
   width : Int

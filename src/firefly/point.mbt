@@ -2,6 +2,7 @@
 /// A point on the screen.
 ///
 /// Typically, the upper-left corner of a bounding box of a shape.
+#valtype
 pub(all) struct Point {
   x : Int
   y : Int

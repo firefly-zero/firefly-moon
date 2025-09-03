@@ -1,5 +1,6 @@
 ///|
 /// Style of a shape used when drawing.
+#valtype
 pub(all) struct Style {
   fill : Color
   stroke : Color
