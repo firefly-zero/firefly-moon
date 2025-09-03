@@ -9,19 +9,25 @@ pub(all) struct Point {
 } derive(Show)
 
 ///|
-/// Shortcut for creating a Point.
+/// Shortcut for creating a `Point`.
 pub fn Point::new(x : Int, y : Int) -> Point {
   Point::{ x, y }
 }
 
 ///|
-/// Convert the Point to a Size.
-pub fn Point::to_size(self : Point) -> Size {
-  Size::{ w: self.x, h: self.y }
+/// Convert the `Point` to a `Size`.
+///
+/// Note that a `Size` does not allow negative values.
+/// Any negative values are clamped to zero.
+pub fn Point::reinterpret_as_size(self : Point) -> Size {
+  Size::{
+    w: @cmp.maximum(self.x, 0).reinterpret_as_uint(),
+    h: @cmp.maximum(self.y, 0).reinterpret_as_uint(),
+  }
 }
 
 ///|
-/// Returns a Point with absolute (non-negative) `x` and `y` values.
+/// Returns a `Point` with absolute (non-negative) `x` and `y` values.
 pub fn Point::abs(self : Point) -> Point {
   Point::{ x: self.x.abs(), y: self.y.abs() }
 }

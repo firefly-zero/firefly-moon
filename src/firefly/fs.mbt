@@ -1,6 +1,8 @@
 ///|
 /// Get size (in bytes) of a file from ROM or the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// Returns 0 if the file does not exist.
 pub fn get_file_size(path : String) -> UInt {
   let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
@@ -14,6 +16,8 @@ pub fn get_file_size(path : String) -> UInt {
 
 ///|
 /// Check if the given path points to a file in ROM or the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 #inline
 pub fn is_file(path : String) -> Bool {
   get_file_size(path) != 0
@@ -21,6 +25,8 @@ pub fn is_file(path : String) -> Bool {
 
 ///|
 /// Load a file from ROM or the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// Example: loading fonts, images, or save files.
 pub fn load_file(path : String) -> File? {
@@ -51,6 +57,8 @@ pub fn load_file(path : String) -> File? {
 ///|
 /// Load a file into a buffer from ROM or the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
@@ -68,6 +76,8 @@ pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
 
 ///|
 /// Load a file from ROM or the data directory and return it as bytes.
+///
+/// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_bytes(path : String) -> Bytes? {
   load_file(path).map(f => Bytes::of(f.inner()))
@@ -75,6 +85,8 @@ pub fn load_file_to_bytes(path : String) -> Bytes? {
 
 ///|
 /// Load a file from ROM or the data directory and decode it as a string.
+///
+/// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_string(
   path : String,
@@ -85,6 +97,8 @@ pub fn load_file_to_string(
 
 ///|
 /// Load a file from ROM or the data directory as a `Font`.
+///
+/// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_font(path : String) -> Font? {
   load_file(path).map(f => f.as_font())
@@ -92,6 +106,8 @@ pub fn load_file_to_font(path : String) -> Font? {
 
 ///|
 /// Load a file from ROM or the data directory as an `Image`.
+///
+/// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_image(path : String) -> Image? {
   load_file(path).map(f => f.as_image())
@@ -99,6 +115,8 @@ pub fn load_file_to_image(path : String) -> Image? {
 
 ///|
 /// Write the file to the given path in the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.
@@ -121,6 +139,8 @@ pub fn dump_file(path : String, file : File) -> UInt {
 ///|
 /// Write the bytes to the given path in the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.
 ///
@@ -134,6 +154,8 @@ pub fn dump_bytes_to_file(path : String, bytes : Bytes) -> UInt {
 
 ///|
 /// Encodes the string and writes it to the given path in the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.
@@ -153,6 +175,8 @@ pub fn dump_string_to_file(
 ///|
 /// Write the `Font` to the given path in the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.
 ///
@@ -165,6 +189,8 @@ pub fn dump_font_to_file(path : String, font : Font) -> UInt {
 ///|
 /// Write the `Image` to the given path in the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.
 ///
@@ -176,6 +202,8 @@ pub fn dump_image_to_file(path : String, image : Image) -> UInt {
 
 ///|
 /// Removes a file (if exists) from the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// Example: removing save files.
 pub fn remove_file(path : String) -> Unit {

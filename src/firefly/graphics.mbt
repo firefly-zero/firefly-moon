@@ -207,3 +207,56 @@ pub fn draw_text(
   )
   ignore(text_arr)
 }
+
+///|
+/// Render a QR-code.
+pub fn draw_qr(
+  text : String,
+  point : Point,
+  black : Color,
+  white : Color,
+) -> Unit {
+  let text_arr = @encoding.encode(text, encoding=UTF8).to_fixedarray()
+  @ffi.draw_qr(
+    @ffi.get_addr(text_arr),
+    text_arr.length().reinterpret_as_uint(),
+    point.x,
+    point.y,
+    black.to_int(),
+    white.to_int(),
+  )
+  ignore(text_arr)
+}
+
+///|
+/// Render an image.
+pub fn draw_image(image : Image, point : Point) -> Unit {
+  @ffi.draw_image(
+    @ffi.get_addr(image.inner()),
+    image.inner().length().reinterpret_as_uint(),
+    point.x,
+    point.y,
+  )
+}
+
+///|
+/// Render a sub-image, meaning a part of an image.
+///
+/// Useful for sprite sheets.
+pub fn draw_sub_image(
+  image : Image,
+  point : Point,
+  sub_offset : Point,
+  sub_size : Size,
+) -> Unit {
+  @ffi.draw_sub_image(
+    @ffi.get_addr(image.inner()),
+    image.inner().length().reinterpret_as_uint(),
+    point.x,
+    point.y,
+    sub_offset.x,
+    sub_offset.y,
+    sub_size.w,
+    sub_size.h,
+  )
+}

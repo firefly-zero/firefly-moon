@@ -1,11 +1,15 @@
 ///|
 /// Get size (in bytes) of a file from ROM or the data directory.
 ///
+/// The path must not contain any path separators ("`/`").
+///
 /// Returns 0 if the file does not exist.
 pub fn get_file_size(path_ptr : UInt, path_len : UInt) -> UInt = "fs" "get_file_size"
 
 ///|
 /// Load a file into a buffer from ROM or the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// Example: loading fonts, images, or save files.
 pub fn load_file(
@@ -17,6 +21,8 @@ pub fn load_file(
 
 ///|
 /// Write the buffer into the given file in the data directory.
+///
+/// The path must not contain any path separators ("`/`").
 ///
 /// - If the file exists, it will be overritten.
 /// - If it doesn't exist, it will be created.

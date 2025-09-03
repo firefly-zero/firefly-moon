@@ -7,4 +7,7 @@ app_name = "MoonBit test"
 _bin = { path = "./target/wasm/release/build/superfly.wasm", copy = true }
 
 # Fonts
-"eg_6x12.fff" = { path = "assets/eg_6x12.fff" }
+"eg_6x12.fff" = { path = "assets/fonts/eg_6x12.fff" }
+
+# Images
+"weird-smile.png" = { path = "assets/images/weird-smile.png" }

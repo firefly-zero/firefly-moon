@@ -19,8 +19,8 @@ pub fn draw_line(x1 : Int, y1 : Int, x2 : Int, y2 : Int, c : Int, sw : Int) = "g
 pub fn draw_rect(
   x : Int,
   y : Int,
-  w : Int,
-  h : Int,
+  w : UInt,
+  h : UInt,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -31,10 +31,10 @@ pub fn draw_rect(
 pub fn draw_rounded_rect(
   x : Int,
   y : Int,
-  w : Int,
-  h : Int,
-  cw : Int,
-  ch : Int,
+  w : UInt,
+  h : UInt,
+  cw : UInt,
+  ch : UInt,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -49,8 +49,8 @@ pub fn draw_circle(x : Int, y : Int, d : Int, fc : Int, sc : Int, sw : Int) = "g
 pub fn draw_ellipse(
   x : Int,
   y : Int,
-  w : Int,
-  h : Int,
+  w : UInt,
+  h : UInt,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -133,3 +133,33 @@ pub fn draw_text(
   y : Int,
   c : Int,
 ) = "graphics" "draw_text"
+
+///|
+/// Render a QR-code.
+pub fn draw_qr(
+  text_ptr : UInt,
+  text_len : UInt,
+  x : Int,
+  y : Int,
+  black : Int,
+  white : Int,
+) = "graphics" "draw_qr"
+
+///|
+/// Render an image.
+pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) = "graphics" "draw_image"
+
+///|
+/// Render a sub-image, meaning a part of an image.
+///
+/// Useful for sprite sheets.
+pub fn draw_sub_image(
+  image_ptr : UInt,
+  image_len : UInt,
+  x : Int,
+  y : Int,
+  sub_x : Int,
+  sub_y : Int,
+  sub_width : UInt,
+  sub_height : UInt,
+) = "graphics" "draw_sub_image"

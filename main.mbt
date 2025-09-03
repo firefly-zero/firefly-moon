@@ -35,6 +35,10 @@ pub fn boot() -> Unit {
       @ff.draw_text(text, font, @ff.Point::new(30, 50), Orange)
     }
   }
+  match @ff.Image::load("weird-smile.png") {
+    None => @ff.log_error("failed to load image")
+    Some(image) => image.draw(@ff.Point::new(80, 20))
+  }
 }
 
 ///|

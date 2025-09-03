@@ -34,7 +34,7 @@ pub fn Image::dump(self : Image, path : String) -> UInt {
 ///
 /// The point defines the upper-left corner.
 pub fn Image::draw(self : Image, point : Point) -> Unit {
-  ...
+  draw_image(self, point)
 }
 
 ///|
@@ -73,19 +73,21 @@ pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
 
 ///|
 /// Returns the number of pixels the image has
-pub fn Image::pixels(self : Image) -> Int {
-  self.inner().length() * 8 / self.bits_per_pixel().to_int()
+pub fn Image::pixels(self : Image) -> UInt {
+  self.inner().length().reinterpret_as_uint() *
+  8 /
+  self.bits_per_pixel().to_uint()
 }
 
 ///|
 /// Returns the width of the image (in pixels).
-pub fn Image::width(self : Image) -> Int {
-  self.inner()[2].to_int() | (self.inner()[3].to_int() << 8)
+pub fn Image::width(self : Image) -> UInt {
+  self.inner()[2].to_uint() | (self.inner()[3].to_uint() << 8)
 }
 
 ///|
 /// Returns the height of the image (in pixels).
-pub fn Image::height(self : Image) -> Int {
+pub fn Image::height(self : Image) -> UInt {
   match self.width() {
     0 => 0
     _ as width => self.pixels() / width

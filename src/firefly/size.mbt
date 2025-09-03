@@ -12,20 +12,26 @@ pub const SCREEN_HEIGHT = 160
 /// The width and hight must be positive.
 #valtype
 pub(all) struct Size {
-  w : Int
-  h : Int
+  w : UInt
+  h : UInt
 } derive(Show)
 
 ///|
 /// Shortcut for creating a Size.
-pub fn Size::new(w : Int, h : Int) -> Size {
+pub fn Size::new(w : UInt, h : UInt) -> Size {
   Size::{ w, h }
 }
 
 ///|
-/// Convert the Size to a Point.
-pub fn Size::to_point(self : Size) -> Point {
-  Point::{ x: self.w, y: self.h }
+/// Convert the `Size` to a `Point`.
+///
+/// Note that `Point` uses signed integers, while `Size` uses unsigned integers.
+/// Any value above 2^31-1 are clamped to 2^31-1.
+pub fn Size::reinterpret_as_point(self : Size) -> Point {
+  Point::{
+    x: @cmp.minimum(self.w, @int.max_value.reinterpret_as_uint()).reinterpret_as_int(),
+    y: @cmp.minimum(self.h, @int.max_value.reinterpret_as_uint()).reinterpret_as_int(),
+  }
 }
 
 ///|
@@ -48,12 +54,12 @@ pub impl Eq for Size with equal(self : Size, other : Size) -> Bool {
 
 ///|
 /// Multiply a size with a scalar.
-pub fn Size::scale_up(self : Size, factor : Int) -> Size {
+pub fn Size::scale_up(self : Size, factor : UInt) -> Size {
   { w: self.w * factor, h: self.h * factor }
 }
 
 ///|
 /// Divide a size by a scalar.
-pub fn Size::scale_down(self : Size, divisor : Int) -> Size {
+pub fn Size::scale_down(self : Size, divisor : UInt) -> Size {
   { w: self.w / divisor, h: self.h / divisor }
 }
