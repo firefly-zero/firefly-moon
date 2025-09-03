@@ -1,18 +1,25 @@
 ///|
 /// Fill the whole frame with the given color.
-pub fn clear_screen(color : Int) = "graphics" "clear_screen"
+pub fn clear_screen(color : Int) -> Unit = "graphics" "clear_screen"
 
 ///|
 /// Set a color value in the palette.
-pub fn set_color(c : Int, r : Int, g : Int, b : Int) = "graphics" "set_color"
+pub fn set_color(c : Int, r : Int, g : Int, b : Int) -> Unit = "graphics" "set_color"
 
 ///|
 /// Render a single pixel.
-pub fn draw_point(x : Int, y : Int, color : Int) = "graphics" "draw_point"
+pub fn draw_point(x : Int, y : Int, color : Int) -> Unit = "graphics" "draw_point"
 
 ///|
 /// Render a line between two points.
-pub fn draw_line(x1 : Int, y1 : Int, x2 : Int, y2 : Int, c : Int, sw : Int) = "graphics" "draw_line"
+pub fn draw_line(
+  x1 : Int,
+  y1 : Int,
+  x2 : Int,
+  y2 : Int,
+  c : Int,
+  sw : Int,
+) -> Unit = "graphics" "draw_line"
 
 ///|
 /// Render a rectangle filling the given bounding box.
@@ -24,7 +31,7 @@ pub fn draw_rect(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_rect"
+) -> Unit = "graphics" "draw_rect"
 
 ///|
 /// Render a rectangle with rounded corners filling the given bounding box.
@@ -38,11 +45,18 @@ pub fn draw_rounded_rect(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_rounded_rect"
+) -> Unit = "graphics" "draw_rounded_rect"
 
 ///|
 /// Render a circle.
-pub fn draw_circle(x : Int, y : Int, d : Int, fc : Int, sc : Int, sw : Int) = "graphics" "draw_circle"
+pub fn draw_circle(
+  x : Int,
+  y : Int,
+  d : Int,
+  fc : Int,
+  sc : Int,
+  sw : Int,
+) -> Unit = "graphics" "draw_circle"
 
 ///|
 /// Render an ellipse (oval).
@@ -54,7 +68,7 @@ pub fn draw_ellipse(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_ellipse"
+) -> Unit = "graphics" "draw_ellipse"
 
 ///|
 /// Render a triangle.
@@ -70,7 +84,7 @@ pub fn draw_triangle(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_triangle"
+) -> Unit = "graphics" "draw_triangle"
 
 ///|
 /// Render an arc (i.e "rainbow").
@@ -94,7 +108,7 @@ pub fn draw_arc(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_arc"
+) -> Unit = "graphics" "draw_arc"
 
 ///|
 /// Render a circle sector (i.e "pizza slice").
@@ -116,7 +130,7 @@ pub fn draw_sector(
   fc : Int,
   sc : Int,
   sw : Int,
-) = "graphics" "draw_sector"
+) -> Unit = "graphics" "draw_sector"
 
 ///|
 /// Render text using the given font.
@@ -132,7 +146,7 @@ pub fn draw_text(
   x : Int,
   y : Int,
   c : Int,
-) = "graphics" "draw_text"
+) -> Unit = "graphics" "draw_text"
 
 ///|
 /// Render a QR-code.
@@ -143,11 +157,11 @@ pub fn draw_qr(
   y : Int,
   black : Int,
   white : Int,
-) = "graphics" "draw_qr"
+) -> Unit = "graphics" "draw_qr"
 
 ///|
 /// Render an image.
-pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) = "graphics" "draw_image"
+pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) -> Unit = "graphics" "draw_image"
 
 ///|
 /// Render a sub-image, meaning a part of an image.
@@ -162,4 +176,16 @@ pub fn draw_sub_image(
   sub_y : Int,
   sub_width : UInt,
   sub_height : UInt,
-) = "graphics" "draw_sub_image"
+) -> Unit = "graphics" "draw_sub_image"
+
+///|
+/// Set the target image for all subsequent drawing operations.
+///
+/// To draw to the screen again, call `unset_canvas`.
+pub fn set_canvas(image_ptr : UInt, image_len : UInt) -> Unit = "graphics" "set_canvas"
+
+///|
+/// Make all subsequent drawing operations target the screen instead of a canvas.
+///
+/// Cancels the effect of `set_canvas`.
+pub fn unset_canvas() -> Unit = "graphics" "unset_canvas"

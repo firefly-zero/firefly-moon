@@ -260,3 +260,29 @@ pub fn draw_sub_image(
     sub_size.h,
   )
 }
+
+///|
+/// Reference to the current image. Kept to make sure the image doesn't
+/// get garbage collected.
+let current_canvas : Ref[Image?] = Ref::new(None)
+
+///|
+/// Set the target image for all subsequent drawing operations.
+///
+/// To draw to the screen again, call `unset_canvas`.
+pub fn set_canvas(image : Image) -> Unit {
+  current_canvas.val = Some(image)
+  @ffi.set_canvas(
+    @ffi.get_addr(image.inner()),
+    image.inner().length().reinterpret_as_uint(),
+  )
+}
+
+///|
+/// Make all subsequent drawing operations target the screen instead of a canvas.
+///
+/// Cancels the effect of `set_canvas`.
+pub fn unset_canvas() -> Unit {
+  current_canvas.val = None
+  @ffi.unset_canvas()
+}
