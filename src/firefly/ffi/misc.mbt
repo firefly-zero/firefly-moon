@@ -1,10 +1,10 @@
 ///|
 /// Log a debug message.
-pub fn log_debug(str : UInt, len : UInt) = "misc" "log_debug"
+pub fn log_debug(ptr : UInt, len : UInt) = "misc" "log_debug"
 
 ///|
 /// Log an error message.
-pub fn log_error(str : UInt, len : UInt) = "misc" "log_error"
+pub fn log_error(ptr : UInt, len : UInt) = "misc" "log_error"
 
 ///|
 /// Set the random seed.

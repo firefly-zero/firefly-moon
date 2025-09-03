@@ -57,6 +57,9 @@ pub fn draw_ellipse(
 ) = "graphics" "draw_ellipse"
 
 ///|
+/// Render a triangle.
+///
+/// The order of the points doesn't matter.
 pub fn draw_triangle(
   x1 : Int,
   y1 : Int,
@@ -70,6 +73,18 @@ pub fn draw_triangle(
 ) = "graphics" "draw_triangle"
 
 ///|
+/// Render an arc (i.e "rainbow").
+///
+/// The angles start at pointing right, and continues clockwise.
+/// The `ast` sets where the arc begins, and the `asw` sets the arc lenght.
+/// Meaning, the arc goes from `ast` to `ast+asw`
+///
+/// Negative angle `ast` or `asw` values are allowed.
+///
+/// The `fc` is ignored. The arc is always only a line.
+///
+/// The `asw` is clamped between 0-2π (0-360°), meaning its value does not
+/// wrap around. So an `asw` of 3π is equivalent of 2π.
 pub fn draw_arc(
   x : Int,
   y : Int,
@@ -82,6 +97,16 @@ pub fn draw_arc(
 ) = "graphics" "draw_arc"
 
 ///|
+/// Render a circle sector (i.e "pizza slice").
+///
+/// The angles start at pointing right, and continues clockwise.
+/// The `ast` sets where the arc begins, and the `asw` sets the arc lenght.
+/// Meaning, the arc goes from `ast` to `ast+asw`
+///
+/// Negative angle `ast` or `asw` values are allowed.
+///
+/// The `asw` is clamped between 0-2π (0-360°), meaning it does not wrap
+/// around. So a `asw` of 3π is equivalent of 2π.
 pub fn draw_sector(
   x : Int,
   y : Int,
@@ -92,3 +117,19 @@ pub fn draw_sector(
   sc : Int,
   sw : Int,
 ) = "graphics" "draw_sector"
+
+///|
+/// Render text using the given font.
+///
+/// Unlike in the other drawing functions, here points does not represent
+/// the top-left corner, but instead the text baseline position
+/// (such as the bottom left pixel of an underscore "`_`").
+pub fn draw_text(
+  text_ptr : UInt,
+  text_len : UInt,
+  font_ptr : UInt,
+  font_len : UInt,
+  x : Int,
+  y : Int,
+  c : Int,
+) = "graphics" "draw_text"

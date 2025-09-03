@@ -1,20 +1,16 @@
 ///|
 /// Log a debug message.
 pub fn log_debug(s : String) -> Unit {
-  let arr = FixedArray::make(s.length() * 4, Byte::default())
-  let mut len = 0
-  s.iter().each(ch => len += arr.set_utf8_char(len, ch))
-  @ffi.log_debug(@ffi.get_addr(arr), len.reinterpret_as_uint())
+  let arr = @encoding.encode(s, encoding=UTF8).to_fixedarray()
+  @ffi.log_debug(@ffi.get_addr(arr), arr.length().reinterpret_as_uint())
   ignore(arr)
 }
 
 ///|
 /// Log an error message.
 pub fn log_error(s : String) -> Unit {
-  let arr = FixedArray::make(s.length() * 4, Byte::default())
-  let mut len = 0
-  s.iter().each(ch => len += arr.set_utf8_char(len, ch))
-  @ffi.log_error(@ffi.get_addr(arr), len.reinterpret_as_uint())
+  let arr = @encoding.encode(s, encoding=UTF8).to_fixedarray()
+  @ffi.log_error(@ffi.get_addr(arr), arr.length().reinterpret_as_uint())
   ignore(arr)
 }
 

@@ -16,6 +16,13 @@ pub fn boot() -> Unit {
     85,
     @ff.Style::new_outlined(Green, 1),
   )
+  @ff.draw_sector(
+    @ff.Point::new(120, 60),
+    30,
+    @ff.Angle::from_deg(180),
+    @ff.Angle::from_deg(390),
+    @ff.Style::{ fill: LightGray, stroke: LightBlue, stroke_width: 1 },
+  )
 }
 
 ///|

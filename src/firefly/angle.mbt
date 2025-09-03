@@ -17,7 +17,7 @@ pub fn Angle::from_rad(self : Float) -> Angle {
 }
 
 ///|
-/// Define an Angle in degrees (0-360).
+/// Define an Angle in degrees (0-360°).
 pub fn Angle::from_deg(self : Float) -> Angle {
   Angle(self * PI / 180)
 }
@@ -29,7 +29,7 @@ pub fn Angle::to_rad(self : Angle) -> Float {
 }
 
 ///|
-/// Get the angle value in degrees (0-360).
+/// Get the angle value in degrees (0-360°).
 pub fn Angle::to_deg(self : Angle) -> Float {
   180 * self.inner() / PI
 }

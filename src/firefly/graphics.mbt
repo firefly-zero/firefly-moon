@@ -102,3 +102,108 @@ pub fn draw_ellipse(point : Point, size : Size, style : Style) -> Unit {
     style.stroke_width,
   )
 }
+
+///|
+/// Render a triangle.
+///
+/// The order of the points doesn't matter.
+pub fn draw_triangle(a : Point, b : Point, c : Point, style : Style) -> Unit {
+  @ffi.draw_triangle(
+    a.x,
+    a.y,
+    b.x,
+    b.y,
+    c.x,
+    c.y,
+    style.fill.to_int(),
+    style.stroke.to_int(),
+    style.stroke_width,
+  )
+}
+
+///|
+/// Render an arc (i.e "rainbow").
+///
+/// The angles start at pointing right, and continues clockwise.
+/// The `start` sets where the arc begins, and the `sweep` sets the arc lenght.
+/// Meaning, the arc goes from `start` to `start+sweep`
+///
+/// Negative angle `start` or `sweep` values are allowed.
+///
+/// The `style.fill` is ignored. The arc is always only a line.
+///
+/// The `sweep` is clamped between 0-2π (0-360°), meaning its value does not
+/// wrap around. So a `sweep` of 3π is equivalent of 2π.
+pub fn draw_arc(
+  point : Point,
+  diameter : Int,
+  start : Angle,
+  sweep : Angle,
+  style : Style,
+) -> Unit {
+  @ffi.draw_arc(
+    point.x,
+    point.y,
+    diameter,
+    start.inner(),
+    sweep.inner(),
+    style.fill.to_int(),
+    style.stroke.to_int(),
+    style.stroke_width,
+  )
+}
+
+///|
+/// Render a circle sector (i.e "pizza slice").
+///
+/// The angles start at pointing right, and continues clockwise.
+/// The `start` sets where the arc begins, and the `sweep` sets the arc lenght.
+/// Meaning, the arc goes from `start` to `start+sweep`
+///
+/// Negative angle `start` or `sweep` values are allowed.
+///
+/// The `sweep` is clamped between 0-2π (0-360°), meaning it does not wrap
+/// around. So a `sweep` of 3π is equivalent of 2π.
+pub fn draw_sector(
+  point : Point,
+  diameter : Int,
+  start : Angle,
+  sweep : Angle,
+  style : Style,
+) -> Unit {
+  @ffi.draw_sector(
+    point.x,
+    point.y,
+    diameter,
+    start.inner(),
+    sweep.inner(),
+    style.fill.to_int(),
+    style.stroke.to_int(),
+    style.stroke_width,
+  )
+}
+
+///|
+/// Render text using the given font.
+///
+/// Unlike in the other drawing functions, here `point` does not represent
+/// the top-left corner, but instead the text baseline position
+/// (such as the bottom left pixel of an underscore "`_`").
+pub fn draw_text(
+  text : String,
+  font : Font,
+  point : Point,
+  color : Color,
+) -> Unit {
+  let text_arr = @encoding.encode(text, encoding=UTF8).to_fixedarray()
+  @ffi.draw_text(
+    @ffi.get_addr(text_arr),
+    text_arr.length().reinterpret_as_uint(),
+    @ffi.get_addr(font.inner()),
+    font.inner().length().reinterpret_as_uint(),
+    point.x,
+    point.y,
+    color.to_int(),
+  )
+  ignore(text_arr)
+}
