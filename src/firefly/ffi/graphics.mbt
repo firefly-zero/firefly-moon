@@ -12,14 +12,7 @@ pub fn draw_point(x : Int, y : Int, color : Int) -> Unit = "graphics" "draw_poin
 
 ///|
 /// Render a line between two points.
-pub fn draw_line(
-  x1 : Int,
-  y1 : Int,
-  x2 : Int,
-  y2 : Int,
-  c : Int,
-  sw : Int,
-) -> Unit = "graphics" "draw_line"
+pub fn draw_line(x1 : Int, y1 : Int, x2 : Int, y2 : Int, c : Int, sw : Int) = "graphics" "draw_line"
 
 ///|
 /// Render a rectangle filling the given bounding box.
@@ -49,14 +42,7 @@ pub fn draw_rounded_rect(
 
 ///|
 /// Render a circle.
-pub fn draw_circle(
-  x : Int,
-  y : Int,
-  d : Int,
-  fc : Int,
-  sc : Int,
-  sw : Int,
-) -> Unit = "graphics" "draw_circle"
+pub fn draw_circle(x : Int, y : Int, d : Int, fc : Int, sc : Int, sw : Int) = "graphics" "draw_circle"
 
 ///|
 /// Render an ellipse (oval).
@@ -68,7 +54,7 @@ pub fn draw_ellipse(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_ellipse"
+) = "graphics" "draw_ellipse"
 
 ///|
 /// Render a triangle.
@@ -130,7 +116,7 @@ pub fn draw_sector(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_sector"
+) = "graphics" "draw_sector"
 
 ///|
 /// Render text using the given font.
@@ -146,7 +132,7 @@ pub fn draw_text(
   x : Int,
   y : Int,
   c : Int,
-) -> Unit = "graphics" "draw_text"
+) = "graphics" "draw_text"
 
 ///|
 /// Render a QR-code.
@@ -161,7 +147,7 @@ pub fn draw_qr(
 
 ///|
 /// Render an image.
-pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) -> Unit = "graphics" "draw_image"
+pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) = "graphics" "draw_image"
 
 ///|
 /// Render a sub-image, meaning a part of an image.

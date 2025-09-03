@@ -10,4 +10,6 @@ _bin = { path = "./target/wasm/release/build/superfly.wasm", copy = true }
 "eg_6x12.fff" = { path = "assets/fonts/eg_6x12.fff" }
 
 # Images
-"weird-smile.png" = { path = "assets/images/weird-smile.png" }
+"smile-4.png" = { path = "assets/images/smile-4.png" }
+"smile-2.png" = { path = "assets/images/smile-2.png" }
+"smile-1.png" = { path = "assets/images/smile-1.png" }

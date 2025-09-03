@@ -26,6 +26,7 @@ pub fn boot() -> Unit {
   match @ff.Font::load("eg_6x12.fff") {
     None => @ff.log_error("failed to load font")
     Some(font) => {
+      @ff.log_debug("loaded font")
       let text = "hello world"
       let text_width = text.length() * font.char_width()
       @ff.LineStyle::new(Red, 1).draw(
@@ -35,9 +36,21 @@ pub fn boot() -> Unit {
       @ff.draw_text(text, font, @ff.Point::new(30, 50), Orange)
     }
   }
-  match @ff.Image::load("weird-smile.png") {
-    None => @ff.log_error("failed to load image")
-    Some(image) => image.draw(@ff.Point::new(80, 20))
+  for i, path in ["smile-1.png", "smile-2.png", "smile-4.png"].iter2() {
+    match @ff.Image::load(path) {
+      None => @ff.log_error("failed to load image: " + path)
+      Some(image) => {
+        @ff.log_debug(
+          "loaded image: " +
+          path +
+          ". size: " +
+          image.size().to_string() +
+          " bpp: " +
+          image.bits_per_pixel().to_int().to_string(),
+        )
+        image.draw(@ff.Point::new(80 + i * 16, 20))
+      }
+    }
   }
 }
 
