@@ -36,37 +36,37 @@ pub fn Angle::to_deg(self : Angle) -> Float {
 
 ///|
 /// Add together two angles.
-pub impl Add for Angle with op_add(self : Angle, other : Angle) -> Angle {
+pub impl Add for Angle with add(self : Angle, other : Angle) -> Angle {
   self.inner() + other.inner()
 }
 
 ///|
 /// Subtract one angle from another.
-pub impl Sub for Angle with op_sub(self : Angle, other : Angle) -> Angle {
+pub impl Sub for Angle with sub(self : Angle, other : Angle) -> Angle {
   self.inner() + other.inner()
 }
 
 ///|
 /// Multiply one angle with another.
-pub impl Mul for Angle with op_mul(self : Angle, other : Angle) -> Angle {
+pub impl Mul for Angle with mul(self : Angle, other : Angle) -> Angle {
   self.inner() * other.inner()
 }
 
 ///|
 /// Divide one angle with another.
-pub impl Div for Angle with op_div(self : Angle, other : Angle) -> Angle {
+pub impl Div for Angle with div(self : Angle, other : Angle) -> Angle {
   self.inner() / other.inner()
 }
 
 ///|
 /// Compare one angle with another.
-pub impl Eq for Angle with op_equal(self : Angle, other : Angle) -> Bool {
+pub impl Eq for Angle with equal(self : Angle, other : Angle) -> Bool {
   self.inner() == other.inner()
 }
 
 ///|
 /// Negate an angle
-pub impl Neg for Angle with op_neg(self : Angle) -> Angle {
+pub impl Neg for Angle with neg(self : Angle) -> Angle {
   -self.inner()
 }
 

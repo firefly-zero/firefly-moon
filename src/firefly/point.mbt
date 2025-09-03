@@ -27,31 +27,31 @@ pub fn Point::abs(self : Point) -> Point {
 
 ///|
 /// Add together two points.
-pub impl Add for Point with op_add(self : Point, other : Point) -> Point {
+pub impl Add for Point with add(self : Point, other : Point) -> Point {
   { x: self.x + other.x, y: self.y + other.y }
 }
 
 ///|
 /// Subtract one point from another.
-pub impl Sub for Point with op_sub(self : Point, other : Point) -> Point {
+pub impl Sub for Point with sub(self : Point, other : Point) -> Point {
   { x: self.x - other.x, y: self.y - other.y }
 }
 
 ///|
 /// Compare one point with another.
-pub impl Eq for Point with op_equal(self : Point, other : Point) -> Bool {
+pub impl Eq for Point with equal(self : Point, other : Point) -> Bool {
   self.x == other.x && self.y == other.y
 }
 
 ///|
 /// Multiply a point with a scalar.
-pub fn Point::mul(self : Point, factor : Int) -> Point {
+pub fn Point::scale_up(self : Point, factor : Int) -> Point {
   { x: self.x * factor, y: self.y * factor }
 }
 
 ///|
 /// Divide a point by a scalar.
-pub fn Point::div(self : Point, divisor : Int) -> Point {
+pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
   { x: self.x / divisor, y: self.y / divisor }
 }
 
