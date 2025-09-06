@@ -27,6 +27,15 @@ pub(all) struct Buttons {
 } derive(Show, Eq, Compare, Hash, Default)
 
 ///|
+/// Get the currently pressed buttons.
+///
+/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
+/// from all active players in the multiplayer session.
+pub fn Buttons::read(peer? : Peer = Peer::default()) -> Buttons {
+  read_buttons(peer~)
+}
+
+///|
 /// Given the old state, get buttons that were not pressed previously but are
 /// pressed now.
 pub fn Buttons::just_pressed(self : Buttons, old : Buttons) -> Buttons {

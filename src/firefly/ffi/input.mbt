@@ -6,6 +6,9 @@
 ///
 /// Returns both X and Y axis as two 16-bit integers concatenated together into
 /// one 32-bit value.
+///
+/// Returns `0xFFFF` when the pad has no input.
+/// Meaning, the user is not touching the touch pad at all.
 pub fn read_pad(peer : UInt) -> UInt = "input" "read_pad"
 
 ///|

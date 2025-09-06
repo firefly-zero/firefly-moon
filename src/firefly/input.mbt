@@ -3,6 +3,9 @@
 ///
 /// The `peer` can be a player ID, or `0xFF` to read the combined inputs
 /// from all active players in the multiplayer session.
+///
+/// Returns `None` when the pad has no input.
+/// Meaning, the user is not touching the touch pad at all.
 pub fn read_pad(peer? : Peer = Peer::default()) -> Pad? {
   match @ffi.read_pad(peer.inner().to_uint()) {
     0xffff => None

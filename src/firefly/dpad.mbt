@@ -21,6 +21,18 @@ pub(all) struct DPad {
 } derive(Show, Eq, Compare, Hash, Default)
 
 ///|
+/// Shorthand function for reading the pad input and converting it into a `DPad`.
+///
+/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
+/// from all active players in the multiplayer session.
+///
+/// Returns `None` when the pad has no input.
+/// Meaning, the user is not touching the touch pad at all.
+pub fn DPad::read(peer? : Peer = Peer::default()) -> DPad? {
+  read_pad(peer~).map(pad => pad.as_dpad())
+}
+
+///|
 /// Given the old state, get directions that were not pressed previously but are
 /// pressed now.
 pub fn DPad::just_pressed(self : DPad, old : DPad) -> DPad {

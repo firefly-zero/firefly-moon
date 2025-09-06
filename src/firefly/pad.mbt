@@ -42,6 +42,18 @@ pub fn Pad::new(x : Int, y : Int) -> Pad {
 }
 
 ///|
+/// Get the current touch pad state.
+///
+/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
+/// from all active players in the multiplayer session.
+///
+/// Returns `None` when the pad has no input.
+/// Meaning, the user is not touching the touch pad at all.
+pub fn Pad::read(peer? : Peer = Peer::default()) -> Pad? {
+  read_pad(peer~)
+}
+
+///|
 /// Convert the `Pad` to a `Point`.
 pub fn Pad::as_point(self : Pad) -> Point {
   Point::{ x: self.x, y: self.y }
