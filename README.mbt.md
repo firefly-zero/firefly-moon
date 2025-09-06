@@ -7,6 +7,11 @@ An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making
 * [📄 api docs](https://mooncakes.io/docs/applejag/firefly)
 * [🐙 github](https://github.com/applejag/firefly-go)
 
+The SDK design is heavily inspired by the [firefly-go](https://github.com/firefly-zero/firefly-go)
+and [firefly-rust](https://github.com/firefly-zero/firefly-rust) SDKs.
+The type and function naming in this SDK is trying to stay as similar as
+possible to the naming in the other SDKs.
+
 ## Prerequisites
 
 - `moonc` v0.6.26 (or later)
