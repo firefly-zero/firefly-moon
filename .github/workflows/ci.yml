@@ -35,6 +35,9 @@ jobs:
       - name: Setup Moonbit
         uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
 
+      - name: Update moon package index
+        run: moon update
+
       - name: Run tests
         run: |
           set -x
@@ -53,6 +56,9 @@ jobs:
 
       - name: Setup Moonbit
         uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
+
+      - name: Update moon package index
+        run: moon update
 
       - name: Format code
         run: |
