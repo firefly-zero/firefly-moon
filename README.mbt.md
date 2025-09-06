@@ -33,7 +33,7 @@ Then in your game `moon.pkg.json` specify this:
   ],
   "link": {
     "wasm": {
-      "exports": ["boot", "update", "render"],
+      "exports": ["boot", "update", "render", "before_exit"],
       "export-memory-name": "memory"
     }
   }
