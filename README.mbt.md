@@ -4,12 +4,33 @@ An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making
 [Firefly Zero](https://fireflyzero.com/) games.
 
 * [▶️ getting started](https://docs.fireflyzero.com/dev/getting-started/)
-* [📄 api docs]() // TODO
+* [📄 api docs](https://mooncakes.io/docs/applejag/firefly)
 * [🐙 github](https://github.com/applejag/firefly-go)
 
 ## Prerequisites
 
 - `moonc` v0.6.26 (or later)
+- `--target wasm` MoonBit build target, as Firefly Zero doesn't support `wasm-gc`
+
+## Installation
+
+```bash
+moon add applejag/firefly
+```
+
+Then in your game `moon.pkg.json` specify this:
+
+```json
+{
+  "is-main": true,
+  "import": [{ "path": "applejag/firefly", "alias": "ff" }],
+  "link": {
+    "wasm": {
+      "exports": ["boot", "update", "render"],
+      "export-memory-name": "memory"
+    }
+  }
+```
 
 ## Examples
 
