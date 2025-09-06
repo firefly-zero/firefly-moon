@@ -2,79 +2,15 @@
 /// A loaded image file.
 ///
 /// Can be loaded using `Image::load`
-///
-/// Data structure of an `Image`:
-///
-/// - 5 bytes: metadata
-/// - `BPP * 2` bytes: color palette, with 1 nibble (4 bits) per color
-/// - `width * height * BPP / 8` bytes: image body (rest of the image)
-///
-/// Example 16x16 1-BPP image:
-///
-/// ```
-///      ┌► header
-/// 0x21 ┤ ─► magic number (marker that signals that this is an image)
-/// 0x01 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit little-endian
-/// 0x00 ┤ ┘
-/// 0x01 ┤ ─► transparency color
-/// 0x2C ┘ ─► 1 byte color palette (2 colors)
-///           ┌► body
-/// 0xC3 0xC3 ┤ ─► row 1
-/// 0x9B 0xD9 ┤ ─► row 2
-/// 0xB3 0xD1 ┤ ─► row 3
-/// 0x9B 0xD9 ┤ ─► row 4
-/// ...       ┤ ...etc
-/// ```
-///
-/// Example 16x16 2-BPP image:
-///
-/// ```
-///      ┌► header
-/// 0x21 ┤ ─► magic number (marker that signals that this is an image)
-/// 0x02 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit little-endian
-/// 0x00 ┤ ┘
-/// 0x01 ┤ ─► transparency color
-/// 0x2C ┤ ┬► 2 bytes color palette (4 colors)
-/// 0x10 ┘ ┘            ┌► body
-/// 0xA0 0x0A 0xA0 0x0A ┤ ─► row 1
-/// 0x81 0x4A 0xA1 0x42 ┤ ─► row 2
-/// 0x85 0x0A 0xA1 0x02 ┤ ─► row 3
-/// 0x81 0x4A 0xA1 0x42 ┤ ─► row 4
-/// ...                 ┤ ...etc
-/// ```
-///
-/// Example 16x16 image:
-///
-/// ```
-///      ┌► header
-/// 0x21 ┤ ─► magic number (marker that signals that this is an image)
-/// 0x04 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit little-endian
-/// 0x00 ┤ ┘
-/// 0x01 ┤ ─► transparency color
-/// 0x25 ┤ ┬► 8 bytes color palette (16 colors)
-/// 0x67 ┤ ┤
-/// 0x89 ┤ ┤
-/// 0xAB ┤ ┤
-/// 0xCD ┤ ┤
-/// 0xEF ┤ ┤
-/// 0x10 ┤ ┤
-/// 0x00 ┘ ┘                                ┌► body
-/// 0xCC 0x44 0x44 0x66 0x67 0x77 0x77 0xCC ┤ ─► row 1
-/// 0x44 0x14 0x14 0x66 0x66 0x16 0x17 0x7C ┤ ─► row 2
-/// 0x44 0x00 0x00 0x99 0x66 0x00 0x00 0x77 ┤ ─► row 3
-/// 0x40 0x08 0x80 0x99 0x66 0x08 0x82 0x07 ┤ ─► row 4
-/// ...                                     ┤ ...etc
-/// ```
 pub struct Image(FixedArray[Byte])
 
 ///|
 /// Create a new blank image.
 ///
 /// By default the image uses 4 bits-per-pixel (`bpp`).
+/// The `bpp` must be either 1, 2, or 4.
 pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
+  guard bpp == 1 || bpp == 2 || bpp == 4 else { panic() }
   let header_size = 5U + bpp.to_uint() * 2
   let body_size = size.w * size.h * bpp.to_uint() / 8
   let arr = FixedArray::make(
