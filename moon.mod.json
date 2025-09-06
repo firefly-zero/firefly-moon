@@ -1,5 +1,5 @@
 {
-  "name": "applejag/superfly",
+  "name": "applejag/firefly",
   "version": "0.1.0",
   "deps": {
     "tonyfettes/encoding": "0.3.6"
@@ -8,6 +8,6 @@
   "repository": "",
   "license": "Apache-2.0",
   "keywords": ["game", "firefly"],
-  "description": "",
+  "description": "A port of the SDK for Firefly Zero, a modern handheld game console using WebAssembly",
   "preferred-target": "wasm"
 }

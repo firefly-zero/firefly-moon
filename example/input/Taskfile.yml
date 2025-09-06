@@ -1,0 +1,13 @@
+version: 3
+
+tasks:
+  build:
+    cmds:
+      - moon build --target wasm
+      - firefly_cli build
+
+  run:
+    deps:
+      - build
+    cmds:
+      - firefly-emulator --id applejag.moonbit-input

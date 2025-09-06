@@ -1,0 +1,9 @@
+{
+  "name": "applejag/firefly/example/shapes",
+  "deps": {
+    "applejag/firefly": {
+      "path": "../.."
+    }
+  },
+  "preferred-target": "wasm"
+}
