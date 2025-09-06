@@ -29,7 +29,7 @@ Then in your game `moon.pkg.json` specify this:
 {
   "is-main": true,
   "import": [
-    { "path": "applejag/firefly", "alias": "ff" }
+    "applejag/firefly"
   ],
   "link": {
     "wasm": {
@@ -59,13 +59,13 @@ fn main {
 /// This is the best place to load fonts, sprites, and other assets,
 /// initialize the default state, read configurations, etc.
 pub fn boot() -> Unit {
-  @ff.log_debug("entering boot") // placeholder for demonstration purposes
+  @firefly.log_debug("entering boot") // placeholder for demonstration purposes
 }
 
 ///|
 /// `before_exit` is called before the app is closed.
 pub fn before_exit() -> Unit {
-  @ff.log_debug("entering before_exit") // placeholder for demonstration purposes
+  @firefly.log_debug("entering before_exit") // placeholder for demonstration purposes
 }
 
 ///|
@@ -76,7 +76,7 @@ pub fn before_exit() -> Unit {
 /// This is the best place to update the state of objects, position of NPCs,
 /// read and handle user input, etc.
 pub fn update() -> Unit {
-  @ff.log_debug("entering update") // placeholder for demonstration purposes
+  @firefly.log_debug("entering update") // placeholder for demonstration purposes
 }
 
 ///|
@@ -86,7 +86,7 @@ pub fn update() -> Unit {
 /// is slow and needs more resources.
 /// This is the best place to call all drawing functions.
 pub fn render() -> Unit {
-  @ff.log_debug("entering render") // placeholder for demonstration purposes
+  @firefly.log_debug("entering render") // placeholder for demonstration purposes
 }
 ```
 
