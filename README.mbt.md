@@ -30,6 +30,7 @@ Then in your game `moon.pkg.json` specify this:
       "export-memory-name": "memory"
     }
   }
+}
 ```
 
 ## Examples
