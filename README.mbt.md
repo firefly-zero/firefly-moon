@@ -5,7 +5,7 @@ An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making
 
 * [▶️ getting started](https://docs.fireflyzero.com/dev/getting-started/)
 * [📄 api docs](https://mooncakes.io/docs/applejag/firefly)
-* [🐙 github](https://github.com/applejag/firefly-go)
+* [🐰 github](https://github.com/applejag/firefly-moon)
 
 The SDK design is heavily inspired by the [firefly-go](https://github.com/firefly-zero/firefly-go)
 and [firefly-rust](https://github.com/firefly-zero/firefly-rust) SDKs.
