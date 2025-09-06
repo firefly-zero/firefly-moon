@@ -36,6 +36,7 @@ Then in your game `moon.pkg.json` specify this:
 
 You need these to run the examples:
 
+- Clone this Git repo: <https://github.com/applejag/firefly-moon>
 - MoonBit CLI (`moon`): <https://www.moonbitlang.com/download#moonbit-cli-tools>
 - Taskfile CLI (`task`): <https://taskfile.dev/>
 - Firefly Zero CLI (`firefly_cli`): <https://docs.fireflyzero.com/user/installation/#-cli>
