@@ -5,8 +5,8 @@
     "tonyfettes/encoding": "0.3.6"
   },
   "readme": "README.md",
-  "repository": "",
-  "license": "Apache-2.0",
+  "repository": "https://github.com/applejag/firefly-moon",
+  "license": "MIT",
   "keywords": ["game", "firefly"],
   "description": "A port of the SDK for Firefly Zero, a modern handheld game console using WebAssembly",
   "preferred-target": "wasm"
