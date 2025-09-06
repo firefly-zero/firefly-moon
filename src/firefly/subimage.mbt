@@ -3,7 +3,7 @@ pub struct SubImage {
   image : Image
   point : Point
   size : Size
-}
+} derive(Default)
 
 ///|
 pub fn SubImage::draw(self : SubImage, point : Point) -> Unit {

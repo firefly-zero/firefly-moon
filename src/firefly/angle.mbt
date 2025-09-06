@@ -8,7 +8,7 @@ pub const TAU : Float = 6.2831854820251465
 
 ///|
 /// An angle between two vectors, internally represented as radians.
-pub struct Angle(Float)
+pub struct Angle(Float) derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Define an Angle in radians (0-2π).
@@ -56,12 +56,6 @@ pub impl Mul for Angle with mul(self : Angle, other : Angle) -> Angle {
 /// Divide one angle with another.
 pub impl Div for Angle with div(self : Angle, other : Angle) -> Angle {
   self.inner() / other.inner()
-}
-
-///|
-/// Compare one angle with another.
-pub impl Eq for Angle with equal(self : Angle, other : Angle) -> Bool {
-  self.inner() == other.inner()
 }
 
 ///|

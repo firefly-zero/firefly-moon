@@ -3,7 +3,7 @@
   "import": [{ "path": "applejag/superfly/src/firefly", "alias": "ff" }],
   "link": {
     "wasm": {
-      "exports": ["boot", "update"],
+      "exports": ["boot", "update", "render"],
       "export-memory-name": "memory"
     }
   }

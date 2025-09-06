@@ -2,7 +2,7 @@
 /// A loaded image file.
 ///
 /// Can be loaded using `Image::load`
-pub struct Image(FixedArray[Byte])
+pub struct Image(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Create a new blank image.

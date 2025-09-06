@@ -5,7 +5,7 @@ pub(all) struct Style {
   fill : Color
   stroke : Color
   stroke_width : Int
-} derive(Show)
+} derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Create a style for a solid shape (without stroke).

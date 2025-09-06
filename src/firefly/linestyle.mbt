@@ -4,7 +4,7 @@
 pub(all) struct LineStyle {
   color : Color
   width : Int
-}
+} derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand for creating a new LineStyle.

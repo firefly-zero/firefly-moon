@@ -1,14 +1,14 @@
 ///|
 /// Fill the whole frame with the given color.
-pub fn clear_screen(color : Int) -> Unit = "graphics" "clear_screen"
+pub fn clear_screen(color : Int) = "graphics" "clear_screen"
 
 ///|
 /// Set a color value in the palette.
-pub fn set_color(c : Int, r : Int, g : Int, b : Int) -> Unit = "graphics" "set_color"
+pub fn set_color(c : Int, r : Int, g : Int, b : Int) = "graphics" "set_color"
 
 ///|
 /// Render a single pixel.
-pub fn draw_point(x : Int, y : Int, color : Int) -> Unit = "graphics" "draw_point"
+pub fn draw_point(x : Int, y : Int, color : Int) = "graphics" "draw_point"
 
 ///|
 /// Render a line between two points.
@@ -24,7 +24,7 @@ pub fn draw_rect(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_rect"
+) = "graphics" "draw_rect"
 
 ///|
 /// Render a rectangle with rounded corners filling the given bounding box.
@@ -38,7 +38,7 @@ pub fn draw_rounded_rect(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_rounded_rect"
+) = "graphics" "draw_rounded_rect"
 
 ///|
 /// Render a circle.
@@ -70,7 +70,7 @@ pub fn draw_triangle(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_triangle"
+) = "graphics" "draw_triangle"
 
 ///|
 /// Render an arc (i.e "rainbow").
@@ -94,7 +94,7 @@ pub fn draw_arc(
   fc : Int,
   sc : Int,
   sw : Int,
-) -> Unit = "graphics" "draw_arc"
+) = "graphics" "draw_arc"
 
 ///|
 /// Render a circle sector (i.e "pizza slice").
@@ -143,7 +143,7 @@ pub fn draw_qr(
   y : Int,
   black : Int,
   white : Int,
-) -> Unit = "graphics" "draw_qr"
+) = "graphics" "draw_qr"
 
 ///|
 /// Render an image.
@@ -162,16 +162,16 @@ pub fn draw_sub_image(
   sub_y : Int,
   sub_width : UInt,
   sub_height : UInt,
-) -> Unit = "graphics" "draw_sub_image"
+) = "graphics" "draw_sub_image"
 
 ///|
 /// Set the target image for all subsequent drawing operations.
 ///
 /// To draw to the screen again, call `unset_canvas`.
-pub fn set_canvas(image_ptr : UInt, image_len : UInt) -> Unit = "graphics" "set_canvas"
+pub fn set_canvas(image_ptr : UInt, image_len : UInt) = "graphics" "set_canvas"
 
 ///|
 /// Make all subsequent drawing operations target the screen instead of a canvas.
 ///
 /// Cancels the effect of `set_canvas`.
-pub fn unset_canvas() -> Unit = "graphics" "unset_canvas"
+pub fn unset_canvas() = "graphics" "unset_canvas"

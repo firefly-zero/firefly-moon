@@ -14,7 +14,7 @@ pub const SCREEN_HEIGHT = 160
 pub(all) struct Size {
   w : UInt
   h : UInt
-} derive(Show)
+} derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a Size.
@@ -44,22 +44,4 @@ pub impl Add for Size with add(self : Size, other : Size) -> Size {
 /// Subtract one size from another.
 pub impl Sub for Size with sub(self : Size, other : Size) -> Size {
   { w: self.w - other.w, h: self.h - other.h }
-}
-
-///|
-/// Compare one size with another.
-pub impl Eq for Size with equal(self : Size, other : Size) -> Bool {
-  self.w == other.w && self.h == other.h
-}
-
-///|
-/// Multiply a size with a scalar.
-pub fn Size::scale_up(self : Size, factor : UInt) -> Size {
-  { w: self.w * factor, h: self.h * factor }
-}
-
-///|
-/// Divide a size by a scalar.
-pub fn Size::scale_down(self : Size, divisor : UInt) -> Size {
-  { w: self.w / divisor, h: self.h / divisor }
 }

@@ -6,7 +6,7 @@
 pub(all) struct Point {
   x : Int
   y : Int
-} derive(Show)
+} derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a `Point`.
@@ -24,6 +24,12 @@ pub fn Point::reinterpret_as_size(self : Point) -> Size {
     w: @cmp.maximum(self.x, 0).reinterpret_as_uint(),
     h: @cmp.maximum(self.y, 0).reinterpret_as_uint(),
   }
+}
+
+///|
+/// Convert the `Point` to a `Pad`.
+pub fn Point::as_pad(self : Point) -> Pad {
+  Pad::{ x: self.x, y: self.y }
 }
 
 ///|
@@ -45,15 +51,9 @@ pub impl Sub for Point with sub(self : Point, other : Point) -> Point {
 }
 
 ///|
-/// Compare one point with another.
-pub impl Eq for Point with equal(self : Point, other : Point) -> Bool {
-  self.x == other.x && self.y == other.y
-}
-
-///|
-/// Multiply a point with a scalar.
-pub fn Point::scale_up(self : Point, factor : Int) -> Point {
-  { x: self.x * factor, y: self.y * factor }
+/// Negate a Point.
+pub impl Neg for Point with neg(self : Point) -> Point {
+  { x: -self.x, y: -self.y }
 }
 
 ///|
@@ -61,6 +61,8 @@ pub fn Point::scale_up(self : Point, factor : Int) -> Point {
 pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
   { x: self.x / divisor, y: self.y / divisor }
 }
+
+///|
 
 ///|
 pub fn Point::is_in_bounds(self : Point) -> Bool {

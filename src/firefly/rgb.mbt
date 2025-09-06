@@ -5,7 +5,7 @@ pub(all) struct RGB {
   r : Byte
   g : Byte
   b : Byte
-}
+} derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand for creating a new RGB.

@@ -2,7 +2,7 @@
 /// A loaded file.
 ///
 /// Can be loaded using `File::load`
-pub struct File(FixedArray[Byte])
+pub struct File(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Creates a `File` from a fixed-sized byte array.

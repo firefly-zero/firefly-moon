@@ -34,7 +34,12 @@ pub(all) enum Color {
   Gray
   /// Dark gray color: #333C57.
   DarkGray
-} derive(Show, Eq)
+} derive(Show, Eq, Compare, Hash)
+
+///|
+pub impl Default for Color with default() -> Color {
+  Color::None
+}
 
 ///|
 pub fn Color::to_byte(color : Color) -> Byte {
