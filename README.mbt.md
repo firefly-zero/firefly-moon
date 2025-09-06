@@ -7,6 +7,7 @@ SPDX-License-Identifier: CC0-1.0
 # firefly-moon
 
 [![REUSE status](https://api.reuse.software/badge/github.com/applejag/firefly-moon)](https://api.reuse.software/info/github.com/applejag/firefly-moon)
+[![ci](https://github.com/applejag/firefly-moon/actions/workflows/ci.yml/badge.svg)](https://github.com/applejag/firefly-moon/actions/workflows/ci.yml)
 
 An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making
 [Firefly Zero](https://fireflyzero.com/) games.
