@@ -15,7 +15,7 @@
 ///      ┌► header
 /// 0x21 ┤ ─► magic number (marker that signals that this is an image)
 /// 0x01 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit big-endian
+/// 0x10 ┤ ┬► image width, 16 bit little-endian
 /// 0x00 ┤ ┘
 /// 0x01 ┤ ─► transparency color
 /// 0x2C ┘ ─► 1 byte color palette (2 colors)
@@ -33,7 +33,7 @@
 ///      ┌► header
 /// 0x21 ┤ ─► magic number (marker that signals that this is an image)
 /// 0x02 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit big-endian
+/// 0x10 ┤ ┬► image width, 16 bit little-endian
 /// 0x00 ┤ ┘
 /// 0x01 ┤ ─► transparency color
 /// 0x2C ┤ ┬► 2 bytes color palette (4 colors)
@@ -51,7 +51,7 @@
 ///      ┌► header
 /// 0x21 ┤ ─► magic number (marker that signals that this is an image)
 /// 0x04 ┤ ─► bits per pixel (BPP, either 0x01, 0x02, or 0x04)
-/// 0x10 ┤ ┬► image width, 16 bit big-endian
+/// 0x10 ┤ ┬► image width, 16 bit little-endian
 /// 0x00 ┤ ┘
 /// 0x01 ┤ ─► transparency color
 /// 0x25 ┤ ┬► 8 bytes color palette (16 colors)
