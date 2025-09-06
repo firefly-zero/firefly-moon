@@ -11,3 +11,24 @@ includes:
   example/shapes:
     taskfile: ./example/shapes
     dir: ./example/shapes
+
+vars:
+  MOON_MODULES:
+    sh: echo . && find ./example -maxdepth 1 -mindepth 1 -type d
+
+tasks:
+  check:
+    cmds:
+      - for: { var: MOON_MODULES }
+        cmd: moon check -C {{.ITEM}}
+
+  format:
+    deps: [check]
+    cmds:
+      - for: { var: MOON_MODULES }
+        cmd: moon fmt -C {{.ITEM}}
+
+  test:
+    cmds:
+      - for: { var: MOON_MODULES }
+        cmd: moon test -C {{.ITEM}}

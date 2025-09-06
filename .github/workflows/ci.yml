@@ -32,6 +32,12 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install Task
+        uses: arduino/setup-task@b91d5d2c96a56797b48ac1e0e89220bf64044611 # v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Cache Moonbit
         uses: actions/cache@v4
         with:
@@ -47,15 +53,7 @@ jobs:
         run: moon update
 
       - name: Run tests
-        run: |
-          set -x
-          moon test
-          moon test -C example/input
-          moon test -C example/shapes
+        run: task test
 
       - name: Format code
-        run: |
-          set -x
-          moon fmt --check
-          moon fmt --check -C example/input
-          moon fmt --check -C example/shapes
+        run: task format
