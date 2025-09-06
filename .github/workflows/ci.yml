@@ -23,7 +23,7 @@ jobs:
       - name: REUSE Compliance Check
         uses: fsfe/reuse-action@bb774aa972c2a89ff34781233d275075cbddf542 # v5
 
-  moon-test:
+  moonbit:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,6 +31,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
+
+      - name: Cache Moonbit
+        uses: actions/cache@v4
+        with:
+          path: ~/.moon/registry
+          key: ${{ runner.os }}-moonbit-${{ hashFiles('**/moon.mod.json') }}
+          restore-keys: |
+            ${{ runner.os }}-moonbit-
 
       - name: Setup Moonbit
         uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
@@ -44,21 +52,6 @@ jobs:
           moon test
           moon test -C example/input
           moon test -C example/shapes
-
-  moon-fmt:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-
-      - name: Setup Moonbit
-        uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
-
-      - name: Update moon package index
-        run: moon update
 
       - name: Format code
         run: |
