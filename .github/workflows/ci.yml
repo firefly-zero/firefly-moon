@@ -9,11 +9,54 @@ on:
     branches: [main]
   pull_request:
 
+permissions: {} # no permissions by default
+
 jobs:
   reuse:
     name: REUSE Compliance Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - name: REUSE Compliance Check
-        uses: fsfe/reuse-action@v4
+        uses: fsfe/reuse-action@bb774aa972c2a89ff34781233d275075cbddf542 # v5
+
+  moon-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Setup Moonbit
+        uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
+
+      - name: Run tests
+        run: |
+          set -x
+          moon test
+          moon test -C example/input
+          moon test -C example/shapes
+
+  moon-fmt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Setup Moonbit
+        uses: hustcer/setup-moonbit@e9ec6fd84ae7ee5247016223cde77038ff3cea0b # v1
+
+      - name: Format code
+        run: |
+          set -x
+          moon fmt --check
+          moon fmt --check -C example/input
+          moon fmt --check -C example/shapes
