@@ -1,7 +1,8 @@
 # SPDX-FileCopyrightText: 2020 Free Software Foundation Europe e.V.
+# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
 #
 # SPDX-License-Identifier: CC0-1.0
-name: REUSE Compliance Check
+name: ci
 
 on:
   push:
@@ -9,7 +10,8 @@ on:
   pull_request:
 
 jobs:
-  test:
+  reuse:
+    name: REUSE Compliance Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
