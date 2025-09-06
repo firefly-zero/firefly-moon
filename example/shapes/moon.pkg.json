@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+//
+// SPDX-License-Identifier: CC0-1.0
 {
   "is-main": true,
   "import": [{ "path": "applejag/firefly", "alias": "ff" }],

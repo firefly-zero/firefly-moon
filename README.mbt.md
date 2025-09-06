@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 # firefly-moon
 
 An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making

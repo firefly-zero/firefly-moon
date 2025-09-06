@@ -1,0 +1,6 @@
+version = 1
+
+[[annotations]]
+path = "**/*.mbt"
+SPDX-FileCopyrightText = "2025 Kalle Fagerberg"
+SPDX-License-Identifier = "MIT"
