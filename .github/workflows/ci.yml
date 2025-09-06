@@ -79,7 +79,7 @@ jobs:
         run: moon update
 
       - name: Run tests
-        run: task test --color=true
+        run: task test
 
       - name: Format code
-        run: task format --color=true
+        run: task format
