@@ -64,7 +64,7 @@ pub fn boot() -> Unit {
 
 ///|
 /// `before_exit` is called before the app is closed.
-fn before_exit() -> Unit {
+pub fn before_exit() -> Unit {
 }
 
 ///|
