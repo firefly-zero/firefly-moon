@@ -76,11 +76,11 @@ pub fn draw_rounded_rect(
 /// Render a circle.
 ///
 /// The point specifies the upper-left corner.
-pub fn draw_circle(point : Point, radius : Int, style : Style) -> Unit {
+pub fn draw_circle(point : Point, diameter : Int, style : Style) -> Unit {
   @ffi.draw_circle(
     point.x,
     point.y,
-    radius,
+    diameter,
     style.fill.to_int(),
     style.stroke.to_int(),
     style.stroke_width,
