@@ -22,20 +22,40 @@ fn main {
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
   @firefly.log_debug("boot")
-  let name = @firefly.get_name(0)
-  @firefly.log_debug("name: " + name)
-  let p = Point::new(0, 0)
-  @firefly.draw_ellipse(p, Size::new(50, 80), Style::new_outlined(Red, 3))
-  @firefly.draw_circle(Point::new(120, 60), 85, Style::new_outlined(Green, 1))
+  @firefly.draw_rect(
+    Point::new(10, 10),
+    Size::new(40, 15),
+    Style::new_solid(LightGray),
+  )
+  @firefly.draw_rect(
+    Point::new(10, 30),
+    Size::new(10, 30),
+    Style::new_outlined(Yellow),
+  )
+  @firefly.draw_ellipse(
+    Point::new(10, 120),
+    Size::new(80, 30),
+    Style::new_outlined(Red, width=3),
+  )
+  @firefly.draw_circle(Point::new(120, 60), 85, Style::new_outlined(Green))
+  @firefly.draw_arc(
+    Point::new(165, 100),
+    30,
+    Angle::from_deg(-45),
+    Angle::from_deg(135),
+    Style::new_outlined(LightGreen),
+  )
   @firefly.draw_sector(
     Point::new(120, 60),
-    30,
+    50,
     Angle::from_deg(180),
-    Angle::from_deg(390),
-    Style::{ fill: LightGray, stroke: LightBlue, stroke_width: 1 },
+    Angle::from_deg(90),
+    Style::new(fill=DarkGray, stroke=LightBlue, stroke_width=1),
   )
-  @firefly.log_debug(
-    "pad angle: " + @firefly.Pad::new(500, 500).as_angle().to_deg().to_string(),
+  @firefly.draw_line(
+    Point::new(100, 30),
+    Point::new(50, 80),
+    LineStyle::new(Purple, width=5),
   )
 }
 

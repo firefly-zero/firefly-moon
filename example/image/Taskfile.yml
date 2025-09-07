@@ -11,7 +11,6 @@ tasks:
       - firefly_cli build
 
   run:
-    deps:
-      - build
+    deps: [build]
     cmds:
       - firefly-emulator --id applejag.moonbit-image

@@ -8,7 +8,7 @@ pub(all) struct LineStyle {
 
 ///|
 /// Shorthand for creating a new LineStyle.
-pub fn LineStyle::new(color : Color, width : Int) -> LineStyle {
+pub fn LineStyle::new(color : Color, width? : Int = 1) -> LineStyle {
   { color, width }
 }
 

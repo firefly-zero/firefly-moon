@@ -87,7 +87,7 @@ fn draw_pad_input() -> Unit {
         // pad.y uses "positive = up", but when drawing it's "positive = down"
         y: -pad.y * 13 / 1000,
       }
-      @firefly.draw_line(center, center + pad_vector, LineStyle::new(Green, 1))
+      @firefly.draw_line(center, center + pad_vector, LineStyle::new(Green))
     }
     None =>
       @firefly.draw_circle(center - Point::new(1, 1), 3, Style::new_solid(Red))
