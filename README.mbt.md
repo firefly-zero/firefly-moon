@@ -158,21 +158,7 @@ type alias as it is not as commonly used as some of these other types.
 
 ## Examples
 
-You need these to run the examples:
-
-- Clone this Git repo: <https://github.com/applejag/firefly-moon>
-- MoonBit CLI (`moon`): <https://www.moonbitlang.com/download#moonbit-cli-tools>
-- Taskfile CLI (`task`): <https://taskfile.dev/>
-- Firefly Zero CLI (`firefly_cli`): <https://docs.fireflyzero.com/user/installation/#-cli>
-- Firefly Zero emulator (`firefly-emulator`): <https://docs.fireflyzero.com/user/installation/#-emulator>
-
-Then run one of the examples by running either of these commands:
-
-```bash
-task example/input:run
-
-task example/shapes:run
-```
+See the [./example](./example) directory for example MoonBit modules.
 
 ## License
 
