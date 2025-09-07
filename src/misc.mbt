@@ -16,11 +16,17 @@ pub fn log_error(s : String) -> Unit {
 
 ///|
 /// Set the random seed.
-pub fnalias @ffi.set_seed
+#inline
+pub fn set_seed(seed : UInt) -> Unit {
+  @ffi.set_seed(seed)
+}
 
 ///|
 /// Get a random value.
-pub fnalias @ffi.get_random
+#inline
+pub fn get_random() -> UInt {
+  @ffi.get_random()
+}
 
 ///|
 /// Get name of the device.
@@ -33,8 +39,12 @@ pub fn get_name(peer : UInt) -> String {
 
 ///|
 /// Restart the app after the current update is finished.
-pub fnalias @ffi.restart
+pub fn restart() -> Unit {
+  @ffi.restart()
+}
 
 ///|
 /// Exit the app after the current update is finished.
-pub fnalias @ffi.quit
+pub fn quit() -> Unit {
+  @ffi.quit()
+}

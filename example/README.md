@@ -52,7 +52,7 @@ task example/shapes:run
 ## Example: [sudo](./sudo)
 
 ```bash
-task example/shapes:run
+task example/sudo:run
 ```
 
 No screenshot. This example only logs things to the console.
