@@ -24,9 +24,18 @@ pub fn set_seed(seed : UInt) -> Unit {
 ///|
 /// Get a random value.
 ///
-/// You can also use the global `random` value which uses this `get_random`
+/// You can also use the `@random` subpackage which uses this `get_random`
 /// function under the hood. With that you can generate more elaborate random
 /// types and shuffle arrays.
+///
+/// NOTE: Avoid using MoonBit's builtin `@random` package as it calls the
+/// underlying random number generator way too much and quickly results in
+/// Firefly Zero aborting your app with the error:
+///
+/// ```plaintext
+/// runtime error: error calling boot: all fuel consumed by WebAssembly.
+/// The last called host function is misc.get_random.
+/// ```
 #inline
 pub fn get_random() -> UInt {
   @ffi.get_random()

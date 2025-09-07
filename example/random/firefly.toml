@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: CC0-1.0
 
 author_id = "applejag"
-app_id = "moonbit-shapes"
+app_id = "moonbit-random"
 author_name = "Applejag"
-app_name = "MoonBit shapes example"
+app_name = "MoonBit random example"
 
 [files]
-_bin = { path = "./target/wasm/release/build/shapes.wasm", copy = true }
+_bin = { path = "./target/wasm/release/build/random.wasm", copy = true }

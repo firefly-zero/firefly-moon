@@ -8,6 +8,7 @@ includes:
   example/font: { taskfile: ./example/font, dir: ./example/font }
   example/image: { taskfile: ./example/image, dir: ./example/image }
   example/input: { taskfile: ./example/input, dir: ./example/input }
+  example/random: { taskfile: ./example/random, dir: ./example/random }
   example/shapes: { taskfile: ./example/shapes, dir: ./example/shapes }
   example/sudo: { taskfile: ./example/sudo, dir: ./example/sudo }
 
