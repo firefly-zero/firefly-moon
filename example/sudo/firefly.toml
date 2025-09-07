@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+author_id = "applejag"
+app_id = "moonbit-sudo"
+author_name = "Applejag"
+app_name = "MoonBit input example"
+
+sudo = true
+
+[files]
+_bin = { path = "./target/wasm/release/build/sudo.wasm", copy = true }

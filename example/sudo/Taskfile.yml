@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+version: 3
+
+tasks:
+  build:
+    cmds:
+      - moon build --target wasm
+      - firefly_cli build
+
+  run:
+    deps: [build]
+    cmds:
+      - firefly-emulator --id applejag.moonbit-sudo

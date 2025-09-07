@@ -9,6 +9,7 @@ includes:
   example/image: { taskfile: ./example/image, dir: ./example/image }
   example/input: { taskfile: ./example/input, dir: ./example/input }
   example/shapes: { taskfile: ./example/shapes, dir: ./example/shapes }
+  example/sudo: { taskfile: ./example/sudo, dir: ./example/sudo }
 
 vars:
   MOON_MODULES:
