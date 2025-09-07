@@ -12,5 +12,6 @@
   "license": "MIT",
   "keywords": ["game", "firefly-zero"],
   "description": "A port of the SDK for Firefly Zero, a modern handheld game console using WebAssembly",
+  "source": "src",
   "preferred-target": "wasm"
 }
