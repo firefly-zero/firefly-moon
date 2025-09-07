@@ -17,7 +17,7 @@ You need these to run the examples:
 To run one of the examples then execute the listed command from the root of
 this repository.
 
-## Example: font
+## Example: [font](./font)
 
 ```bash
 task example/font:run
@@ -25,7 +25,7 @@ task example/font:run
 
 [![font screenshot](./font/screenshot.png)](./font)
 
-## Example: image
+## Example: [image](./image)
 
 ```bash
 task example/image:run
@@ -33,7 +33,7 @@ task example/image:run
 
 [![image screenshot](./image/screenshot.png)](./image)
 
-## Example: input
+## Example: [input](./input)
 
 ```bash
 task example/input:run
@@ -41,7 +41,7 @@ task example/input:run
 
 [![input screenshot](./input/screenshot.png)](./input)
 
-## Example: shapes
+## Example: [shapes](./shapes)
 
 ```bash
 task example/shapes:run
@@ -49,7 +49,7 @@ task example/shapes:run
 
 [![shapes screenshot](./shapes/screenshot.png)](./shapes)
 
-## Example: sudo
+## Example: [sudo](./sudo)
 
 ```bash
 task example/shapes:run
