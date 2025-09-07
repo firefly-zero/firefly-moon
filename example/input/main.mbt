@@ -1,4 +1,7 @@
 ///|
+typealias @firefly.Angle
+
+///|
 typealias @firefly.Color
 
 ///|
@@ -37,7 +40,12 @@ pub fn boot() -> Unit {
 }
 
 ///|
+/// The most recent touch pad value.
 let input_pad : Ref[@firefly.Pad?] = Ref::new(None)
+
+///|
+/// Pad value from when the user started touching the touch pad.
+let input_pad_start : Ref[@firefly.Pad] = Ref::new(@firefly.Pad::default())
 
 ///|
 let input_buttons : Ref[@firefly.Buttons] = Ref::new(
@@ -45,10 +53,45 @@ let input_buttons : Ref[@firefly.Buttons] = Ref::new(
 )
 
 ///|
+let cursor : Ref[Point] = Ref::new(
+  Point::new(
+    @firefly.SCREEN_WIDTH.reinterpret_as_int() / 2,
+    @firefly.SCREEN_HEIGHT.reinterpret_as_int() / 2 + 40,
+  ),
+)
+
+///|
+let cursor_old : Ref[Point] = Ref::new(cursor.val)
+
+///|
+/// Arbitrary value used to control the sensitivity of the cursor
+const CURSOR_SENSITIVITY = 60
+
+///|
 /// update is called ~60 times per second.
 pub fn update() -> Unit {
+  let last_pad = input_pad.val
   input_pad.val = @firefly.read_pad()
   input_buttons.val = @firefly.read_buttons()
+  match (last_pad, input_pad.val) {
+    // reset the touch pad start value & cursor when the input just starts
+    (None, Some(pad)) => {
+      input_pad_start.val = pad
+      cursor_old.val = cursor.val
+    }
+    _ => ()
+  }
+  if input_pad.val is Some(pad) {
+    let input_delta = pad - input_pad_start.val
+    let cursor_delta = Point::{
+      x: input_delta.x * CURSOR_SENSITIVITY / 1000,
+      // pad.y uses "positive = up", but when drawing it's "positive = down"
+      y: -input_delta.y * CURSOR_SENSITIVITY / 1000,
+    }
+    cursor.val = (cursor_old.val + cursor_delta)
+      .component_max(Point::default())
+      .component_min(Point::new_screen() - Point::new(1, 1))
+  }
 }
 
 ///|
@@ -68,6 +111,7 @@ pub fn render() -> Unit {
   draw_pad_input()
   draw_menu_input()
   draw_abxy_input()
+  draw_cursor()
 }
 
 ///|
@@ -87,6 +131,18 @@ fn draw_pad_input() -> Unit {
         // pad.y uses "positive = up", but when drawing it's "positive = down"
         y: -pad.y * 13 / 1000,
       }
+      let pad_start_vector = Point::{
+        x: input_pad_start.val.x * 13 / 1000,
+        // pad.y uses "positive = up", but when drawing it's "positive = down"
+        y: -input_pad_start.val.y * 13 / 1000,
+      }
+      // Draw a line to show the vector of how the input has changed
+      @firefly.draw_line(
+        center + pad_start_vector,
+        center + pad_vector,
+        LineStyle::new(Red),
+      )
+      // Draw a line from the center
       @firefly.draw_line(center, center + pad_vector, LineStyle::new(Green))
     }
     None =>
@@ -160,4 +216,15 @@ fn button_bg_color(pressed : Bool) -> Color {
     true => DarkGreen
     false => DarkGray
   }
+}
+
+///|
+fn draw_cursor() -> Unit {
+  @firefly.draw_sector(
+    cursor.val - Point::new(8, 8),
+    16,
+    Angle::from_deg(30),
+    Angle::from_deg(30),
+    Style::new(fill=Gray, stroke=LightGray),
+  )
 }

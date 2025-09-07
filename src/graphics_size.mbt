@@ -42,6 +42,20 @@ pub fn Size::reinterpret_as_point(self : Size) -> Point {
 }
 
 ///|
+/// Returns a new `Size` where both `w` and `h` are set to the minimum
+/// of their respective values between both sizes.
+pub fn Size::component_min(self : Size, other : Size) -> Size {
+  Size::{ w: @cmp.minimum(self.w, other.w), h: @cmp.minimum(self.h, other.h) }
+}
+
+///|
+/// Returns a new `Size` where both `x` and `h` are set to the maximum
+/// of their respective values between both sizes.
+pub fn Size::component_max(self : Size, other : Size) -> Size {
+  Size::{ w: @cmp.maximum(self.w, other.w), h: @cmp.maximum(self.h, other.h) }
+}
+
+///|
 /// Add together two sizes.
 pub impl Add for Size with add(self : Size, other : Size) -> Size {
   { w: self.w + other.w, h: self.h + other.h }

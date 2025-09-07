@@ -15,6 +15,16 @@ pub fn Point::new(x : Int, y : Int) -> Point {
 }
 
 ///|
+/// Shortcut for creating a `Point` using the screen size.
+#inline
+pub fn Point::new_screen() -> Point {
+  Point::new(
+    SCREEN_WIDTH.reinterpret_as_int(),
+    SCREEN_HEIGHT.reinterpret_as_int(),
+  )
+}
+
+///|
 /// Convert the `Point` to a `Size`.
 ///
 /// Note that a `Size` does not allow negative values.
@@ -30,6 +40,20 @@ pub fn Point::reinterpret_as_size(self : Point) -> Size {
 /// Convert the `Point` to a `Pad`.
 pub fn Point::as_pad(self : Point) -> Pad {
   Pad::{ x: self.x, y: self.y }
+}
+
+///|
+/// Returns a new `Point` where both `x` and `y` are set to the minimum
+/// of their respective values between both points.
+pub fn Point::component_min(self : Point, other : Point) -> Point {
+  Point::{ x: @cmp.minimum(self.x, other.x), y: @cmp.minimum(self.y, other.y) }
+}
+
+///|
+/// Returns a new `Point` where both `x` and `y` are set to the maximum
+/// of their respective values between both points.
+pub fn Point::component_max(self : Point, other : Point) -> Point {
+  Point::{ x: @cmp.maximum(self.x, other.x), y: @cmp.maximum(self.y, other.y) }
 }
 
 ///|
