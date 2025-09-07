@@ -41,6 +41,14 @@ task example/input:run
 
 [![input screenshot](./input/screenshot.png)](./input)
 
+## Example: [random](./random)
+
+```bash
+task example/random:run
+```
+
+[![random screenshot](./random/screenshot.png)](./random)
+
 ## Example: [shapes](./shapes)
 
 ```bash

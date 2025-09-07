@@ -5,7 +5,7 @@
 author_id = "applejag"
 app_id = "moonbit-sudo"
 author_name = "Applejag"
-app_name = "MoonBit input example"
+app_name = "MoonBit sudo example"
 
 sudo = true
 
