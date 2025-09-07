@@ -5,10 +5,7 @@
 author_id = "applejag"
 app_id = "moonbit-shapes"
 author_name = "Applejag"
-app_name = "MoonBit input test"
+app_name = "MoonBit input example"
 
 [files]
 _bin = { path = "./target/wasm/release/build/shapes.wasm", copy = true }
-
-# Fonts
-"eg_6x12.fff" = { path = "../../assets/fonts/eg_6x12.fff" }

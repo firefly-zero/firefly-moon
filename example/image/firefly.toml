@@ -5,7 +5,7 @@
 author_id = "applejag"
 app_id = "moonbit-image"
 author_name = "Applejag"
-app_name = "MoonBit image test"
+app_name = "MoonBit image example"
 
 [files]
 _bin = { path = "./target/wasm/release/build/image.wasm", copy = true }

@@ -5,7 +5,7 @@
 author_id = "applejag"
 app_id = "moonbit-input"
 author_name = "Applejag"
-app_name = "MoonBit input test"
+app_name = "MoonBit input example"
 
 [files]
 _bin = { path = "./target/wasm/release/build/input.wasm", copy = true }

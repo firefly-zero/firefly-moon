@@ -5,7 +5,7 @@
 author_id = "applejag"
 app_id = "moonbit-font"
 author_name = "Applejag"
-app_name = "MoonBit font test"
+app_name = "MoonBit font example"
 
 [files]
 _bin = { path = "./target/wasm/release/build/font.wasm", copy = true }
