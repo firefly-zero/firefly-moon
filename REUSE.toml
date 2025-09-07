@@ -8,3 +8,11 @@ version = 1
 path = "**/*.mbt"
 SPDX-FileCopyrightText = "2025 Kalle Fagerberg"
 SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = [
+  "**/moon.mod.json",
+  "**/moon.pkg.json",
+]
+SPDX-FileCopyrightText = "2025 Kalle Fagerberg"
+SPDX-License-Identifier = "CC0-1.0"
