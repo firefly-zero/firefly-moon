@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+author_id = "applejag"
+app_id = "moonbit-image"
+author_name = "Applejag"
+app_name = "MoonBit image test"
+
+[files]
+_bin = { path = "./target/wasm/release/build/image.wasm", copy = true }
+
+# Images
+"smile-1.png" = { path = "../../assets/images/smile-1.png" }
+"smile-2.png" = { path = "../../assets/images/smile-2.png" }
+"smile-4.png" = { path = "../../assets/images/smile-4.png" }
