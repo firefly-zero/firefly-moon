@@ -106,8 +106,13 @@ to just use the binary from `target/...` directory.
 To do so, configure the `_bin` file in your `firefly.toml` like so:
 
 ```toml
+author_id = "yourname"
+app_id = "your-app-id"
+author_name = "Your Name"
+app_name = "Your App Name"
+
 [files]
-_bin = { path = "./target/wasm/release/build/<app name>.wasm", copy = true }
+_bin = { path = "./target/wasm/release/build/<moonbit app name>.wasm", copy = true }
 ```
 
 Building and running can then be done by running:
@@ -116,9 +121,7 @@ Building and running can then be done by running:
 moon build --target wasm
 firefly_cli build
 
-# Optionally start the emulator with your newly build app.
-# Replace ${author_id} & ${app_id} with appropriate values from your firefly.toml
-firefly-emulator --id ${author_id}.${app_id}
+firefly-emulator --id yourname.your-app-id
 ```
 
 ## Examples
