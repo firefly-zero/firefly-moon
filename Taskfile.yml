@@ -27,6 +27,12 @@ tasks:
       - for: { var: MOON_MODULES }
         cmd: moon fmt -C {{.ITEM}}
 
+  format:check:
+    deps: [check]
+    cmds:
+      - for: { var: MOON_MODULES }
+        cmd: moon fmt -C {{.ITEM}} --check
+
   test:
     cmds:
       - for: { var: MOON_MODULES }

@@ -82,4 +82,4 @@ jobs:
         run: task test
 
       - name: Format code
-        run: task format
+        run: task format:check
