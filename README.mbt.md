@@ -124,6 +124,38 @@ firefly_cli build
 firefly-emulator --id yourname.your-app-id
 ```
 
+## Recommended aliases
+
+To reduce the clutter I suggest setting these type aliases:
+
+```moonbit
+typealias @firefly.Angle
+typealias @firefly.Color
+typealias @firefly.LineStyle
+typealias @firefly.Point
+typealias @firefly.Size
+typealias @firefly.Style
+
+fn render() -> Unit {
+  // Instead of this:
+  @firefly.draw_rect(
+    @firefly.Point::new(102, 78),
+    @firefly.Size::new(29, 9),
+    @firefly.Style::new_solid(Red),
+  )
+  // You can write this:
+  @firefly.draw_rect(
+    Point::new(102, 78),
+    Size::new(29, 9),
+    Style::new_solid(Red),
+  )
+}
+````
+
+Recommended to only set type aliases on your most commonly-used types.
+Typing the full name of `@firefly.Image` is still fine and does not require a
+type alias as it is not as commonly used as some of these other types.
+
 ## Examples
 
 You need these to run the examples:

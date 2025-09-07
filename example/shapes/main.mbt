@@ -1,4 +1,19 @@
 ///|
+typealias @firefly.Angle
+
+///|
+typealias @firefly.Point
+
+///|
+typealias @firefly.Size
+
+///|
+typealias @firefly.Style
+
+///|
+typealias @firefly.LineStyle
+
+///|
 fn main {
   @firefly.log_debug("main")
 }
@@ -12,19 +27,15 @@ pub fn boot() -> Unit {
   @firefly.log_debug("boot")
   let name = @firefly.get_name(0)
   @firefly.log_debug("name: " + name)
-  let p = @firefly.Point::new(0, 0)
-  @firefly.draw_ellipse(p, @firefly.Size::new(50, 80), @firefly.Style::new_outlined(Red, 3))
-  @firefly.draw_circle(
-    @firefly.Point::new(120, 60),
-    85,
-    @firefly.Style::new_outlined(Green, 1),
-  )
+  let p = Point::new(0, 0)
+  @firefly.draw_ellipse(p, Size::new(50, 80), Style::new_outlined(Red, 3))
+  @firefly.draw_circle(Point::new(120, 60), 85, Style::new_outlined(Green, 1))
   @firefly.draw_sector(
-    @firefly.Point::new(120, 60),
+    Point::new(120, 60),
     30,
-    @firefly.Angle::from_deg(180),
-    @firefly.Angle::from_deg(390),
-    @firefly.Style::{ fill: LightGray, stroke: LightBlue, stroke_width: 1 },
+    Angle::from_deg(180),
+    Angle::from_deg(390),
+    Style::{ fill: LightGray, stroke: LightBlue, stroke_width: 1 },
   )
   @firefly.log_debug(
     "pad angle: " + @firefly.Pad::new(500, 500).as_angle().to_deg().to_string(),
@@ -35,11 +46,11 @@ pub fn boot() -> Unit {
       @firefly.log_debug("loaded font")
       let text = "hello world"
       let text_width = text.length() * font.char_width()
-      @firefly.LineStyle::new(Red, 1).draw(
-        @firefly.Point::new(30, 52),
-        @firefly.Point::new(30 + text_width - 2, 52),
+      LineStyle::new(Red, 1).draw(
+        Point::new(30, 52),
+        Point::new(30 + text_width - 2, 52),
       )
-      @firefly.draw_text(text, font, @firefly.Point::new(30, 50), Orange)
+      @firefly.draw_text(text, font, Point::new(30, 50), Orange)
       my_font.val = font
     }
   }
@@ -55,7 +66,7 @@ pub fn boot() -> Unit {
           " bpp: " +
           image.bits_per_pixel().to_int().to_string(),
         )
-        image.draw(@firefly.Point::new(80 + i * 16, 20))
+        image.draw(Point::new(80 + i * 16, 20))
       }
     }
   }
