@@ -1,6 +1,6 @@
 {
   "is-main": true,
-  "import": ["applejag/firefly"],
+  "import": ["applejag/firefly", "applejag/firefly/shapes"],
   "link": {
     "wasm": {
       "exports": ["boot", "update", "render"],

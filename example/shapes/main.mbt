@@ -27,11 +27,12 @@ pub fn boot() -> Unit {
     Size::new(40, 15),
     Style::new_solid(LightGray),
   )
-  @firefly.draw_rect(
-    Point::new(10, 30),
-    Size::new(10, 30),
-    Style::new_outlined(Yellow),
-  )
+  // you can also use the @shapes subpackage for a more "OOP-style" approach:
+  @shapes.Rect::{
+    point: Point::new(10, 30),
+    size: Size::new(10, 30),
+    style: Style::new_outlined(Yellow),
+  }.draw()
   @firefly.draw_ellipse(
     Point::new(10, 120),
     Size::new(80, 30),
