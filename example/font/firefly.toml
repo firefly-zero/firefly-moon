@@ -11,4 +11,4 @@ app_name = "MoonBit font test"
 _bin = { path = "./target/wasm/release/build/font.wasm", copy = true }
 
 # Fonts
-"eg_6x12.fff" = { path = "../../assets/fonts/eg_6x12.fff" }
+"eg_6x12.fff" = { path = "assets/eg_6x12.fff" }

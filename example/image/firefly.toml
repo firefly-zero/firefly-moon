@@ -11,6 +11,6 @@ app_name = "MoonBit image test"
 _bin = { path = "./target/wasm/release/build/image.wasm", copy = true }
 
 # Images
-"smile-1.png" = { path = "../../assets/images/smile-1.png" }
-"smile-2.png" = { path = "../../assets/images/smile-2.png" }
-"smile-4.png" = { path = "../../assets/images/smile-4.png" }
+"smile-1.png" = { path = "assets/smile-1.png" }
+"smile-2.png" = { path = "assets/smile-2.png" }
+"smile-4.png" = { path = "assets/smile-4.png" }
