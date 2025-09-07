@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: CC0-1.0
 {
   "is-main": true,
-  "import": [{ "path": "applejag/firefly", "alias": "ff" }],
+  "import": ["applejag/firefly"],
   "link": {
     "wasm": {
       "exports": ["boot", "update", "render"],

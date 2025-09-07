@@ -5,7 +5,7 @@
   "name": "applejag/firefly/example/input",
   "deps": {
     "applejag/firefly": {
-      "path": "../../src"
+      "path": "../.."
     }
   },
   "preferred-target": "wasm"
