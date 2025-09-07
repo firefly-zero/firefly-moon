@@ -7,6 +7,11 @@ pub const PEER_COMBINED : Byte = 0xFF
 
 ///|
 /// Multi-player peer/player ID.
+///
+/// Firefly does not document a maximum number of players, however this SDK
+/// (as well as many other Firefly SDKs for other languages) store the list
+/// of peers in a 32-bit bitmap.
+/// Meaning the `Peer` ID must be lower than 32 (`0x20`)
 pub struct Peer(Byte) derive(Show, Eq, Compare, Hash)
 
 ///|
@@ -16,6 +21,13 @@ pub struct Peer(Byte) derive(Show, Eq, Compare, Hash)
 /// from all devices as one input.
 pub fn Peer::combined() -> Peer {
   Peer(PEER_COMBINED)
+}
+
+///|
+/// Get the `Peer` representing the local device.
+#inline
+pub fn Peer::me() -> Peer {
+  get_me()
 }
 
 ///|

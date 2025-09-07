@@ -6,7 +6,7 @@
 ///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn read_pad(peer? : Peer = Peer::default()) -> Pad? {
+pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
   match @ffi.read_pad(peer.inner().to_uint()) {
     0xffff => None
     raw =>
@@ -22,7 +22,7 @@ pub fn read_pad(peer? : Peer = Peer::default()) -> Pad? {
 ///
 /// The `peer` can be a player ID, or `0xFF` to read the combined inputs
 /// from all active players in the multiplayer session.
-pub fn read_buttons(peer? : Peer = Peer::default()) -> Buttons {
+pub fn read_buttons(peer? : Peer = Peer::combined()) -> Buttons {
   let raw = @ffi.read_buttons(peer.inner().to_uint())
   Buttons::{
     south: ((raw >> 0) & 1) != 0,
