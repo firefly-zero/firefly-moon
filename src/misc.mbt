@@ -23,6 +23,10 @@ pub fn set_seed(seed : UInt) -> Unit {
 
 ///|
 /// Get a random value.
+///
+/// You can also use the global `random` value which uses this `get_random`
+/// function under the hood. With that you can generate more elaborate random
+/// types and shuffle arrays.
 #inline
 pub fn get_random() -> UInt {
   @ffi.get_random()
