@@ -63,10 +63,12 @@ pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
 }
 
 ///|
-
-///|
+/// Checks if this point is inside the screen bounds.
 pub fn Point::is_in_bounds(self : Point) -> Bool {
-  self.x >= 0 && self.x < SCREEN_WIDTH && self.y >= 0 && self.y < SCREEN_HEIGHT
+  self.x >= 0 &&
+  self.x.reinterpret_as_uint() < SCREEN_WIDTH &&
+  self.y >= 0 &&
+  self.y.reinterpret_as_uint() < SCREEN_HEIGHT
 }
 
 ///|

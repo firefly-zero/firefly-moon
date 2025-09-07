@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+author_id = "applejag"
+app_id = "moonbit-font"
+author_name = "Applejag"
+app_name = "MoonBit font test"
+
+[files]
+_bin = { path = "./target/wasm/release/build/font.wasm", copy = true }
+
+# Fonts
+"eg_6x12.fff" = { path = "../../assets/fonts/eg_6x12.fff" }

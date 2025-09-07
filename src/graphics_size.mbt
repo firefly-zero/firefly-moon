@@ -1,10 +1,10 @@
 ///|
 /// The screen width in pixels.
-pub const SCREEN_WIDTH = 240
+pub const SCREEN_WIDTH : UInt = 240
 
 ///|
 /// The screen height in pixels.
-pub const SCREEN_HEIGHT = 160
+pub const SCREEN_HEIGHT : UInt = 160
 
 ///|
 /// Bounding box for a shape.
@@ -20,6 +20,13 @@ pub(all) struct Size {
 /// Shortcut for creating a Size.
 pub fn Size::new(w : UInt, h : UInt) -> Size {
   Size::{ w, h }
+}
+
+///|
+/// Shortcut for creating a Size using the screen size.
+#inline
+pub fn Size::new_screen() -> Size {
+  Size::new(SCREEN_WIDTH, SCREEN_HEIGHT)
 }
 
 ///|

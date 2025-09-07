@@ -10,7 +10,14 @@ pub struct Canvas(FixedArray[Byte]) derive(Default)
 ///|
 /// Create a new blank canvas.
 pub fn Canvas::new(size : Size) -> Canvas {
-  return Canvas(Image::new(size, bpp=4).inner())
+  Canvas(Image::new(size, bpp=4).inner())
+}
+
+///|
+/// Create a new blank canvas with the same size as the screen size.
+#inline
+pub fn Canvas::new_screen() -> Canvas {
+  Canvas::new(Size::new_screen())
 }
 
 ///|

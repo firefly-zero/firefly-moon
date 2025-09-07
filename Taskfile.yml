@@ -5,12 +5,9 @@
 version: 3
 
 includes:
-  example/input:
-    taskfile: ./example/input
-    dir: ./example/input
-  example/shapes:
-    taskfile: ./example/shapes
-    dir: ./example/shapes
+  example/font: { taskfile: ./example/font, dir: ./example/font }
+  example/input: { taskfile: ./example/input, dir: ./example/input }
+  example/shapes: { taskfile: ./example/shapes, dir: ./example/shapes }
 
 vars:
   MOON_MODULES:
