@@ -1,16 +1,16 @@
 ///|
 /// Log a debug message.
 pub fn log_debug(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8).to_fixedarray()
-  @ffi.log_debug(@ffi.get_addr(arr), arr.length().reinterpret_as_uint())
+  let arr = @encoding.encode(s, encoding=UTF8)
+  @ffi.log_debug(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
   ignore(arr)
 }
 
 ///|
 /// Log an error message.
 pub fn log_error(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8).to_fixedarray()
-  @ffi.log_error(@ffi.get_addr(arr), arr.length().reinterpret_as_uint())
+  let arr = @encoding.encode(s, encoding=UTF8)
+  @ffi.log_error(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
   ignore(arr)
 }
 
@@ -45,19 +45,21 @@ pub fn get_random() -> UInt {
 /// Get name of the device.
 pub fn get_name(peer : UInt) -> String {
   let arr = FixedArray::make(120, Byte::default())
-  let len = @ffi.get_name(peer, @ffi.get_addr(arr))
+  let len = @ffi.get_name(peer, @ffi.addr_of_fixedbytes(arr))
   let bytes = Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
   @encoding.decode_lossy(bytes[:])
 }
 
 ///|
 /// Restart the app after the current update is finished.
+#inline
 pub fn restart() -> Unit {
   @ffi.restart()
 }
 
 ///|
 /// Exit the app after the current update is finished.
+#inline
 pub fn quit() -> Unit {
   @ffi.quit()
 }

@@ -5,9 +5,9 @@
 ///
 /// Returns 0 if the file does not exist.
 pub fn get_file_size(path : String) -> UInt {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.get_file_size(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   ignore(path_arr)
@@ -30,9 +30,9 @@ pub fn is_file(path : String) -> Bool {
 ///
 /// Example: loading fonts, images, or save files.
 pub fn load_file(path : String) -> File? {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.get_file_size(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   match size {
@@ -43,9 +43,9 @@ pub fn load_file(path : String) -> File? {
         Byte::default(),
       )
       @ffi.load_file(
-        @ffi.get_addr(path_arr),
+        @ffi.addr_of_bytes(path_arr),
         path_arr.length().reinterpret_as_uint(),
-        @ffi.get_addr(file_arr),
+        @ffi.addr_of_fixedbytes(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
       |> ignore
@@ -63,11 +63,11 @@ pub fn load_file(path : String) -> File? {
 ///
 /// Example: loading fonts, images, or save files.
 pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let text_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.load_file(
-    @ffi.get_addr(text_arr),
+    @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
-    @ffi.get_addr(output),
+    @ffi.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
   ignore(text_arr)
@@ -125,11 +125,11 @@ pub fn load_file_to_image(path : String) -> Image? {
 ///
 /// Returns the number of bytes written.
 pub fn dump_file(path : String, file : File) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let text_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.load_file(
-    @ffi.get_addr(text_arr),
+    @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
-    @ffi.get_addr(file.inner()),
+    @ffi.addr_of_fixedbytes(file.inner()),
     file.get_size(),
   )
   ignore(text_arr)
@@ -207,9 +207,9 @@ pub fn dump_image_to_file(path : String, image : Image) -> UInt {
 ///
 /// Example: removing save files.
 pub fn remove_file(path : String) -> Unit {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   @ffi.remove_file(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   ignore(path_arr)

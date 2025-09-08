@@ -195,11 +195,11 @@ pub fn draw_text(
   point : Point,
   color : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8).to_fixedarray()
+  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_text(
-    @ffi.get_addr(text_arr),
+    @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
-    @ffi.get_addr(font.inner()),
+    @ffi.addr_of_fixedbytes(font.inner()),
     font.inner().length().reinterpret_as_uint(),
     point.x,
     point.y,
@@ -216,9 +216,9 @@ pub fn draw_qr(
   black : Color,
   white : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8).to_fixedarray()
+  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_qr(
-    @ffi.get_addr(text_arr),
+    @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
     point.x,
     point.y,
@@ -232,7 +232,7 @@ pub fn draw_qr(
 /// Render an image.
 pub fn draw_image(image : Image, point : Point) -> Unit {
   @ffi.draw_image(
-    @ffi.get_addr(image.inner()),
+    @ffi.addr_of_fixedbytes(image.inner()),
     image.inner().length().reinterpret_as_uint(),
     point.x,
     point.y,
@@ -250,7 +250,7 @@ pub fn draw_sub_image(
   sub_size : Size,
 ) -> Unit {
   @ffi.draw_sub_image(
-    @ffi.get_addr(image.inner()),
+    @ffi.addr_of_fixedbytes(image.inner()),
     image.inner().length().reinterpret_as_uint(),
     point.x,
     point.y,
@@ -273,7 +273,7 @@ let current_canvas : Ref[Canvas?] = Ref::new(None)
 pub fn set_canvas(canvas : Canvas) -> Unit {
   current_canvas.val = Some(canvas)
   @ffi.set_canvas(
-    @ffi.get_addr(canvas.inner()),
+    @ffi.addr_of_fixedbytes(canvas.inner()),
     canvas.inner().length().reinterpret_as_uint(),
   )
 }

@@ -3,9 +3,9 @@
 ///
 /// NOTE: this requires that the app has sudo access.
 pub fn get_file_size(path : String) -> UInt {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.sudo_get_file_size(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   ignore(path_arr) // prevent it from getting cleaned up before here
@@ -17,9 +17,9 @@ pub fn get_file_size(path : String) -> UInt {
 ///
 /// NOTE: this requires that the app has sudo access.
 pub fn load_file(path : String) -> @firefly.File? {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.sudo_get_file_size(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   match size {
@@ -30,9 +30,9 @@ pub fn load_file(path : String) -> @firefly.File? {
         Byte::default(),
       )
       @ffi.sudo_load_file(
-        @ffi.get_addr(path_arr),
+        @ffi.addr_of_bytes(path_arr),
         path_arr.length().reinterpret_as_uint(),
-        @ffi.get_addr(file_arr),
+        @ffi.addr_of_fixedbytes(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
       |> ignore
@@ -61,9 +61,9 @@ pub fn load_file(path : String) -> @firefly.File? {
 ///
 /// NOTE: this requires that the app has sudo access.
 pub fn list_dirs(path : String) -> Array[String] {
-  let path_arr = @encoding.encode(path, encoding=UTF8).to_fixedarray()
+  let path_arr = @encoding.encode(path, encoding=UTF8)
   let size = @ffi.sudo_list_dirs_buf_size(
-    @ffi.get_addr(path_arr),
+    @ffi.addr_of_bytes(path_arr),
     path_arr.length().reinterpret_as_uint(),
   )
   match size {
@@ -74,9 +74,9 @@ pub fn list_dirs(path : String) -> Array[String] {
         Byte::default(),
       )
       let read_bytes = @ffi.sudo_list_dirs(
-        @ffi.get_addr(path_arr),
+        @ffi.addr_of_bytes(path_arr),
         path_arr.length().reinterpret_as_uint(),
-        @ffi.get_addr(dirs_buf),
+        @ffi.addr_of_fixedbytes(dirs_buf),
         dirs_buf.length().reinterpret_as_uint(),
       ).reinterpret_as_int()
       ignore(path_arr) // prevent it from getting cleaned up before here
