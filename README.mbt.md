@@ -23,7 +23,7 @@ possible to the naming in the other SDKs.
 
 ## Prerequisites
 
-- `moonc` v0.6.26 (or later)
+- `moonc` v0.6.29 (or later)
 - `--target wasm` MoonBit build target, as Firefly Zero doesn't support `wasm-gc`
 
 ## Installation
