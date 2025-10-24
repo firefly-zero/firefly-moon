@@ -31,7 +31,7 @@ pub fn[T, B] parse_array_to(
   buf : FixedArray[Byte],
   read_bytes? : Int = buf.length(),
   map_init~ : (Int) -> B,
-  map~ : (B, @bytes.View) -> T,
+  map~ : (B, BytesView) -> T,
 ) -> Array[T] {
   let buf = buf.unsafe_reinterpret_as_bytes()
   // First get the string count and max length to optimize our allocations
