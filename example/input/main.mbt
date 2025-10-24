@@ -1,20 +1,12 @@
 ///|
-typealias @firefly.Angle
-
-///|
-typealias @firefly.Color
-
-///|
-typealias @firefly.LineStyle
-
-///|
-typealias @firefly.Point
-
-///|
-typealias @firefly.Size
-
-///|
-typealias @firefly.Style
+using @firefly {
+  type Angle,
+  type Color,
+  type LineStyle,
+  type Point,
+  type Size,
+  type Style
+}
 
 ///|
 fn main {

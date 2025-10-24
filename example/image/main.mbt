@@ -1,5 +1,5 @@
 ///|
-typealias @firefly.Point
+using @firefly {type Point}
 
 ///|
 fn main {

@@ -1,8 +1,5 @@
 ///|
-typealias @firefly.Color
-
-///|
-typealias @firefly.Point
+using @firefly {type Color, type Point}
 
 ///|
 fn main {
