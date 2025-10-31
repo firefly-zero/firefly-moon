@@ -10,7 +10,7 @@ pub struct Canvas(FixedArray[Byte]) derive(Default)
 ///|
 /// Create a new blank canvas.
 pub fn Canvas::new(size : Size) -> Canvas {
-  Canvas(Image::new(size, bpp=4).inner())
+  Canvas(Image::new(size, bpp=4).0)
 }
 
 ///|
@@ -30,13 +30,13 @@ pub fn Canvas::of(arr : FixedArray[Byte]) -> Canvas {
 ///|
 /// Convert the `Canvas` to an `Image`.
 pub fn Canvas::as_image(self : Canvas) -> Image {
-  Image(self.inner())
+  Image(self.0)
 }
 
 ///|
 /// Convert the `Canvas` to a `File`.
 pub fn Canvas::as_file(self : Canvas) -> File {
-  File(self.inner())
+  File(self.0)
 }
 
 ///|

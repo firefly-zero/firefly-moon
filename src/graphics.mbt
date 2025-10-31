@@ -145,8 +145,8 @@ pub fn draw_arc(
     point.x,
     point.y,
     diameter,
-    start.inner(),
-    sweep.inner(),
+    start.0,
+    sweep.0,
     style.fill.to_int(),
     style.stroke.to_int(),
     style.stroke_width,
@@ -175,8 +175,8 @@ pub fn draw_sector(
     point.x,
     point.y,
     diameter,
-    start.inner(),
-    sweep.inner(),
+    start.0,
+    sweep.0,
     style.fill.to_int(),
     style.stroke.to_int(),
     style.stroke_width,
@@ -199,8 +199,8 @@ pub fn draw_text(
   @ffi.draw_text(
     @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
-    @ffi.addr_of_fixedbytes(font.inner()),
-    font.inner().length().reinterpret_as_uint(),
+    @ffi.addr_of_fixedbytes(font.0),
+    font.0.length().reinterpret_as_uint(),
     point.x,
     point.y,
     color.to_int(),
@@ -232,8 +232,8 @@ pub fn draw_qr(
 /// Render an image.
 pub fn draw_image(image : Image, point : Point) -> Unit {
   @ffi.draw_image(
-    @ffi.addr_of_fixedbytes(image.inner()),
-    image.inner().length().reinterpret_as_uint(),
+    @ffi.addr_of_fixedbytes(image.0),
+    image.0.length().reinterpret_as_uint(),
     point.x,
     point.y,
   )
@@ -250,8 +250,8 @@ pub fn draw_sub_image(
   sub_size : Size,
 ) -> Unit {
   @ffi.draw_sub_image(
-    @ffi.addr_of_fixedbytes(image.inner()),
-    image.inner().length().reinterpret_as_uint(),
+    @ffi.addr_of_fixedbytes(image.0),
+    image.0.length().reinterpret_as_uint(),
     point.x,
     point.y,
     sub_offset.x,
@@ -273,8 +273,8 @@ let current_canvas : Ref[Canvas?] = Ref::new(None)
 pub fn set_canvas(canvas : Canvas) -> Unit {
   current_canvas.val = Some(canvas)
   @ffi.set_canvas(
-    @ffi.addr_of_fixedbytes(canvas.inner()),
-    canvas.inner().length().reinterpret_as_uint(),
+    @ffi.addr_of_fixedbytes(canvas.0),
+    canvas.0.length().reinterpret_as_uint(),
   )
 }
 

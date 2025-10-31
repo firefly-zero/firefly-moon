@@ -14,7 +14,7 @@ pub fn Font::of(arr : FixedArray[Byte]) -> Font {
 ///|
 /// Convert the `Font` to a `File`.
 pub fn Font::as_file(self : Font) -> File {
-  File(self.inner())
+  File(self.0)
 }
 
 ///|
@@ -39,17 +39,17 @@ pub fn Font::dump(self : Font, path : String) -> UInt {
 ///|
 /// If the font is for ASCII encoding (English alphabet).
 pub fn Font::is_ascii(self : Font) -> Bool {
-  self.inner()[1] == 0
+  self.0[1] == 0
 }
 
 ///|
 /// Get the character width used in the font (in pixels).
 pub fn Font::char_width(self : Font) -> Int {
-  self.inner()[2].to_int()
+  self.0[2].to_int()
 }
 
 ///|
 /// Get the character height used in the font (in pixels).
 pub fn Font::char_height(self : Font) -> Int {
-  self.inner()[3].to_int()
+  self.0[3].to_int()
 }

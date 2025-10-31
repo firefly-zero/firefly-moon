@@ -5,7 +5,7 @@ using @firefly {
   type LineStyle,
   type Point,
   type Size,
-  type Style
+  type Style,
 }
 
 ///|

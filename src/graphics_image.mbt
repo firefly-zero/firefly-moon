@@ -38,7 +38,7 @@ pub fn Image::of(arr : FixedArray[Byte]) -> Image {
 ///|
 /// Convert the `Image` to a `File`.
 pub fn Image::as_file(self : Image) -> File {
-  File(self.inner())
+  File(self.0)
 }
 
 ///|
@@ -79,13 +79,13 @@ pub fn Image::sub(self : Image, point : Point, size : Size) -> SubImage {
 ///|
 /// Bits per pixel. One of: 1, 2, or 4
 pub fn Image::bits_per_pixel(self : Image) -> Byte {
-  self.inner()[1]
+  self.0[1]
 }
 
 ///|
 /// The color used for transparency. If no transparency, returns `None`
 pub fn Image::transparency(self : Image) -> Color {
-  match self.inner()[4] {
+  match self.0[4] {
     _..<15 as c => Color::from_byte(c + 1)
     _ => Color::None
   }
@@ -97,8 +97,8 @@ pub fn Image::transparency(self : Image) -> Color {
 /// Pass `Color::None` to disable transparency.
 pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
   match color {
-    Color::None => self.inner()[4] = 16
-    _ => self.inner()[4] = color.to_byte() - 1
+    Color::None => self.0[4] = 16
+    _ => self.0[4] = color.to_byte() - 1
   }
 }
 
@@ -106,7 +106,7 @@ pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
 /// Returns the number of pixels the image has
 pub fn Image::pixels(self : Image) -> UInt {
   let header_size = 5 + self.bits_per_pixel().to_int()
-  (self.inner().length() - header_size).reinterpret_as_uint() *
+  (self.0.length() - header_size).reinterpret_as_uint() *
   8 /
   self.bits_per_pixel().to_uint()
 }
@@ -114,7 +114,7 @@ pub fn Image::pixels(self : Image) -> UInt {
 ///|
 /// Returns the width of the image (in pixels).
 pub fn Image::width(self : Image) -> UInt {
-  self.inner()[2].to_uint() | (self.inner()[3].to_uint() << 8)
+  self.0[2].to_uint() | (self.0[3].to_uint() << 8)
 }
 
 ///|
@@ -144,12 +144,12 @@ pub fn Image::get_color(self : Image, index : Byte) -> Color {
   if index > 15 {
     return Color::None
   }
-  let mut val = self.inner()[5 + index.to_int() / 2]
+  let mut val = self.0[5 + index.to_int() / 2]
   if index % 2 == 0 {
     val = val >> 4
   }
   val = val & 0b1111
-  let transparentColor = self.inner()[4]
+  let transparentColor = self.0[4]
   if val == transparentColor {
     Color::None
   } else {
@@ -169,14 +169,14 @@ pub fn Image::set_color(self : Image, index : Byte, color : Color) -> Unit {
     return
   }
   let byte_index = 5 + index.to_int() / 2
-  let mut val = self.inner()[byte_index]
+  let mut val = self.0[byte_index]
   let color_val = color.to_byte() - 1
   if index % 2 == 0 {
     val = (color_val << 4) | (val & 0b1111)
   } else {
     val = color_val | (val & 0b1111_0000)
   }
-  self.inner()[byte_index] = val
+  self.0[byte_index] = val
 }
 
 ///|

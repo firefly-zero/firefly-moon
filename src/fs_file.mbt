@@ -13,19 +13,19 @@ pub fn File::of(arr : FixedArray[Byte]) -> File {
 ///|
 /// Get the size of the file in bytes.
 pub fn File::get_size(self : File) -> UInt {
-  self.inner().length().reinterpret_as_uint()
+  self.0.length().reinterpret_as_uint()
 }
 
 ///|
 /// Convert the `File` to a `Font`.
 pub fn File::as_font(self : File) -> Font {
-  Font(self.inner())
+  Font(self.0)
 }
 
 ///|
 /// Convert the `File` to an `Image`.
 pub fn File::as_image(self : File) -> Image {
-  Image(self.inner())
+  Image(self.0)
 }
 
 ///|

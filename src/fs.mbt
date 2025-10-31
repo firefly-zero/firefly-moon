@@ -80,7 +80,7 @@ pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
 /// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_bytes(path : String) -> Bytes? {
-  load_file(path).map(f => Bytes::of(f.inner()))
+  load_file(path).map(f => Bytes::from_array(f.0))
 }
 
 ///|
@@ -129,7 +129,7 @@ pub fn dump_file(path : String, file : File) -> UInt {
   let size = @ffi.load_file(
     @ffi.addr_of_bytes(text_arr),
     text_arr.length().reinterpret_as_uint(),
-    @ffi.addr_of_fixedbytes(file.inner()),
+    @ffi.addr_of_fixedbytes(file.0),
     file.get_size(),
   )
   ignore(text_arr)
