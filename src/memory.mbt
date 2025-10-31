@@ -7,3 +7,18 @@
 fn[T] keep(v : T) -> Unit {
   ignore(v)
 }
+
+///|
+trait UTF8 {
+  to_utf8(Self) -> Bytes
+}
+
+///|
+impl UTF8 for String with to_utf8(self) {
+  @encoding.encode(self, encoding=UTF8)
+}
+
+///|
+impl UTF8 for Bytes with to_utf8(self) {
+  self
+}

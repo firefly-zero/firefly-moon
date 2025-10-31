@@ -74,45 +74,6 @@ pub fn load_file_to(path : Bytes, output : FixedArray[Byte]) -> UInt {
 }
 
 ///|
-/// Load a file from ROM or the data directory and return it as bytes.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_bytes(path : Bytes) -> Bytes? {
-  load_file(path).map(f => Bytes::from_array(f.0))
-}
-
-///|
-/// Load a file from ROM or the data directory and decode it as a string.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_string(
-  path : Bytes,
-  encoding~ : @encoding.Encoding,
-) -> String? raise @tonyfettes/encoding.DecodingError {
-  load_file_to_bytes(path).map(b => @encoding.decode(b[:], encoding~))
-}
-
-///|
-/// Load a file from ROM or the data directory as a `Font`.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_font(path : Bytes) -> Font? {
-  load_file(path).map(f => f.as_font())
-}
-
-///|
-/// Load a file from ROM or the data directory as an `Image`.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_image(path : Bytes) -> Image? {
-  load_file(path).map(f => f.as_image())
-}
-
-///|
 /// Write the file to the given path in the data directory.
 ///
 /// The path must not contain any path separators ("`/`").
@@ -132,70 +93,6 @@ pub fn dump_file(path : Bytes, file : File) -> UInt {
   )
   keep(path)
   size
-}
-
-///|
-/// Write the bytes to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Example: writing save files.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_bytes_to_file(path : Bytes, bytes : Bytes) -> UInt {
-  dump_file(path, File(bytes.to_fixedarray()))
-}
-
-///|
-/// Encodes the string and writes it to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Example: writing save files.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_string_to_file(
-  path : Bytes,
-  content : String,
-  encoding~ : @encoding.Encoding,
-) -> UInt {
-  dump_file(path, File(@encoding.encode(content, encoding~).to_fixedarray()))
-}
-
-///|
-/// Write the `Font` to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_font_to_file(path : Bytes, font : Font) -> UInt {
-  dump_file(path, font.as_file())
-}
-
-///|
-/// Write the `Image` to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_image_to_file(path : Bytes, image : Image) -> UInt {
-  dump_file(path, image.as_file())
 }
 
 ///|

@@ -35,25 +35,6 @@ pub fn Image::as_file(self : Image) -> File {
 }
 
 ///|
-/// Load a file as an image.
-#inline
-pub fn Image::load(path : Bytes) -> Image? {
-  load_file_to_image(path)
-}
-
-///|
-/// Write the `Image` to the given path in the data directory.
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn Image::dump(self : Image, path : Bytes) -> UInt {
-  dump_image_to_file(path, self)
-}
-
-///|
 /// Render the image
 ///
 /// The point defines the upper-left corner.

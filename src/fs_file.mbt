@@ -29,6 +29,18 @@ pub fn File::as_image(self : File) -> Image {
 }
 
 ///|
+/// Convert the `File` to `Bytes`.
+pub fn File::as_bytes(self : File) -> Bytes {
+  Bytes::from_array(self.0)
+}
+
+///|
+/// Convert the `File` to `Bytes`.
+pub fn File::as_fixed_array(self : File) -> FixedArray[Byte] {
+  self.0
+}
+
+///|
 /// Load a file from ROM or the data directory.
 ///
 /// Example: loading fonts, images, or save files.
