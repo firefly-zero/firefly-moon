@@ -176,7 +176,7 @@ fn draw_abxy_input() -> Unit {
 }
 
 ///|
-fn draw_button(text : String, point : Point, pressed : Bool) -> Unit {
+fn draw_button(text : Bytes, point : Point, pressed : Bool) -> Unit {
   @firefly.draw_circle(
     point - Point::new(3, 8),
     11,
