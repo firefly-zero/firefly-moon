@@ -205,7 +205,7 @@ pub fn draw_text(
     point.y,
     color.to_int(),
   )
-  ignore(text_arr)
+  keep(text_arr)
 }
 
 ///|
@@ -225,7 +225,7 @@ pub fn draw_qr(
     black.to_int(),
     white.to_int(),
   )
-  ignore(text_arr)
+  keep(text_arr)
 }
 
 ///|

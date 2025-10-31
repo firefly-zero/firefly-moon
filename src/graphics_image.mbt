@@ -49,7 +49,7 @@ pub fn Image::load(path : Bytes) -> Image? {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn Image::dump(self : Image, path : String) -> UInt {
+pub fn Image::dump(self : Image, path : Bytes) -> UInt {
   dump_image_to_file(path, self)
 }
 

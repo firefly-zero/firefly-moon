@@ -9,6 +9,7 @@ pub fn get_file_size(path : Bytes) -> UInt {
     @ffi.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
+  keep(path)
   size
 }
 
@@ -32,7 +33,7 @@ pub fn load_file(path : Bytes) -> File? {
     @ffi.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
-  match size {
+  let maybe_file : File? = match size {
     0 => None
     _ => {
       let file_arr = FixedArray::make(
@@ -49,6 +50,8 @@ pub fn load_file(path : Bytes) -> File? {
       Some(File(file_arr))
     }
   }
+  keep(path)
+  maybe_file
 }
 
 ///|
@@ -66,6 +69,7 @@ pub fn load_file_to(path : Bytes, output : FixedArray[Byte]) -> UInt {
     @ffi.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
+  keep(path)
   size
 }
 
@@ -119,15 +123,14 @@ pub fn load_file_to_image(path : Bytes) -> Image? {
 /// Example: writing save files.
 ///
 /// Returns the number of bytes written.
-pub fn dump_file(path : String, file : File) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8)
+pub fn dump_file(path : Bytes, file : File) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(file.0),
     file.get_size(),
   )
-  ignore(text_arr)
+  keep(path)
   size
 }
 
@@ -143,7 +146,7 @@ pub fn dump_file(path : String, file : File) -> UInt {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn dump_bytes_to_file(path : String, bytes : Bytes) -> UInt {
+pub fn dump_bytes_to_file(path : Bytes, bytes : Bytes) -> UInt {
   dump_file(path, File(bytes.to_fixedarray()))
 }
 
@@ -160,7 +163,7 @@ pub fn dump_bytes_to_file(path : String, bytes : Bytes) -> UInt {
 /// Returns the number of bytes written.
 #inline
 pub fn dump_string_to_file(
-  path : String,
+  path : Bytes,
   content : String,
   encoding~ : @encoding.Encoding,
 ) -> UInt {
@@ -177,7 +180,7 @@ pub fn dump_string_to_file(
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn dump_font_to_file(path : String, font : Font) -> UInt {
+pub fn dump_font_to_file(path : Bytes, font : Font) -> UInt {
   dump_file(path, font.as_file())
 }
 
@@ -191,7 +194,7 @@ pub fn dump_font_to_file(path : String, font : Font) -> UInt {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn dump_image_to_file(path : String, image : Image) -> UInt {
+pub fn dump_image_to_file(path : Bytes, image : Image) -> UInt {
   dump_file(path, image.as_file())
 }
 
@@ -201,11 +204,10 @@ pub fn dump_image_to_file(path : String, image : Image) -> UInt {
 /// The path must not contain any path separators ("`/`").
 ///
 /// Example: removing save files.
-pub fn remove_file(path : String) -> Unit {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn remove_file(path : Bytes) -> Unit {
   @ffi.remove_file(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
-  ignore(path_arr)
+  keep(path)
 }

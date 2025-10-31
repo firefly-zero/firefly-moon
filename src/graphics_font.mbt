@@ -25,7 +25,7 @@ pub fn Font::load(path : Bytes) -> Font? {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn Font::dump(self : Font, path : String) -> UInt {
+pub fn Font::dump(self : Font, path : Bytes) -> UInt {
   dump_font_to_file(path, self)
 }
 
