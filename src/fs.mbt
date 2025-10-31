@@ -4,13 +4,11 @@
 /// The path must not contain any path separators ("`/`").
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path : String) -> UInt {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn get_file_size(path : Bytes) -> UInt {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
-  ignore(path_arr)
   size
 }
 
@@ -19,7 +17,7 @@ pub fn get_file_size(path : String) -> UInt {
 ///
 /// The path must not contain any path separators ("`/`").
 #inline
-pub fn is_file(path : String) -> Bool {
+pub fn is_file(path : Bytes) -> Bool {
   get_file_size(path) != 0
 }
 
@@ -29,11 +27,10 @@ pub fn is_file(path : String) -> Bool {
 /// The path must not contain any path separators ("`/`").
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file(path : String) -> File? {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn load_file(path : Bytes) -> File? {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
   match size {
     0 => None
@@ -43,8 +40,8 @@ pub fn load_file(path : String) -> File? {
         Byte::default(),
       )
       @ffi.load_file(
-        @ffi.addr_of_bytes(path_arr),
-        path_arr.length().reinterpret_as_uint(),
+        @ffi.addr_of_bytes(path),
+        path.length().reinterpret_as_uint(),
         @ffi.addr_of_fixedbytes(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
@@ -62,15 +59,13 @@ pub fn load_file(path : String) -> File? {
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8)
+pub fn load_file_to(path : Bytes, output : FixedArray[Byte]) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
-  ignore(text_arr)
   size
 }
 
@@ -79,7 +74,7 @@ pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
 ///
 /// The path must not contain any path separators ("`/`").
 #inline
-pub fn load_file_to_bytes(path : String) -> Bytes? {
+pub fn load_file_to_bytes(path : Bytes) -> Bytes? {
   load_file(path).map(f => Bytes::from_array(f.0))
 }
 
@@ -89,7 +84,7 @@ pub fn load_file_to_bytes(path : String) -> Bytes? {
 /// The path must not contain any path separators ("`/`").
 #inline
 pub fn load_file_to_string(
-  path : String,
+  path : Bytes,
   encoding~ : @encoding.Encoding,
 ) -> String? raise @tonyfettes/encoding.DecodingError {
   load_file_to_bytes(path).map(b => @encoding.decode(b[:], encoding~))
@@ -100,7 +95,7 @@ pub fn load_file_to_string(
 ///
 /// The path must not contain any path separators ("`/`").
 #inline
-pub fn load_file_to_font(path : String) -> Font? {
+pub fn load_file_to_font(path : Bytes) -> Font? {
   load_file(path).map(f => f.as_font())
 }
 
@@ -109,7 +104,7 @@ pub fn load_file_to_font(path : String) -> Font? {
 ///
 /// The path must not contain any path separators ("`/`").
 #inline
-pub fn load_file_to_image(path : String) -> Image? {
+pub fn load_file_to_image(path : Bytes) -> Image? {
   load_file(path).map(f => f.as_image())
 }
 

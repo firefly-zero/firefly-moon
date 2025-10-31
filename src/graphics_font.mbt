@@ -13,7 +13,7 @@ pub fn Font::as_file(self : Font) -> File {
 ///|
 /// Load a `Font` from ROM or the data directory.
 #inline
-pub fn Font::load(path : String) -> Font? {
+pub fn Font::load(path : Bytes) -> Font? {
   load_file_to_font(path)
 }
 

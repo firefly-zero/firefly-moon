@@ -33,7 +33,7 @@ pub fn File::as_image(self : File) -> Image {
 ///
 /// Example: loading fonts, images, or save files.
 #inline
-pub fn File::load(path : String) -> File? {
+pub fn File::load(path : Bytes) -> File? {
   load_file(path)
 }
 

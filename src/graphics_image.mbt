@@ -37,7 +37,7 @@ pub fn Image::as_file(self : Image) -> File {
 ///|
 /// Load a file as an image.
 #inline
-pub fn Image::load(path : String) -> Image? {
+pub fn Image::load(path : Bytes) -> Image? {
   load_file_to_image(path)
 }
 
