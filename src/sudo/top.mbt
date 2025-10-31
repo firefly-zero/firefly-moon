@@ -83,51 +83,10 @@ pub fn list_dirs(path : Bytes) -> Array[Bytes] {
         map_init=str_max_len => Array::new(capacity=str_max_len),
         map=(sb, _) => Bytes::from_array(sb),
       )
-      ignore(dirs_buf)
+      keep(dirs_buf)
       array
     }
   }
-}
-
-///|
-/// Entry is a directory entry, used to represent items inside a directory.
-pub enum Entry {
-  Dir(name~ : Bytes, path~ : Bytes)
-  File(name~ : Bytes, path~ : Bytes, size~ : UInt)
-} derive(Show, Eq, Compare, Hash)
-
-///|
-/// List entries (files and directories) inside a directory.
-///
-/// Paths are relative to the Firefly data directory,
-/// which on Linux is in `~/.local/share/firefly`
-///
-/// Path requirements:
-/// - must not start with a dot, so `"./"` and `"../"` are invalid
-/// - must not end with a dot, so `"foo/."` is invalid
-/// - must not be empty, so `""` is invalid
-///
-/// Examples:
-///
-/// - `@sudo.list_dirs_entries("data")`
-/// - `@sudo.list_dirs_entries("roms")`
-/// - `@sudo.list_dirs_entries("sys")`
-///
-/// NOTE: this requires that the app has sudo access.
-pub fn list_dirs_entries(path : Bytes) -> Array[Entry] {
-  let names = list_dirs(path)
-  let array : Array[Entry] = Array::new(capacity=names.length())
-  for name in names {
-    let full_path = path + "/" + name
-    let size = get_file_size(full_path)
-    array.push(
-      match size {
-        0 => Dir(name~, path=full_path)
-        _ => File(name~, path=full_path, size~)
-      },
-    )
-  }
-  array
 }
 
 ///|
@@ -174,6 +133,6 @@ fn[T, B] parse_array_to(
     array.push(map(item_buf, buf[index + 1:index + 1 + item_len]))
     index += 1 + item_len
   }
-  ignore(buf)
+  keep(buf)
   array
 }

@@ -13,9 +13,9 @@ pub fn boot() -> Unit {
 
 ///|
 fn list_dir(path : Bytes) -> Unit {
-  let entries = @sudo.list_dirs_entries(path)
+  let entries = @sudo.list_dirs(path)
   for entry in entries {
-    @firefly.log_debug("  " + entry.name)
+    @firefly.log_debug("  " + entry)
   }
 }
 
