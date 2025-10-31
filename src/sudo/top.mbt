@@ -37,7 +37,7 @@ pub fn load_file(path : String) -> @firefly.File? {
       )
       |> ignore
       ignore(path_arr) // prevent it from getting cleaned up before here
-      Some(@firefly.File::of(file_arr))
+      Some(@firefly.File::from_array(file_arr))
     }
   }
 }

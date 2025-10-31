@@ -5,13 +5,6 @@
 pub struct Font(FixedArray[Byte]) derive(Default)
 
 ///|
-/// Creates a `Font` from a fixed-sized byte array.
-#inline
-pub fn Font::of(arr : FixedArray[Byte]) -> Font {
-  Font(arr)
-}
-
-///|
 /// Convert the `Font` to a `File`.
 pub fn Font::as_file(self : Font) -> File {
   File(self.0)

@@ -21,13 +21,6 @@ pub fn Canvas::new_screen() -> Canvas {
 }
 
 ///|
-/// Creates an `Canvas` from a fixed-sized byte array.
-#inline
-pub fn Canvas::of(arr : FixedArray[Byte]) -> Canvas {
-  Canvas(arr)
-}
-
-///|
 /// Convert the `Canvas` to an `Image`.
 pub fn Canvas::as_image(self : Canvas) -> Image {
   Image(self.0)

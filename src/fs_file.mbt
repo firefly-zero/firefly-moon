@@ -6,7 +6,7 @@ pub struct File(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Creates a `File` from a fixed-sized byte array.
-pub fn File::of(arr : FixedArray[Byte]) -> File {
+pub fn File::from_array(arr : FixedArray[Byte]) -> File {
   File(arr)
 }
 

@@ -29,13 +29,6 @@ pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
 }
 
 ///|
-/// Creates an `Image` from a fixed-sized byte array.
-#inline
-pub fn Image::of(arr : FixedArray[Byte]) -> Image {
-  Image(arr)
-}
-
-///|
 /// Convert the `Image` to a `File`.
 pub fn Image::as_file(self : Image) -> File {
   File(self.0)
