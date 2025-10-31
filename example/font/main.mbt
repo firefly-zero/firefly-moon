@@ -12,13 +12,7 @@ let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  match @firefly.Font::load("eg_6x12.fff") {
-    None => @firefly.log_error("failed to load font")
-    Some(font) => {
-      @firefly.log_debug("loaded font")
-      my_font.val = font
-    }
-  }
+  my_font.val = @firefly.load_file("eg_6x12.fff").unwrap().as_font()
 }
 
 ///|
