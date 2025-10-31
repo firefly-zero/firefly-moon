@@ -1,9 +1,6 @@
 ///|
 /// Get the current touch pad state.
 ///
-/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
-/// from all active players in the multiplayer session.
-///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
 pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
@@ -19,9 +16,6 @@ pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
 
 ///|
 /// Get the currently pressed buttons.
-///
-/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
-/// from all active players in the multiplayer session.
 pub fn read_buttons(peer? : Peer = Peer::combined()) -> Buttons {
   let raw = @ffi.read_buttons(peer.0.to_uint())
   Buttons::{

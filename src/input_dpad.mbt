@@ -23,9 +23,6 @@ pub(all) struct DPad {
 ///|
 /// Shorthand function for reading the pad input and converting it into a `DPad`.
 ///
-/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
-/// from all active players in the multiplayer session.
-///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
 pub fn DPad::read(peer? : Peer = Peer::default()) -> DPad? {

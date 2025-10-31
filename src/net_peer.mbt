@@ -25,8 +25,6 @@ pub fn Peer::me() -> Peer {
 
 ///|
 /// `Peer` type default value, which is `Peer::combined`.
-///
-/// This is an alias for `Peer::combined()`.
 #inline
 pub impl Default for Peer with default() -> Peer {
   Peer::combined()

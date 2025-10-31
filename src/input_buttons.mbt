@@ -28,9 +28,6 @@ pub(all) struct Buttons {
 
 ///|
 /// Get the currently pressed buttons.
-///
-/// The `peer` can be a player ID, or `0xFF` to read the combined inputs
-/// from all active players in the multiplayer session.
 pub fn Buttons::read(peer? : Peer = Peer::default()) -> Buttons {
   read_buttons(peer~)
 }
