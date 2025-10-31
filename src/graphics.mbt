@@ -189,23 +189,30 @@ pub fn draw_sector(
 /// Unlike in the other drawing functions, here `point` does not represent
 /// the top-left corner, but instead the text baseline position
 /// (such as the bottom left pixel of an underscore "`_`").
+///
+/// The text must be valid UTF-8. To convert String into text,
+/// use [tonyfettes/encoding](https://mooncakes.io/docs/tonyfettes/encoding/) package:
+///
+/// ```text
+/// let utf8 = @encoding.encode(text, encoding=UTF8)
+/// @firefly.draw_text(utf8, font, point, color)
+/// ```
 pub fn draw_text(
-  text : String,
+  text : Bytes,
   font : Font,
   point : Point,
   color : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_text(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(text),
+    text.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(font.0),
     font.0.length().reinterpret_as_uint(),
     point.x,
     point.y,
     color.to_int(),
   )
-  keep(text_arr)
+  keep(text)
 }
 
 ///|
