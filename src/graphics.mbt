@@ -191,11 +191,11 @@ pub fn draw_sector(
 /// (such as the bottom left pixel of an underscore "`_`").
 ///
 /// The text must be valid UTF-8. To convert String into text,
-/// use [tonyfettes/encoding](https://mooncakes.io/docs/tonyfettes/encoding/) package:
+/// use [@encoding/utf8]:
 ///
-/// ```text
-/// let utf8 = @encoding.encode(text, encoding=UTF8)
-/// @firefly.draw_text(utf8, font, point, color)
+/// ```
+/// let utf8 = @encoding/utf8.encode("привет, мир!")
+/// ignore(utf8)
 /// ```
 pub fn draw_text(
   text : Bytes,
