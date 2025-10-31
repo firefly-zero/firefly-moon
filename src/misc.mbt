@@ -1,17 +1,15 @@
 ///|
 /// Log a debug message.
-pub fn log_debug(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8)
-  @ffi.log_debug(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
-  ignore(arr)
+pub fn log_debug(s : Bytes) -> Unit {
+  @ffi.log_debug(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
+  keep(s)
 }
 
 ///|
 /// Log an error message.
-pub fn log_error(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8)
-  @ffi.log_error(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
-  ignore(arr)
+pub fn log_error(s : Bytes) -> Unit {
+  @ffi.log_error(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
+  keep(s)
 }
 
 ///|
