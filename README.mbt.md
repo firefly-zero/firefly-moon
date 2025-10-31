@@ -6,15 +6,12 @@ SPDX-License-Identifier: CC0-1.0
 
 # firefly-moon
 
-[![REUSE status](https://api.reuse.software/badge/github.com/applejag/firefly-moon)](https://api.reuse.software/info/github.com/applejag/firefly-moon)
-[![ci](https://github.com/applejag/firefly-moon/actions/workflows/ci.yml/badge.svg)](https://github.com/applejag/firefly-moon/actions/workflows/ci.yml)
-
 An unofficial [MoonBit](https://www.moonbitlang.com/) SDK for making
 [Firefly Zero](https://fireflyzero.com/) games.
 
 * [▶️ getting started](https://docs.fireflyzero.com/dev/getting-started/)
 * [📄 api docs](https://mooncakes.io/docs/applejag/firefly)
-* [🐰 github](https://github.com/applejag/firefly-moon)
+* [🐰 github](https://github.com/firefly-zero/firefly-moon)
 
 The SDK design is heavily inspired by the [firefly-go](https://github.com/firefly-zero/firefly-go)
 and [firefly-rust](https://github.com/firefly-zero/firefly-rust) SDKs.
@@ -23,8 +20,8 @@ possible to the naming in the other SDKs.
 
 ## Prerequisites
 
-- `moonc` v0.6.29 (or later)
-- `--target wasm` MoonBit build target, as Firefly Zero doesn't support `wasm-gc`
+* `moonc` v0.6.29 (or later)
+* `--target wasm` MoonBit build target, as Firefly Zero doesn't support `wasm-gc`
 
 ## Installation
 
