@@ -43,11 +43,10 @@ pub fn get_random() -> UInt {
 
 ///|
 /// Get name of the device.
-pub fn get_name(peer : UInt) -> String {
-  let arr = FixedArray::make(120, Byte::default())
+pub fn get_name(peer : UInt) -> Bytes {
+  let arr = FixedArray::make(16, Byte::default())
   let len = @ffi.get_name(peer, @ffi.addr_of_fixedbytes(arr))
-  let bytes = Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
-  @encoding.decode_lossy(bytes[:])
+  Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
 }
 
 ///|

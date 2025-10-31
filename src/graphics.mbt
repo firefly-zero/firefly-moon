@@ -211,21 +211,20 @@ pub fn draw_text(
 ///|
 /// Render a QR-code.
 pub fn draw_qr(
-  text : String,
+  text : Bytes,
   point : Point,
   black : Color,
   white : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_qr(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(text),
+    text.length().reinterpret_as_uint(),
     point.x,
     point.y,
     black.to_int(),
     white.to_int(),
   )
-  keep(text_arr)
+  keep(text)
 }
 
 ///|
