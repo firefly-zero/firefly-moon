@@ -16,7 +16,7 @@ pub fn get_file_size(path : Path) -> UInt {
     @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
-  keep(path)
+  @memory.keep(path)
   size
 }
 
@@ -53,7 +53,7 @@ pub fn load_file(path : Path) -> File? {
       Some(File(file_arr))
     }
   }
-  keep(path)
+  @memory.keep(path)
   maybe_file
 }
 
@@ -70,7 +70,7 @@ pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> UInt {
     @memory.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
-  keep(path)
+  @memory.keep(path)
   size
 }
 
@@ -90,7 +90,7 @@ pub fn dump_file(path : Path, file : File) -> UInt {
     @memory.addr_of_fixedbytes(file.0),
     file.get_size(),
   )
-  keep(path)
+  @memory.keep(path)
   size
 }
 
@@ -103,5 +103,5 @@ pub fn remove_file(path : Path) -> Unit {
     @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
-  keep(path)
+  @memory.keep(path)
 }

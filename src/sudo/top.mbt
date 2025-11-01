@@ -7,7 +7,7 @@ pub fn get_file_size(path : Bytes) -> UInt {
     @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
-  keep(path)
+  @memory.keep(path)
   size
 }
 
@@ -34,7 +34,7 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
         file_arr.length().reinterpret_as_uint(),
       )
       |> ignore
-      keep(path)
+      @memory.keep(path)
       Some(@firefly.File::from_array(file_arr))
     }
   }
@@ -76,28 +76,17 @@ pub fn list_dirs(path : Bytes) -> Array[Bytes] {
         @memory.addr_of_fixedbytes(dirs_buf),
         dirs_buf.length().reinterpret_as_uint(),
       ).reinterpret_as_int()
-      keep(path)
+      @memory.keep(path)
       let array : Array[Bytes] = parse_array_to(
         dirs_buf,
         read_bytes~,
         map_init=str_max_len => Array::new(capacity=str_max_len),
         map=(sb, _) => Bytes::from_array(sb),
       )
-      keep(dirs_buf)
+      @memory.keep(dirs_buf)
       array
     }
   }
-}
-
-///|
-/// Ensure that the value is not deallocated before this function is called.
-///
-/// When converting values to raw pointers, MoonBit runtime may deallocate the value
-/// before Firefly runtime consumes it. To prevent this, call "keep"
-/// at the end of the function to keep the value from being deallocated too early.
-#inline
-fn[T] keep(v : T) -> Unit {
-  ignore(v)
 }
 
 ///|
@@ -134,6 +123,6 @@ fn[T, B] parse_array_to(
     array.push(map(item_buf, buf[index + 1:index + 1 + item_len]))
     index += 1 + item_len
   }
-  keep(buf)
+  @memory.keep(buf)
   array
 }

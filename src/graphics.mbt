@@ -212,7 +212,7 @@ pub fn draw_text(
     point.y,
     color.to_int(),
   )
-  keep(text)
+  @memory.keep(text)
 }
 
 ///|
@@ -231,7 +231,7 @@ pub fn draw_qr(
     black.to_int(),
     white.to_int(),
   )
-  keep(text)
+  @memory.keep(text)
 }
 
 ///|
