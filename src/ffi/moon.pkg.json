@@ -1,6 +1,0 @@
-{
-  "targets": {
-    "top.wasm.mbt": ["wasm"],
-    "top.wasm-gc.mbt": ["wasm-gc"]
-  }
-}

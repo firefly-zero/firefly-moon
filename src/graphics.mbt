@@ -204,15 +204,15 @@ pub fn draw_text(
   color : Color,
 ) -> Unit {
   @ffi.draw_text(
-    @ffi.addr_of_bytes(text),
-    text.length().reinterpret_as_uint(),
-    @ffi.addr_of_fixedbytes(font.0),
-    font.0.length().reinterpret_as_uint(),
+    @memory.bytes_addr(text),
+    @memory.bytes_size(text),
+    @memory.fixedbytes_addr(font.0),
+    @memory.fixedbytes_size(font.0),
     point.x,
     point.y,
     color.to_int(),
   )
-  keep(text)
+  @memory.keep(text)
 }
 
 ///|
@@ -224,22 +224,22 @@ pub fn draw_qr(
   white : Color,
 ) -> Unit {
   @ffi.draw_qr(
-    @ffi.addr_of_bytes(text),
-    text.length().reinterpret_as_uint(),
+    @memory.bytes_addr(text),
+    @memory.bytes_size(text),
     point.x,
     point.y,
     black.to_int(),
     white.to_int(),
   )
-  keep(text)
+  @memory.keep(text)
 }
 
 ///|
 /// Render an image.
 pub fn draw_image(image : Image, point : Point) -> Unit {
   @ffi.draw_image(
-    @ffi.addr_of_fixedbytes(image.0),
-    image.0.length().reinterpret_as_uint(),
+    @memory.fixedbytes_addr(image.0),
+    @memory.fixedbytes_size(image.0),
     point.x,
     point.y,
   )
@@ -256,8 +256,8 @@ pub fn draw_sub_image(
   sub_size : Size,
 ) -> Unit {
   @ffi.draw_sub_image(
-    @ffi.addr_of_fixedbytes(image.0),
-    image.0.length().reinterpret_as_uint(),
+    @memory.fixedbytes_addr(image.0),
+    @memory.fixedbytes_size(image.0),
     point.x,
     point.y,
     sub_offset.x,
@@ -279,8 +279,8 @@ let current_canvas : Ref[Canvas?] = Ref::new(None)
 pub fn set_canvas(canvas : Canvas) -> Unit {
   current_canvas.val = Some(canvas)
   @ffi.set_canvas(
-    @ffi.addr_of_fixedbytes(canvas.0),
-    canvas.0.length().reinterpret_as_uint(),
+    @memory.fixedbytes_addr(canvas.0),
+    @memory.fixedbytes_size(canvas.0),
   )
 }
 

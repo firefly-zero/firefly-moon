@@ -2,18 +2,12 @@
 /// A loaded file.
 ///
 /// Can be loaded using `File::load`
-pub struct File(FixedArray[Byte]) derive(Default)
+struct File(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Creates a `File` from a fixed-sized byte array.
 pub fn File::from_array(arr : FixedArray[Byte]) -> File {
   File(arr)
-}
-
-///|
-/// Get the size of the file in bytes.
-pub fn File::get_size(self : File) -> UInt {
-  self.0.length().reinterpret_as_uint()
 }
 
 ///|

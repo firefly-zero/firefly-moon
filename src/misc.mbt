@@ -1,15 +1,15 @@
 ///|
 /// Log a debug message.
 pub fn log_debug(s : Bytes) -> Unit {
-  @ffi.log_debug(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
-  keep(s)
+  @ffi.log_debug(@memory.bytes_addr(s), @memory.bytes_size(s))
+  @memory.keep(s)
 }
 
 ///|
 /// Log an error message.
 pub fn log_error(s : Bytes) -> Unit {
-  @ffi.log_error(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
-  keep(s)
+  @ffi.log_error(@memory.bytes_addr(s), @memory.bytes_size(s))
+  @memory.keep(s)
 }
 
 ///|
@@ -43,7 +43,7 @@ pub fn get_random() -> UInt {
 /// Get name of the device.
 pub fn get_name(peer : Peer) -> Bytes {
   let arr = FixedArray::make(16, Byte::default())
-  let len = @ffi.get_name(peer.0.to_uint(), @ffi.addr_of_fixedbytes(arr))
+  let len = @ffi.get_name(peer.0.to_uint(), @memory.fixedbytes_addr(arr))
   Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
 }
 

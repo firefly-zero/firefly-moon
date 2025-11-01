@@ -2,7 +2,7 @@
 /// A loaded font file.
 ///
 /// Can be loaded using `Font::load`
-pub struct Font(FixedArray[Byte]) derive(Default)
+struct Font(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Convert the `Font` to a `File`.

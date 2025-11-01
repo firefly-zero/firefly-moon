@@ -5,7 +5,7 @@
 /// Compared to an `Image`, the `Canvas` is always 4 bits-per-pixel (BPP).
 ///
 /// Can be created using `Canvas::new` or `Canvas::of`.
-pub struct Canvas(FixedArray[Byte]) derive(Default)
+struct Canvas(FixedArray[Byte]) derive(Default)
 
 ///|
 /// Create a new blank canvas.

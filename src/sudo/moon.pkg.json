@@ -1,3 +1,7 @@
 {
-  "import": ["applejag/firefly", "applejag/firefly/ffi"]
+  "import": [
+    "applejag/firefly",
+    "applejag/firefly/internal/ffi",
+    "applejag/firefly/internal/memory"
+  ]
 }
