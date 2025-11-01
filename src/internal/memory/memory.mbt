@@ -22,7 +22,6 @@ pub fn bytes_size(bytes : Bytes) -> UInt {
 }
 
 ///|
-/// Returns the WASM object address to a `FixedArray[Byte]` object.
 #inline
 #borrow(bytes)
 pub extern "wasm" fn fixedbytes_addr(bytes : FixedArray[Byte]) -> UInt =
@@ -30,7 +29,6 @@ pub extern "wasm" fn fixedbytes_addr(bytes : FixedArray[Byte]) -> UInt =
   #|  (i32.add (local.get 0) (i32.const 8)))
 
 ///|
-/// Returns the WASM object address to a `Bytes` object.
 #inline
 #borrow(bytes)
 pub extern "wasm" fn bytes_addr(bytes : Bytes) -> UInt =

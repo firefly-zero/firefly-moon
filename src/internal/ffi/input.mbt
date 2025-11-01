@@ -6,7 +6,7 @@
 ///
 /// Returns `0xFFFF` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn read_pad(peer : UInt) -> UInt = "input" "read_pad"
+pub fn read_pad(peer : Int) -> UInt = "input" "read_pad"
 
 ///|
 /// Get the currently pressed buttons.
@@ -18,4 +18,4 @@ pub fn read_pad(peer : UInt) -> UInt = "input" "read_pad"
 /// - `w = (read_buttons(peer)>>2) & 1 != 0`
 /// - `n = (read_buttons(peer)>>3) & 1 != 0`
 /// - `menu = (read_buttons(peer)>>4) & 1 != 0`
-pub fn read_buttons(peer : UInt) -> UInt = "input" "read_buttons"
+pub fn read_buttons(peer : Int) -> UInt = "input" "read_buttons"
