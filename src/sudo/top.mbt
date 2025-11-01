@@ -4,7 +4,7 @@
 /// NOTE: this requires that the app has sudo access.
 pub fn get_file_size(path : Bytes) -> UInt {
   let size = @ffi.sudo_get_file_size(
-    @memory.addr_of_bytes(path),
+    @memory.bytes_addr(path),
     path.length().reinterpret_as_uint(),
   )
   @memory.keep(path)
@@ -17,7 +17,7 @@ pub fn get_file_size(path : Bytes) -> UInt {
 /// NOTE: this requires that the app has sudo access.
 pub fn load_file(path : Bytes) -> @firefly.File? {
   let size = @ffi.sudo_get_file_size(
-    @memory.addr_of_bytes(path),
+    @memory.bytes_addr(path),
     path.length().reinterpret_as_uint(),
   )
   match size {
@@ -28,9 +28,9 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
         Byte::default(),
       )
       @ffi.sudo_load_file(
-        @memory.addr_of_bytes(path),
+        @memory.bytes_addr(path),
         path.length().reinterpret_as_uint(),
-        @memory.addr_of_fixedbytes(file_arr),
+        @memory.fixedbytes_addr(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
       |> ignore
@@ -60,7 +60,7 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
 /// NOTE: this requires that the app has sudo access.
 pub fn list_dirs(path : Bytes) -> Array[Bytes] {
   let size = @ffi.sudo_list_dirs_buf_size(
-    @memory.addr_of_bytes(path),
+    @memory.bytes_addr(path),
     path.length().reinterpret_as_uint(),
   )
   match size {
@@ -71,9 +71,9 @@ pub fn list_dirs(path : Bytes) -> Array[Bytes] {
         Byte::default(),
       )
       let read_bytes = @ffi.sudo_list_dirs(
-        @memory.addr_of_bytes(path),
+        @memory.bytes_addr(path),
         path.length().reinterpret_as_uint(),
-        @memory.addr_of_fixedbytes(dirs_buf),
+        @memory.fixedbytes_addr(dirs_buf),
         dirs_buf.length().reinterpret_as_uint(),
       ).reinterpret_as_int()
       @memory.keep(path)
