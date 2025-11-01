@@ -4,7 +4,11 @@
 /// Firefly Zero runtime enforces flat structure for app data and ROMs,
 /// so the path cannot contain path separators (`/`).
 ///
-/// Any String literal or Bytes literal is a valid ASCII string.
+/// Any String literal or Bytes literal is a valid ASCII string:
+///
+/// ```text
+/// @firefly.load_file("font")
+/// ```
 pub typealias Bytes as Path
 
 ///|
