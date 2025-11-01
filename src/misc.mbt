@@ -1,14 +1,14 @@
 ///|
 /// Log a debug message.
 pub fn log_debug(s : Bytes) -> Unit {
-  @ffi.log_debug(@memory.bytes_addr(s), s.length().reinterpret_as_uint())
+  @ffi.log_debug(@memory.bytes_addr(s), @memory.bytes_size(s))
   @memory.keep(s)
 }
 
 ///|
 /// Log an error message.
 pub fn log_error(s : Bytes) -> Unit {
-  @ffi.log_error(@memory.bytes_addr(s), s.length().reinterpret_as_uint())
+  @ffi.log_error(@memory.bytes_addr(s), @memory.bytes_size(s))
   @memory.keep(s)
 }
 

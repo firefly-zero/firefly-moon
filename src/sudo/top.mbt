@@ -5,7 +5,7 @@
 pub fn get_file_size(path : Bytes) -> UInt {
   let size = @ffi.sudo_get_file_size(
     @memory.bytes_addr(path),
-    path.length().reinterpret_as_uint(),
+    @memory.bytes_size(path),
   )
   @memory.keep(path)
   size
@@ -18,7 +18,7 @@ pub fn get_file_size(path : Bytes) -> UInt {
 pub fn load_file(path : Bytes) -> @firefly.File? {
   let size = @ffi.sudo_get_file_size(
     @memory.bytes_addr(path),
-    path.length().reinterpret_as_uint(),
+    @memory.bytes_size(path),
   )
   match size {
     0 => None
@@ -29,9 +29,9 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
       )
       @ffi.sudo_load_file(
         @memory.bytes_addr(path),
-        path.length().reinterpret_as_uint(),
+        @memory.bytes_size(path),
         @memory.fixedbytes_addr(file_arr),
-        file_arr.length().reinterpret_as_uint(),
+        @memory.fixedbytes_size(file_arr),
       )
       |> ignore
       @memory.keep(path)
@@ -61,7 +61,7 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
 pub fn list_dirs(path : Bytes) -> Array[Bytes] {
   let size = @ffi.sudo_list_dirs_buf_size(
     @memory.bytes_addr(path),
-    path.length().reinterpret_as_uint(),
+    @memory.bytes_size(path),
   )
   match size {
     0 => Array::default()
@@ -72,9 +72,9 @@ pub fn list_dirs(path : Bytes) -> Array[Bytes] {
       )
       let read_bytes = @ffi.sudo_list_dirs(
         @memory.bytes_addr(path),
-        path.length().reinterpret_as_uint(),
+        @memory.bytes_size(path),
         @memory.fixedbytes_addr(dirs_buf),
-        dirs_buf.length().reinterpret_as_uint(),
+        @memory.fixedbytes_size(dirs_buf),
       ).reinterpret_as_int()
       @memory.keep(path)
       let array = parse_array(dirs_buf[:read_bytes])

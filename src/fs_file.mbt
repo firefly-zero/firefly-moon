@@ -11,12 +11,6 @@ pub fn File::from_array(arr : FixedArray[Byte]) -> File {
 }
 
 ///|
-/// Get the size of the file in bytes.
-pub fn File::get_size(self : File) -> UInt {
-  self.0.length().reinterpret_as_uint()
-}
-
-///|
 /// Convert the `File` to a `Font`.
 pub fn File::as_font(self : File) -> Font {
   Font(self.0)

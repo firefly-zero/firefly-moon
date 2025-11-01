@@ -10,6 +10,18 @@ pub fn[T] keep(v : T) -> Unit {
 }
 
 ///|
+#inline
+pub fn fixedbytes_size(bytes : FixedArray[Byte]) -> UInt {
+  bytes.length().reinterpret_as_uint()
+}
+
+///|
+#inline
+pub fn bytes_size(bytes : Bytes) -> UInt {
+  bytes.length().reinterpret_as_uint()
+}
+
+///|
 /// Returns the WASM object address to a `FixedArray[Byte]` object.
 #inline
 #borrow(bytes)
