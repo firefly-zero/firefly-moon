@@ -29,11 +29,23 @@ pub fn File::as_image(self : File) -> Image {
 }
 
 ///|
+/// Convert the `File` to `Bytes`.
+pub fn File::as_bytes(self : File) -> Bytes {
+  Bytes::from_array(self.0)
+}
+
+///|
+/// Convert the `File` to `Bytes`.
+pub fn File::as_fixed_array(self : File) -> FixedArray[Byte] {
+  self.0
+}
+
+///|
 /// Load a file from ROM or the data directory.
 ///
 /// Example: loading fonts, images, or save files.
 #inline
-pub fn File::load(path : String) -> File? {
+pub fn File::load(path : Bytes) -> File? {
   load_file(path)
 }
 
@@ -47,6 +59,6 @@ pub fn File::load(path : String) -> File? {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn File::dump(self : File, path : String) -> UInt {
+pub fn File::dump(self : File, path : Bytes) -> UInt {
   dump_file(path, self)
 }

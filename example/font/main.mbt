@@ -12,13 +12,7 @@ let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  match @firefly.Font::load("eg_6x12.fff") {
-    None => @firefly.log_error("failed to load font")
-    Some(font) => {
-      @firefly.log_debug("loaded font")
-      my_font.val = font
-    }
-  }
+  my_font.val = @firefly.load_file("eg_6x12.fff").unwrap().as_font()
 }
 
 ///|
@@ -75,7 +69,7 @@ pub fn render() -> Unit {
 ///|
 /// Example implementation of drawing text with a drop shadow
 fn draw_text_shadow(
-  text : String,
+  text : Bytes,
   font : @firefly.Font,
   point : Point,
   text_color : Color,
@@ -89,7 +83,7 @@ fn draw_text_shadow(
 ///|
 /// Example implementation of drawing text with a drop shadow
 fn draw_text_rainbow(
-  text : String,
+  text : Bytes,
   font : @firefly.Font,
   point : Point,
   text_colors? : FixedArray[Color] = [
@@ -106,9 +100,9 @@ fn draw_text_rainbow(
   index_offset? : Int = 0,
 ) -> Unit {
   let char_width = font.char_width()
-  for i, char in text {
+  for i, byte in text {
     @firefly.draw_text(
-      char.to_string(),
+      [byte],
       font,
       point + Point::new(char_width * i, 0),
       text_colors[(i + index_offset) % text_colors.length()],

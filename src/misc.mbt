@@ -1,17 +1,15 @@
 ///|
 /// Log a debug message.
-pub fn log_debug(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8)
-  @ffi.log_debug(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
-  ignore(arr)
+pub fn log_debug(s : Bytes) -> Unit {
+  @ffi.log_debug(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
+  keep(s)
 }
 
 ///|
 /// Log an error message.
-pub fn log_error(s : String) -> Unit {
-  let arr = @encoding.encode(s, encoding=UTF8)
-  @ffi.log_error(@ffi.addr_of_bytes(arr), arr.length().reinterpret_as_uint())
-  ignore(arr)
+pub fn log_error(s : Bytes) -> Unit {
+  @ffi.log_error(@ffi.addr_of_bytes(s), s.length().reinterpret_as_uint())
+  keep(s)
 }
 
 ///|
@@ -43,11 +41,10 @@ pub fn get_random() -> UInt {
 
 ///|
 /// Get name of the device.
-pub fn get_name(peer : UInt) -> String {
-  let arr = FixedArray::make(120, Byte::default())
-  let len = @ffi.get_name(peer, @ffi.addr_of_fixedbytes(arr))
-  let bytes = Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
-  @encoding.decode_lossy(bytes[:])
+pub fn get_name(peer : Peer) -> Bytes {
+  let arr = FixedArray::make(16, Byte::default())
+  let len = @ffi.get_name(peer.0.to_uint(), @ffi.addr_of_fixedbytes(arr))
+  Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
 }
 
 ///|

@@ -19,16 +19,7 @@ let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  match @firefly.Font::load("eg_6x12.fff") {
-    None => {
-      @firefly.log_error("failed to load font")
-      panic()
-    }
-    Some(font) => {
-      @firefly.log_debug("loaded font")
-      my_font.val = font
-    }
-  }
+  my_font.val = @firefly.load_file("eg_6x12.fff").unwrap().as_font()
 }
 
 ///|
@@ -185,7 +176,7 @@ fn draw_abxy_input() -> Unit {
 }
 
 ///|
-fn draw_button(text : String, point : Point, pressed : Bool) -> Unit {
+fn draw_button(text : Bytes, point : Point, pressed : Bool) -> Unit {
   @firefly.draw_circle(
     point - Point::new(3, 8),
     11,

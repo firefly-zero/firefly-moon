@@ -1,9 +1,6 @@
 {
   "name": "applejag/firefly",
   "version": "0.2.0",
-  "deps": {
-    "tonyfettes/encoding": "0.3.6"
-  },
   "readme": "README.md",
   "repository": "https://github.com/firefly-zero/firefly-moon",
   "license": "MIT",

@@ -4,13 +4,12 @@
 /// The path must not contain any path separators ("`/`").
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path : String) -> UInt {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn get_file_size(path : Bytes) -> UInt {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
-  ignore(path_arr)
+  keep(path)
   size
 }
 
@@ -19,7 +18,7 @@ pub fn get_file_size(path : String) -> UInt {
 ///
 /// The path must not contain any path separators ("`/`").
 #inline
-pub fn is_file(path : String) -> Bool {
+pub fn is_file(path : Bytes) -> Bool {
   get_file_size(path) != 0
 }
 
@@ -29,13 +28,12 @@ pub fn is_file(path : String) -> Bool {
 /// The path must not contain any path separators ("`/`").
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file(path : String) -> File? {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn load_file(path : Bytes) -> File? {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
-  match size {
+  let maybe_file : File? = match size {
     0 => None
     _ => {
       let file_arr = FixedArray::make(
@@ -43,8 +41,8 @@ pub fn load_file(path : String) -> File? {
         Byte::default(),
       )
       @ffi.load_file(
-        @ffi.addr_of_bytes(path_arr),
-        path_arr.length().reinterpret_as_uint(),
+        @ffi.addr_of_bytes(path),
+        path.length().reinterpret_as_uint(),
         @ffi.addr_of_fixedbytes(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
@@ -52,6 +50,8 @@ pub fn load_file(path : String) -> File? {
       Some(File(file_arr))
     }
   }
+  keep(path)
+  maybe_file
 }
 
 ///|
@@ -62,55 +62,15 @@ pub fn load_file(path : String) -> File? {
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file_to(path : String, output : FixedArray[Byte]) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8)
+pub fn load_file_to(path : Bytes, output : FixedArray[Byte]) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
-  ignore(text_arr)
+  keep(path)
   size
-}
-
-///|
-/// Load a file from ROM or the data directory and return it as bytes.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_bytes(path : String) -> Bytes? {
-  load_file(path).map(f => Bytes::from_array(f.0))
-}
-
-///|
-/// Load a file from ROM or the data directory and decode it as a string.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_string(
-  path : String,
-  encoding~ : @encoding.Encoding,
-) -> String? raise @tonyfettes/encoding.DecodingError {
-  load_file_to_bytes(path).map(b => @encoding.decode(b[:], encoding~))
-}
-
-///|
-/// Load a file from ROM or the data directory as a `Font`.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_font(path : String) -> Font? {
-  load_file(path).map(f => f.as_font())
-}
-
-///|
-/// Load a file from ROM or the data directory as an `Image`.
-///
-/// The path must not contain any path separators ("`/`").
-#inline
-pub fn load_file_to_image(path : String) -> Image? {
-  load_file(path).map(f => f.as_image())
 }
 
 ///|
@@ -124,80 +84,15 @@ pub fn load_file_to_image(path : String) -> Image? {
 /// Example: writing save files.
 ///
 /// Returns the number of bytes written.
-pub fn dump_file(path : String, file : File) -> UInt {
-  let text_arr = @encoding.encode(path, encoding=UTF8)
+pub fn dump_file(path : Bytes, file : File) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(file.0),
     file.get_size(),
   )
-  ignore(text_arr)
+  keep(path)
   size
-}
-
-///|
-/// Write the bytes to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Example: writing save files.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_bytes_to_file(path : String, bytes : Bytes) -> UInt {
-  dump_file(path, File(bytes.to_fixedarray()))
-}
-
-///|
-/// Encodes the string and writes it to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Example: writing save files.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_string_to_file(
-  path : String,
-  content : String,
-  encoding~ : @encoding.Encoding,
-) -> UInt {
-  dump_file(path, File(@encoding.encode(content, encoding~).to_fixedarray()))
-}
-
-///|
-/// Write the `Font` to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_font_to_file(path : String, font : Font) -> UInt {
-  dump_file(path, font.as_file())
-}
-
-///|
-/// Write the `Image` to the given path in the data directory.
-///
-/// The path must not contain any path separators ("`/`").
-///
-/// - If the file exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn dump_image_to_file(path : String, image : Image) -> UInt {
-  dump_file(path, image.as_file())
 }
 
 ///|
@@ -206,11 +101,10 @@ pub fn dump_image_to_file(path : String, image : Image) -> UInt {
 /// The path must not contain any path separators ("`/`").
 ///
 /// Example: removing save files.
-pub fn remove_file(path : String) -> Unit {
-  let path_arr = @encoding.encode(path, encoding=UTF8)
+pub fn remove_file(path : Bytes) -> Unit {
   @ffi.remove_file(
-    @ffi.addr_of_bytes(path_arr),
-    path_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(path),
+    path.length().reinterpret_as_uint(),
   )
-  ignore(path_arr)
+  keep(path)
 }

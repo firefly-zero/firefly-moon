@@ -12,13 +12,10 @@ pub fn boot() -> Unit {
 }
 
 ///|
-fn list_dir(path : String) -> Unit {
-  let entries = @sudo.list_dirs_entries(path)
-  @firefly.log_debug(
-    "list_dirs(\"" + path + "\") entries: " + entries.length().to_string(),
-  )
+fn list_dir(path : Bytes) -> Unit {
+  let entries = @sudo.list_dirs(path)
   for entry in entries {
-    @firefly.log_debug("  " + entry.to_string())
+    @firefly.log_debug("  " + entry)
   }
 }
 

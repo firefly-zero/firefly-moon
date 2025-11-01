@@ -9,12 +9,12 @@ fn main {
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  @firefly.log_debug("random float: " + @random.float().to_string())
-  @firefly.log_debug("random double: " + @random.double().to_string())
-  @firefly.log_debug("random int: " + @random.int().to_string())
-  @firefly.log_debug("random uint: " + @random.uint().to_string())
-  @firefly.log_debug("random int64: " + @random.int64().to_string())
-  @firefly.log_debug("random uint64: " + @random.uint64().to_string())
+  @firefly.log_debug("random float: " + format(@random.float()))
+  @firefly.log_debug("random double: " + format(@random.double()))
+  @firefly.log_debug("random int: " + format(@random.int()))
+  @firefly.log_debug("random uint: " + format(@random.uint()))
+  @firefly.log_debug("random int64: " + format(@random.int64()))
+  @firefly.log_debug("random uint64: " + format(@random.uint64()))
   let colors : FixedArray[@firefly.Color] = [
     Red,
     Orange,
@@ -25,7 +25,7 @@ pub fn boot() -> Unit {
     LightBlue,
   ]
   @random.shuffle_fixed_array(colors)
-  @firefly.log_debug("colors: " + colors.to_string())
+  @firefly.log_debug(b"colors: " + format(colors))
   for color in colors {
     @firefly.draw_circle(
       Point::new(
@@ -54,4 +54,9 @@ pub fn update() -> Unit {
 /// This is the best place to call all drawing functions.
 pub fn render() -> Unit {
 
+}
+
+///|
+fn[T : Show] format(v : T) -> Bytes {
+  @encoding/utf8.encode(v.to_string())
 }

@@ -189,43 +189,49 @@ pub fn draw_sector(
 /// Unlike in the other drawing functions, here `point` does not represent
 /// the top-left corner, but instead the text baseline position
 /// (such as the bottom left pixel of an underscore "`_`").
+///
+/// The text must be valid UTF-8. To convert String into text,
+/// use [@encoding/utf8]:
+///
+/// ```
+/// let utf8 = @encoding/utf8.encode("привет, мир!")
+/// ignore(utf8)
+/// ```
 pub fn draw_text(
-  text : String,
+  text : Bytes,
   font : Font,
   point : Point,
   color : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_text(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(text),
+    text.length().reinterpret_as_uint(),
     @ffi.addr_of_fixedbytes(font.0),
     font.0.length().reinterpret_as_uint(),
     point.x,
     point.y,
     color.to_int(),
   )
-  ignore(text_arr)
+  keep(text)
 }
 
 ///|
 /// Render a QR-code.
 pub fn draw_qr(
-  text : String,
+  text : Bytes,
   point : Point,
   black : Color,
   white : Color,
 ) -> Unit {
-  let text_arr = @encoding.encode(text, encoding=UTF8)
   @ffi.draw_qr(
-    @ffi.addr_of_bytes(text_arr),
-    text_arr.length().reinterpret_as_uint(),
+    @ffi.addr_of_bytes(text),
+    text.length().reinterpret_as_uint(),
     point.x,
     point.y,
     black.to_int(),
     white.to_int(),
   )
-  ignore(text_arr)
+  keep(text)
 }
 
 ///|

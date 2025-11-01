@@ -11,25 +11,6 @@ pub fn Font::as_file(self : Font) -> File {
 }
 
 ///|
-/// Load a `Font` from ROM or the data directory.
-#inline
-pub fn Font::load(path : String) -> Font? {
-  load_file_to_font(path)
-}
-
-///|
-/// Write the `Font` to the given path in the data directory.
-///
-/// - If the Font exists, it will be overritten.
-/// - If it doesn't exist, it will be created.
-///
-/// Returns the number of bytes written.
-#inline
-pub fn Font::dump(self : Font, path : String) -> UInt {
-  dump_font_to_file(path, self)
-}
-
-///|
 /// If the font is for ASCII encoding (English alphabet).
 pub fn Font::is_ascii(self : Font) -> Bool {
   self.0[1] == 0
