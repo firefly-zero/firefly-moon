@@ -13,7 +13,7 @@ typealias Bytes as Path
 /// Returns 0 if the file does not exist.
 pub fn get_file_size(path : Path) -> UInt {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path),
+    @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
   keep(path)
@@ -33,7 +33,7 @@ pub fn is_file(path : Path) -> Bool {
 /// Example: loading fonts, images, or save files.
 pub fn load_file(path : Path) -> File? {
   let size = @ffi.get_file_size(
-    @ffi.addr_of_bytes(path),
+    @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
   let maybe_file : File? = match size {
@@ -44,9 +44,9 @@ pub fn load_file(path : Path) -> File? {
         Byte::default(),
       )
       @ffi.load_file(
-        @ffi.addr_of_bytes(path),
+        @memory.addr_of_bytes(path),
         path.length().reinterpret_as_uint(),
-        @ffi.addr_of_fixedbytes(file_arr),
+        @memory.addr_of_fixedbytes(file_arr),
         file_arr.length().reinterpret_as_uint(),
       )
       |> ignore
@@ -65,9 +65,9 @@ pub fn load_file(path : Path) -> File? {
 /// Example: loading fonts, images, or save files.
 pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(path),
+    @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
-    @ffi.addr_of_fixedbytes(output),
+    @memory.addr_of_fixedbytes(output),
     output.length().reinterpret_as_uint(),
   )
   keep(path)
@@ -85,9 +85,9 @@ pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> UInt {
 /// Returns the number of bytes written.
 pub fn dump_file(path : Path, file : File) -> UInt {
   let size = @ffi.load_file(
-    @ffi.addr_of_bytes(path),
+    @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
-    @ffi.addr_of_fixedbytes(file.0),
+    @memory.addr_of_fixedbytes(file.0),
     file.get_size(),
   )
   keep(path)
@@ -100,7 +100,7 @@ pub fn dump_file(path : Path, file : File) -> UInt {
 /// Example: removing save files.
 pub fn remove_file(path : Path) -> Unit {
   @ffi.remove_file(
-    @ffi.addr_of_bytes(path),
+    @memory.addr_of_bytes(path),
     path.length().reinterpret_as_uint(),
   )
   keep(path)
