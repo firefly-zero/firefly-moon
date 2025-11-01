@@ -9,7 +9,7 @@ pub const SCREEN_HEIGHT : UInt = 160
 ///|
 /// Bounding box for a shape.
 ///
-/// The width and hight must be positive.
+/// The width and height must be positive.
 #valtype
 pub(all) struct Size {
   w : UInt

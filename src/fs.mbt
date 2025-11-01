@@ -5,7 +5,7 @@
 /// so the path cannot contain path separators (`/`).
 ///
 /// Any String literal or Bytes literal is a valid ASCII string.
-typealias Bytes as Path
+pub typealias Bytes as Path
 
 ///|
 /// Get size (in bytes) of a file from ROM or the data directory.
@@ -36,24 +36,16 @@ pub fn load_file(path : Path) -> File? {
     @memory.bytes_addr(path),
     @memory.bytes_size(path),
   )
-  let maybe_file : File? = match size {
-    0 => None
-    _ => {
-      let file_arr = FixedArray::make(
-        size.reinterpret_as_int(),
-        Byte::default(),
-      )
-      let _ = @ffi.load_file(
-        @memory.bytes_addr(path),
-        @memory.bytes_size(path),
-        @memory.fixedbytes_addr(file_arr),
-        @memory.fixedbytes_size(file_arr),
-      )
-      Some(File(file_arr))
-    }
-  }
+  guard size != 0 else { None }
+  let buf = FixedArray::make(size.reinterpret_as_int(), Byte::default())
+  let _ = @ffi.load_file(
+    @memory.bytes_addr(path),
+    @memory.bytes_size(path),
+    @memory.fixedbytes_addr(buf),
+    @memory.fixedbytes_size(buf),
+  )
   @memory.keep(path)
-  maybe_file
+  Some(File(buf))
 }
 
 ///|
