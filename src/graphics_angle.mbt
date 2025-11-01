@@ -8,7 +8,7 @@ const TAU : Float = 6.2831854820251465
 
 ///|
 /// An angle between two vectors, internally represented as radians.
-pub struct Angle(Float) derive(Show, Eq, Compare, Hash, Default)
+struct Angle(Float) derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Define an Angle in radians (0-2π).

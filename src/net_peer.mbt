@@ -5,7 +5,7 @@
 /// (as well as many other Firefly SDKs for other languages) store the list
 /// of peers in a 32-bit bitmap.
 /// Meaning the `Peer` ID must be lower than 32 (`0x20`)
-pub struct Peer(Byte) derive(Show, Eq, Compare, Hash)
+struct Peer(Byte) derive(Show, Eq, Compare, Hash)
 
 ///|
 /// Returns a `Peer` with a special ID that represents a combined input of all peers.

@@ -1,5 +1,5 @@
 ///|
-pub struct SubImage {
+struct SubImage {
   image : Image
   point : Point
   size : Size
