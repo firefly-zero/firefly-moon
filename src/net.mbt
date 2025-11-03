@@ -5,6 +5,7 @@
 /// (as well as many other Firefly SDKs for other languages) store the list
 /// of peers in a 32-bit bitmap.
 /// Meaning the `Peer` ID must be lower than 32 (`0x20`)
+#valtype
 struct Peer {
   raw : Int
 } derive(Show, Eq, Compare, Hash)
@@ -12,8 +13,7 @@ struct Peer {
 ///|
 /// Returns a `Peer` with a special ID that represents a combined input of all peers.
 ///
-/// Useful for single-player games that want in multi-player to handle inputs
-/// from all devices as one input.
+/// Useful for single-player games that don't have any special logic for multiplayer.
 pub fn Peer::combined() -> Peer {
   Peer::{ raw: 0xFF }
 }
@@ -36,6 +36,7 @@ pub impl Default for Peer with default() -> Peer {
 /// The map of peers online.
 ///
 /// Can be obtained using `get_peers`.
+#valtype
 struct Peers {
   raw : UInt
 }
