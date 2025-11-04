@@ -43,7 +43,7 @@ pub fn get_random() -> UInt {
 /// Get name of the device.
 pub fn get_name(peer : Peer) -> Bytes {
   let arr = FixedArray::make(16, Byte::default())
-  let len = @ffi.get_name(peer.0.to_uint(), @memory.fixedbytes_addr(arr))
+  let len = @ffi.get_name(peer.raw, @memory.fixedbytes_addr(arr))
   Bytes::from_fixedarray(arr, len=len.reinterpret_as_int())
 }
 

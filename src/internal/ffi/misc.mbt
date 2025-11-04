@@ -16,7 +16,7 @@ pub fn get_random() -> UInt = "misc" "get_random"
 
 ///|
 /// Get name of the device.
-pub fn get_name(index : UInt, buf : UInt) -> UInt = "misc" "get_name"
+pub fn get_name(peer : Int, buf : UInt) -> UInt = "misc" "get_name"
 
 ///|
 /// Restart the app after the current update is finished.
