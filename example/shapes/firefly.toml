@@ -6,6 +6,3 @@ author_id = "demo"
 app_id = "moonbit-shapes"
 author_name = "Demo"
 app_name = "Shapes demo (MoonBit)"
-
-[files]
-_bin = { path = "./target/wasm/release/build/shapes.wasm", copy = true }

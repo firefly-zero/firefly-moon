@@ -4,33 +4,22 @@
 
 version: 3
 
-includes:
-  example/font: { taskfile: ./example/font, dir: ./example/font }
-  example/image: { taskfile: ./example/image, dir: ./example/image }
-  example/input: { taskfile: ./example/input, dir: ./example/input }
-  example/random: { taskfile: ./example/random, dir: ./example/random }
-  example/shapes: { taskfile: ./example/shapes, dir: ./example/shapes }
-  example/sudo: { taskfile: ./example/sudo, dir: ./example/sudo }
-
 vars:
   MOON_MODULES:
     sh: echo ./src && find ./example -maxdepth 1 -mindepth 1 -type d
+  EXAMPLES:
+    sh: find ./example -maxdepth 1 -mindepth 1 -type d
 
 tasks:
-  check:
-    cmds:
-      - for: { var: MOON_MODULES }
-        cmd: moon check -C {{.ITEM}}
-
   format:
-    deps: [check]
     cmds:
       - for: { var: MOON_MODULES }
         cmd: moon fmt -C {{.ITEM}}
 
-  format:check:
-    deps: [check]
+  lint:
     cmds:
+      - for: { var: MOON_MODULES }
+        cmd: moon check -C {{.ITEM}}
       - for: { var: MOON_MODULES }
         cmd: moon fmt -C {{.ITEM}} --check
 
@@ -38,3 +27,11 @@ tasks:
     cmds:
       - for: { var: MOON_MODULES }
         cmd: moon test -C {{.ITEM}}
+      - for: { var: EXAMPLES }
+        cmd: firefly_cli build {{.ITEM}}
+
+  all:
+    cmds:
+      - task: format
+      - task: lint
+      - task: test

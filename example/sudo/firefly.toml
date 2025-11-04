@@ -6,8 +6,4 @@ author_id = "demo"
 app_id = "moonbit-sudo"
 author_name = "Demo"
 app_name = "Sudo demo (MoonBit)"
-
 sudo = true
-
-[files]
-_bin = { path = "./target/wasm/release/build/sudo.wasm", copy = true }

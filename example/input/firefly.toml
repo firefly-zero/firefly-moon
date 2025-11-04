@@ -8,7 +8,4 @@ author_name = "Demo"
 app_name = "Input demo (MoonBit)"
 
 [files]
-_bin = { path = "./target/wasm/release/build/input.wasm", copy = true }
-
-# Fonts
 "eg_6x12.fff" = { path = "assets/eg_6x12.fff" }

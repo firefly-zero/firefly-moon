@@ -6,6 +6,3 @@ author_id = "demo"
 app_id = "moonbit-random"
 author_name = "Demo"
 app_name = "Random demo (MoonBit)"
-
-[files]
-_bin = { path = "./target/wasm/release/build/random.wasm", copy = true }
