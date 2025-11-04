@@ -4,7 +4,7 @@
 /// The path must not contain any path separators ("`/`").
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path_ptr : UInt, path_len : UInt) -> UInt = "fs" "get_file_size"
+pub fn get_file_size(path_ptr : UInt, path_len : UInt) -> Int = "fs" "get_file_size"
 
 ///|
 /// Load a file into a buffer from ROM or the data directory.
@@ -17,7 +17,7 @@ pub fn load_file(
   path_len : UInt,
   buf_ptr : UInt,
   buf_len : UInt,
-) -> UInt = "fs" "load_file"
+) -> Int = "fs" "load_file"
 
 ///|
 /// Write the buffer into the given file in the data directory.

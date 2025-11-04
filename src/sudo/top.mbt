@@ -2,7 +2,7 @@
 /// Get size (in bytes) of a file from the host file system.
 ///
 /// NOTE: this requires that the app has sudo access.
-pub fn get_file_size(path : Bytes) -> UInt {
+pub fn get_file_size(path : Bytes) -> Int {
   let size = @ffi.sudo_get_file_size(
     @memory.bytes_addr(path),
     @memory.bytes_size(path),
@@ -23,10 +23,7 @@ pub fn load_file(path : Bytes) -> @firefly.File? {
   match size {
     0 => None
     _ => {
-      let file_arr = FixedArray::make(
-        size.reinterpret_as_int(),
-        Byte::default(),
-      )
+      let file_arr = FixedArray::make(size, Byte::default())
       @ffi.sudo_load_file(
         @memory.bytes_addr(path),
         @memory.bytes_size(path),
@@ -66,16 +63,13 @@ pub fn list_dirs(path : Bytes) -> Array[Bytes] {
   match size {
     0 => Array::default()
     _ => {
-      let dirs_buf = FixedArray::make(
-        size.reinterpret_as_int(),
-        Byte::default(),
-      )
+      let dirs_buf = FixedArray::make(size, Byte::default())
       let read_bytes = @ffi.sudo_list_dirs(
         @memory.bytes_addr(path),
         @memory.bytes_size(path),
         @memory.fixedbytes_addr(dirs_buf),
         @memory.fixedbytes_size(dirs_buf),
-      ).reinterpret_as_int()
+      )
       @memory.keep(path)
       let array = parse_array(dirs_buf[:read_bytes])
       array

@@ -29,8 +29,8 @@ pub fn boot() -> Unit {
   for color in colors {
     @firefly.draw_circle(
       Point::new(
-        @random.int(limit=@firefly.SCREEN_WIDTH.reinterpret_as_int()),
-        @random.int(limit=@firefly.SCREEN_HEIGHT.reinterpret_as_int()),
+        @random.int(limit=@firefly.SCREEN_WIDTH),
+        @random.int(limit=@firefly.SCREEN_HEIGHT),
       ),
       // or you can use `@firefly.get_random` which maps to the `misc.get_random`
       // wasm function directly

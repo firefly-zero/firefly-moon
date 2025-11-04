@@ -11,12 +11,9 @@ struct Image(FixedArray[Byte]) derive(Default)
 /// The `bpp` must be either 1, 2, or 4.
 pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
   guard bpp == 1 || bpp == 2 || bpp == 4 else { panic() }
-  let header_size = 5U + bpp.to_uint() * 2
-  let body_size = size.w * size.h * bpp.to_uint() / 8
-  let arr = FixedArray::make(
-    (header_size + body_size).reinterpret_as_int(),
-    Byte::default(),
-  )
+  let header_size = 5 + bpp.to_int() * 2
+  let body_size = size.w * size.h * bpp.to_int() / 8
+  let arr = FixedArray::make(header_size + body_size, Byte::default())
   arr[0] = 0x21 // magic number
   arr[1] = bpp
   arr[2] = size.w.to_byte()
@@ -52,8 +49,8 @@ pub fn Image::sub(self : Image, point : Point, size : Size) -> SubImage {
 
 ///|
 /// Bits per pixel. One of: 1, 2, or 4
-pub fn Image::bits_per_pixel(self : Image) -> Byte {
-  self.0[1]
+pub fn Image::bpp(self : Image) -> Int {
+  self.0[1].to_int()
 }
 
 ///|
@@ -78,22 +75,20 @@ pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
 
 ///|
 /// Returns the number of pixels the image has
-pub fn Image::pixels(self : Image) -> UInt {
-  let header_size = 5 + self.bits_per_pixel().to_int()
-  (self.0.length() - header_size).reinterpret_as_uint() *
-  8 /
-  self.bits_per_pixel().to_uint()
+pub fn Image::pixels(self : Image) -> Int {
+  let header_size = 5 + self.bpp()
+  (self.0.length() - header_size) * 8 / self.bpp()
 }
 
 ///|
 /// Returns the width of the image (in pixels).
-pub fn Image::width(self : Image) -> UInt {
-  self.0[2].to_uint() | (self.0[3].to_uint() << 8)
+pub fn Image::width(self : Image) -> Int {
+  self.0[2].to_int() | (self.0[3].to_int() << 8)
 }
 
 ///|
 /// Returns the height of the image (in pixels).
-pub fn Image::height(self : Image) -> UInt {
+pub fn Image::height(self : Image) -> Int {
   match self.width() {
     0 => 0
     _ as width => self.pixels() / width

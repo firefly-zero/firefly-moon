@@ -19,7 +19,7 @@ pub impl Shape for Ellipse with draw(self : Ellipse) -> Unit {
 /// The diameter defaults to the maximum between the width and height.
 pub fn Ellipse::as_circle(
   self : Ellipse,
-  diameter? : Int = @cmp.maximum(self.size.w, self.size.h).reinterpret_as_int(),
+  diameter? : Int = @cmp.maximum(self.size.w, self.size.h),
 ) -> Circle {
   Circle::{ point: self.point, diameter, style: self.style }
 }

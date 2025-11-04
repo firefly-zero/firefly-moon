@@ -34,6 +34,6 @@ pub fn render() -> Unit {
   let mut x : Int = 30
   for image in images {
     image.draw(Point::new(x, 30))
-    x += image.width().reinterpret_as_int()
+    x += image.width()
   }
 }

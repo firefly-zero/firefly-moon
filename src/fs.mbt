@@ -15,7 +15,7 @@ pub typealias Bytes as Path
 /// Get size (in bytes) of a file from ROM or the data directory.
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path : Path) -> UInt {
+pub fn get_file_size(path : Path) -> Int {
   let size = @ffi.get_file_size(
     @memory.bytes_addr(path),
     @memory.bytes_size(path),
@@ -41,7 +41,7 @@ pub fn load_file(path : Path) -> File? {
     @memory.bytes_size(path),
   )
   guard size != 0 else { None }
-  let buf = FixedArray::make(size.reinterpret_as_int(), Byte::default())
+  let buf = FixedArray::make(size, Byte::default())
   let _ = @ffi.load_file(
     @memory.bytes_addr(path),
     @memory.bytes_size(path),
@@ -58,7 +58,7 @@ pub fn load_file(path : Path) -> File? {
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> UInt {
+pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> Int {
   let size = @ffi.load_file(
     @memory.bytes_addr(path),
     @memory.bytes_size(path),
@@ -78,7 +78,7 @@ pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> UInt {
 /// Example: writing save files.
 ///
 /// Returns the number of bytes written.
-pub fn dump_file(path : Path, file : File) -> UInt {
+pub fn dump_file(path : Path, file : File) -> Int {
   let size = @ffi.load_file(
     @memory.bytes_addr(path),
     @memory.bytes_size(path),

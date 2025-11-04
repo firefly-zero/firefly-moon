@@ -19,8 +19,8 @@ pub fn draw_line(x1 : Int, y1 : Int, x2 : Int, y2 : Int, c : Int, sw : Int) = "g
 pub fn draw_rect(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
+  w : Int,
+  h : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -31,10 +31,10 @@ pub fn draw_rect(
 pub fn draw_rounded_rect(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
-  cw : UInt,
-  ch : UInt,
+  w : Int,
+  h : Int,
+  cw : Int,
+  ch : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -49,8 +49,8 @@ pub fn draw_circle(x : Int, y : Int, d : Int, fc : Int, sc : Int, sw : Int) = "g
 pub fn draw_ellipse(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
+  w : Int,
+  h : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -160,8 +160,8 @@ pub fn draw_sub_image(
   y : Int,
   sub_x : Int,
   sub_y : Int,
-  sub_width : UInt,
-  sub_height : UInt,
+  sub_width : Int,
+  sub_height : Int,
 ) = "graphics" "draw_sub_image"
 
 ///|

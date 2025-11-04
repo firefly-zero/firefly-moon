@@ -2,7 +2,7 @@
 /// Get size (in bytes) of a file from the host file system.
 ///
 /// NOTE: this requires that the app has sudo access.
-pub fn sudo_get_file_size(path_ptr : UInt, path_len : UInt) -> UInt = "sudo" "get_file_size"
+pub fn sudo_get_file_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo" "get_file_size"
 
 ///|
 /// Load a file from the host file system.
@@ -19,7 +19,7 @@ pub fn sudo_load_file(
 /// Get the buffer size needed to call `sudo_list_dirs`.
 ///
 /// NOTE: this requires that the app has sudo access.
-pub fn sudo_list_dirs_buf_size(path_ptr : UInt, path_len : UInt) -> UInt = "sudo" "list_dirs_buf_size"
+pub fn sudo_list_dirs_buf_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo" "list_dirs_buf_size"
 
 ///|
 /// List entries (files and directories) inside a directory.
@@ -41,7 +41,7 @@ pub fn sudo_list_dirs(
   path_len : UInt,
   buf_ptr : UInt,
   buf_len : UInt,
-) -> UInt = "sudo" "list_dirs"
+) -> Int = "sudo" "list_dirs"
 
 ///|
 /// Exit the current app and run the given app instead.
