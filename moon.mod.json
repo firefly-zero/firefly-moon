@@ -1,11 +1,11 @@
 {
   "name": "firefly/firefly",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "readme": "README.md",
   "repository": "https://github.com/firefly-zero/firefly-moon",
   "license": "MIT",
   "keywords": ["game", "firefly-zero"],
-  "description": "A port of the SDK for Firefly Zero, a modern handheld game console using WebAssembly",
+  "description": "MoonBit SDK for making Firefly Zero games",
   "source": "src",
   "preferred-target": "wasm"
 }

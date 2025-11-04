@@ -11,6 +11,17 @@ vars:
     sh: find ./example -maxdepth 1 -mindepth 1 -type d
 
 tasks:
+  release:
+    desc: build and publish release
+    cmds:
+      - test {{.CLI_ARGS}}
+      - grep -F '"{{.CLI_ARGS}}"' moon.mod.json
+      - moon publish
+      - git tag {{.CLI_ARGS}}
+      - git push
+      - git push --tags
+      - gh release create --generate-notes {{.CLI_ARGS}}
+
   format:
     cmds:
       - for: { var: MOON_MODULES }
