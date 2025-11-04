@@ -11,14 +11,14 @@ pub fn[T] keep(v : T) -> Unit {
 
 ///|
 #inline
-pub fn fixedbytes_size(bytes : FixedArray[Byte]) -> UInt {
-  bytes.length().reinterpret_as_uint()
+pub fn fixedbytes_size(bytes : FixedArray[Byte]) -> Int {
+  bytes.length()
 }
 
 ///|
 #inline
-pub fn bytes_size(bytes : Bytes) -> UInt {
-  bytes.length().reinterpret_as_uint()
+pub fn bytes_size(bytes : Bytes) -> Int {
+  bytes.length()
 }
 
 ///|

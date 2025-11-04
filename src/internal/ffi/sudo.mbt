@@ -2,7 +2,7 @@
 /// Get size (in bytes) of a file from the host file system.
 ///
 /// NOTE: this requires that the app has sudo access.
-pub fn sudo_get_file_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo" "get_file_size"
+pub fn sudo_get_file_size(path_ptr : UInt, path_len : Int) -> Int = "sudo" "get_file_size"
 
 ///|
 /// Load a file from the host file system.
@@ -10,16 +10,16 @@ pub fn sudo_get_file_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo" "get
 /// NOTE: this requires that the app has sudo access.
 pub fn sudo_load_file(
   path_ptr : UInt,
-  path_len : UInt,
+  path_len : Int,
   buf_ptr : UInt,
-  buf_len : UInt,
+  buf_len : Int,
 ) -> UInt = "sudo" "load_file"
 
 ///|
 /// Get the buffer size needed to call `sudo_list_dirs`.
 ///
 /// NOTE: this requires that the app has sudo access.
-pub fn sudo_list_dirs_buf_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo" "list_dirs_buf_size"
+pub fn sudo_list_dirs_buf_size(path_ptr : UInt, path_len : Int) -> Int = "sudo" "list_dirs_buf_size"
 
 ///|
 /// List entries (files and directories) inside a directory.
@@ -38,9 +38,9 @@ pub fn sudo_list_dirs_buf_size(path_ptr : UInt, path_len : UInt) -> Int = "sudo"
 /// NOTE: this requires that the app has sudo access.
 pub fn sudo_list_dirs(
   path_ptr : UInt,
-  path_len : UInt,
+  path_len : Int,
   buf_ptr : UInt,
-  buf_len : UInt,
+  buf_len : Int,
 ) -> Int = "sudo" "list_dirs"
 
 ///|
@@ -52,7 +52,7 @@ pub fn sudo_list_dirs(
 /// NOTE: this requires that the app has sudo access.
 pub fn sudo_run_app(
   author_ptr : UInt,
-  author_len : UInt,
+  author_len : Int,
   app_ptr : UInt,
-  app_len : UInt,
+  app_len : Int,
 ) -> UInt = "sudo" "run_app"
