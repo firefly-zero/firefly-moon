@@ -8,4 +8,4 @@ author_name = "Demo"
 app_name = "Text example (MoonBit)"
 
 [files]
-"eg_6x12.fff" = { path = "assets/eg_6x12.fff" }
+font = { path = "assets/eg_6x12.fff" }

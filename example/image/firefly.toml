@@ -8,6 +8,6 @@ author_name = "Demo"
 app_name = "Image demo (MoonBit)"
 
 [files]
-"smile-1.png" = { path = "assets/smile-1.png" }
-"smile-2.png" = { path = "assets/smile-2.png" }
-"smile-4.png" = { path = "assets/smile-4.png" }
+smile1 = { path = "assets/smile-1.png" }
+smile2 = { path = "assets/smile-2.png" }
+smile4 = { path = "assets/smile-4.png" }

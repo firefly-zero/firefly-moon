@@ -12,7 +12,7 @@ let images : Array[@firefly.Image] = Array::default()
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  for path in [b"smile-1.png", b"smile-2.png", b"smile-4.png"] {
+  for path in [b"smile1", b"smile2", b"smile4"] {
     let file = @firefly.load_file(path).unwrap()
     images.push(file.as_image())
   }
