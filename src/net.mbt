@@ -131,5 +131,5 @@ pub fn load_stash(peer : Peer, buf : Stash) -> ArrayView[Byte] {
     @memory.fixedbytes_addr(buf),
     @memory.fixedbytes_size(buf),
   )
-  buf[:size.reinterpret_as_int()]
+  buf[:size]
 }

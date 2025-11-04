@@ -26,7 +26,7 @@ pub fn Point::new_screen() -> Point {
 ///
 /// Note that a `Size` does not allow negative values.
 /// Any negative values are clamped to zero.
-pub fn Point::reinterpret_as_size(self : Point) -> Size {
+pub fn Point::to_size(self : Point) -> Size {
   Size::{ w: self.x, h: self.y }
 }
 

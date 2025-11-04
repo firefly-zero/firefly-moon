@@ -9,4 +9,4 @@ pub fn get_peers() -> UInt = "net" "get_peers"
 pub fn save_stash(peer : Int, buf_ptr : UInt, buf_len : Int) = "net" "save_stash"
 
 ///|
-pub fn load_stash(peer : Int, buf_ptr : UInt, buf_len : Int) -> UInt = "net" "load_stash"
+pub fn load_stash(peer : Int, buf_ptr : UInt, buf_len : Int) -> Int = "net" "load_stash"
