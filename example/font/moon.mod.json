@@ -1,7 +1,7 @@
 {
-  "name": "applejag/firefly/example/font",
+  "name": "example-text",
   "deps": {
-    "applejag/firefly": {
+    "firefly/firefly": {
       "path": "../.."
     }
   },

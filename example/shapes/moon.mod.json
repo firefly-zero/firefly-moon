@@ -1,7 +1,7 @@
 {
-  "name": "applejag/firefly/example/shapes",
+  "name": "example-shapes",
   "deps": {
-    "applejag/firefly": {
+    "firefly/firefly": {
       "path": "../.."
     }
   },

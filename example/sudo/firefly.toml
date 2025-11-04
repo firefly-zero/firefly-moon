@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-author_id = "applejag"
+author_id = "demo"
 app_id = "moonbit-sudo"
-author_name = "Applejag"
-app_name = "MoonBit sudo example"
+author_name = "Demo"
+app_name = "Sudo demo (MoonBit)"
 
 sudo = true
 

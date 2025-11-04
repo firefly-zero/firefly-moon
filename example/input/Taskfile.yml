@@ -14,4 +14,4 @@ tasks:
     deps:
       - build
     cmds:
-      - firefly-emulator --id applejag.moonbit-input
+      - firefly-emulator --id demo.moonbit-input

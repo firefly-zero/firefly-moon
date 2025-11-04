@@ -1,7 +1,7 @@
 {
-  "name": "applejag/firefly/example/input",
+  "name": "example-input",
   "deps": {
-    "applejag/firefly": {
+    "firefly/firefly": {
       "path": "../.."
     }
   },

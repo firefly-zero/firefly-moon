@@ -13,4 +13,4 @@ tasks:
   run:
     deps: [build]
     cmds:
-      - firefly-emulator --id applejag.moonbit-shapes
+      - firefly-emulator --id demo.moonbit-shapes

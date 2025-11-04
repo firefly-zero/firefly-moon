@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-author_id = "applejag"
+author_id = "demo"
 app_id = "moonbit-image"
-author_name = "Applejag"
-app_name = "MoonBit image example"
+author_name = "Demo"
+app_name = "Image demo (MoonBit)"
 
 [files]
 _bin = { path = "./target/wasm/release/build/image.wasm", copy = true }

@@ -1,6 +1,6 @@
 {
   "is-main": true,
-  "import": ["applejag/firefly"],
+  "import": ["firefly/firefly"],
   "link": {
     "wasm": {
       "exports": ["boot", "update", "render"],

@@ -1,7 +1,7 @@
 {
-  "name": "applejag/firefly/example/image",
+  "name": "example-image",
   "deps": {
-    "applejag/firefly": {
+    "firefly/firefly": {
       "path": "../.."
     }
   },

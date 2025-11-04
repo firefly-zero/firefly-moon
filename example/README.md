@@ -74,9 +74,9 @@ DEBUG(app):   File(name="new-app", path="sys/new-app", size=22)
 DEBUG(app):   File(name="launcher", path="sys/launcher", size=13)
 DEBUG(app):   File(name="name", path="sys/name", size=7)
 DEBUG(app):
-DEBUG(app): list_dirs("roms/applejag/moonbit-sudo") entries: 4
-DEBUG(app):   File(name="_meta", path="roms/applejag/moonbit-sudo/_meta", size=56)
-DEBUG(app):   File(name="_bin", path="roms/applejag/moonbit-sudo/_bin", size=17064)
-DEBUG(app):   File(name="_stats", path="roms/applejag/moonbit-sudo/_stats", size=26)
-DEBUG(app):   File(name="_hash", path="roms/applejag/moonbit-sudo/_hash", size=32)
+DEBUG(app): list_dirs("roms/firefly/moonbit-sudo") entries: 4
+DEBUG(app):   File(name="_meta", path="roms/firefly/moonbit-sudo/_meta", size=56)
+DEBUG(app):   File(name="_bin", path="roms/firefly/moonbit-sudo/_bin", size=17064)
+DEBUG(app):   File(name="_stats", path="roms/firefly/moonbit-sudo/_stats", size=26)
+DEBUG(app):   File(name="_hash", path="roms/firefly/moonbit-sudo/_hash", size=32)
 ```

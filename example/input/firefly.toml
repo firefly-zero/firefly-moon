@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-author_id = "applejag"
+author_id = "demo"
 app_id = "moonbit-input"
-author_name = "Applejag"
-app_name = "MoonBit input example"
+author_name = "Demo"
+app_name = "Input demo (MoonBit)"
 
 [files]
 _bin = { path = "./target/wasm/release/build/input.wasm", copy = true }

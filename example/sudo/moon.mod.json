@@ -1,7 +1,7 @@
 {
-  "name": "applejag/firefly/example/sudo",
+  "name": "firefly/firefly/example/sudo",
   "deps": {
-    "applejag/firefly": {
+    "firefly/firefly": {
       "path": "../.."
     }
   },

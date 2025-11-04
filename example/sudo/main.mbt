@@ -8,7 +8,7 @@ fn main {
 pub fn boot() -> Unit {
   list_dir("sys")
   @firefly.log_debug("") // empty line between dir listings
-  list_dir("roms/applejag/moonbit-sudo")
+  list_dir("roms/demo/moonbit-sudo")
 }
 
 ///|

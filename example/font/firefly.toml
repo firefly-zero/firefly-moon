@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-author_id = "applejag"
-app_id = "moonbit-font"
-author_name = "Applejag"
-app_name = "MoonBit font example"
+author_id = "demo"
+app_id = "moonbit-text"
+author_name = "Demo"
+app_name = "Text example (MoonBit)"
 
 [files]
 _bin = { path = "./target/wasm/release/build/font.wasm", copy = true }
