@@ -19,8 +19,8 @@ pub fn draw_line(x1 : Int, y1 : Int, x2 : Int, y2 : Int, c : Int, sw : Int) = "g
 pub fn draw_rect(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
+  w : Int,
+  h : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -31,10 +31,10 @@ pub fn draw_rect(
 pub fn draw_rounded_rect(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
-  cw : UInt,
-  ch : UInt,
+  w : Int,
+  h : Int,
+  cw : Int,
+  ch : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -49,8 +49,8 @@ pub fn draw_circle(x : Int, y : Int, d : Int, fc : Int, sc : Int, sw : Int) = "g
 pub fn draw_ellipse(
   x : Int,
   y : Int,
-  w : UInt,
-  h : UInt,
+  w : Int,
+  h : Int,
   fc : Int,
   sc : Int,
   sw : Int,
@@ -126,9 +126,9 @@ pub fn draw_sector(
 /// (such as the bottom left pixel of an underscore "`_`").
 pub fn draw_text(
   text_ptr : UInt,
-  text_len : UInt,
+  text_len : Int,
   font_ptr : UInt,
-  font_len : UInt,
+  font_len : Int,
   x : Int,
   y : Int,
   c : Int,
@@ -138,7 +138,7 @@ pub fn draw_text(
 /// Render a QR-code.
 pub fn draw_qr(
   text_ptr : UInt,
-  text_len : UInt,
+  text_len : Int,
   x : Int,
   y : Int,
   black : Int,
@@ -147,7 +147,7 @@ pub fn draw_qr(
 
 ///|
 /// Render an image.
-pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) = "graphics" "draw_image"
+pub fn draw_image(image_ptr : UInt, image_len : Int, x : Int, y : Int) = "graphics" "draw_image"
 
 ///|
 /// Render a sub-image, meaning a part of an image.
@@ -155,20 +155,20 @@ pub fn draw_image(image_ptr : UInt, image_len : UInt, x : Int, y : Int) = "graph
 /// Useful for sprite sheets.
 pub fn draw_sub_image(
   image_ptr : UInt,
-  image_len : UInt,
+  image_len : Int,
   x : Int,
   y : Int,
   sub_x : Int,
   sub_y : Int,
-  sub_width : UInt,
-  sub_height : UInt,
+  sub_width : Int,
+  sub_height : Int,
 ) = "graphics" "draw_sub_image"
 
 ///|
 /// Set the target image for all subsequent drawing operations.
 ///
 /// To draw to the screen again, call `unset_canvas`.
-pub fn set_canvas(image_ptr : UInt, image_len : UInt) = "graphics" "set_canvas"
+pub fn set_canvas(image_ptr : UInt, image_len : Int) = "graphics" "set_canvas"
 
 ///|
 /// Make all subsequent drawing operations target the screen instead of a canvas.

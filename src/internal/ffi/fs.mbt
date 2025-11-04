@@ -4,7 +4,7 @@
 /// The path must not contain any path separators ("`/`").
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path_ptr : UInt, path_len : UInt) -> UInt = "fs" "get_file_size"
+pub fn get_file_size(path_ptr : UInt, path_len : Int) -> Int = "fs" "get_file_size"
 
 ///|
 /// Load a file into a buffer from ROM or the data directory.
@@ -14,10 +14,10 @@ pub fn get_file_size(path_ptr : UInt, path_len : UInt) -> UInt = "fs" "get_file_
 /// Example: loading fonts, images, or save files.
 pub fn load_file(
   path_ptr : UInt,
-  path_len : UInt,
+  path_len : Int,
   buf_ptr : UInt,
-  buf_len : UInt,
-) -> UInt = "fs" "load_file"
+  buf_len : Int,
+) -> Int = "fs" "load_file"
 
 ///|
 /// Write the buffer into the given file in the data directory.
@@ -32,13 +32,13 @@ pub fn load_file(
 /// Returns the number of bytes written.
 pub fn dump_file(
   path_ptr : UInt,
-  path_len : UInt,
+  path_len : Int,
   buf_ptr : UInt,
-  buf_len : UInt,
+  buf_len : Int,
 ) -> UInt = "fs" "dump_file"
 
 ///|
 /// Removes a file (if exists) from the data directory.
 ///
 /// Example: removing save files.
-pub fn remove_file(path_ptr : UInt, path_len : UInt) -> Unit = "fs" "remove_file"
+pub fn remove_file(path_ptr : UInt, path_len : Int) -> Unit = "fs" "remove_file"

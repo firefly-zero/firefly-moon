@@ -1,10 +1,10 @@
 ///|
 /// The screen width in pixels.
-pub const SCREEN_WIDTH : UInt = 240
+pub const SCREEN_WIDTH : Int = 240
 
 ///|
 /// The screen height in pixels.
-pub const SCREEN_HEIGHT : UInt = 160
+pub const SCREEN_HEIGHT : Int = 160
 
 ///|
 /// Bounding box for a shape.
@@ -12,13 +12,13 @@ pub const SCREEN_HEIGHT : UInt = 160
 /// The width and height must be positive.
 #valtype
 pub(all) struct Size {
-  w : UInt
-  h : UInt
+  w : Int
+  h : Int
 } derive(Show, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a Size.
-pub fn Size::new(w : UInt, h : UInt) -> Size {
+pub fn Size::new(w : Int, h : Int) -> Size {
   Size::{ w, h }
 }
 
@@ -31,14 +31,8 @@ pub fn Size::new_screen() -> Size {
 
 ///|
 /// Convert the `Size` to a `Point`.
-///
-/// Note that `Point` uses signed integers, while `Size` uses unsigned integers.
-/// Any value above 2^31-1 are clamped to 2^31-1.
-pub fn Size::reinterpret_as_point(self : Size) -> Point {
-  Point::{
-    x: @cmp.minimum(self.w, @int.max_value.reinterpret_as_uint()).reinterpret_as_int(),
-    y: @cmp.minimum(self.h, @int.max_value.reinterpret_as_uint()).reinterpret_as_int(),
-  }
+pub fn Size::to_point(self : Size) -> Point {
+  Point::{ x: self.w, y: self.h }
 }
 
 ///|

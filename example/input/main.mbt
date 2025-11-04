@@ -37,10 +37,7 @@ let input_buttons : Ref[@firefly.Buttons] = Ref::new(
 
 ///|
 let cursor : Ref[Point] = Ref::new(
-  Point::new(
-    @firefly.SCREEN_WIDTH.reinterpret_as_int() / 2,
-    @firefly.SCREEN_HEIGHT.reinterpret_as_int() / 2 + 40,
-  ),
+  Point::new(@firefly.SCREEN_WIDTH / 2, @firefly.SCREEN_HEIGHT / 2 + 40),
 )
 
 ///|

@@ -18,10 +18,7 @@ pub fn Point::new(x : Int, y : Int) -> Point {
 /// Shortcut for creating a `Point` using the screen size.
 #inline
 pub fn Point::new_screen() -> Point {
-  Point::new(
-    SCREEN_WIDTH.reinterpret_as_int(),
-    SCREEN_HEIGHT.reinterpret_as_int(),
-  )
+  Point::new(SCREEN_WIDTH, SCREEN_HEIGHT)
 }
 
 ///|
@@ -29,11 +26,8 @@ pub fn Point::new_screen() -> Point {
 ///
 /// Note that a `Size` does not allow negative values.
 /// Any negative values are clamped to zero.
-pub fn Point::reinterpret_as_size(self : Point) -> Size {
-  Size::{
-    w: @cmp.maximum(self.x, 0).reinterpret_as_uint(),
-    h: @cmp.maximum(self.y, 0).reinterpret_as_uint(),
-  }
+pub fn Point::to_size(self : Point) -> Size {
+  Size::{ w: self.x, h: self.y }
 }
 
 ///|
@@ -89,10 +83,7 @@ pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
 ///|
 /// Checks if this point is inside the screen bounds.
 pub fn Point::is_in_bounds(self : Point) -> Bool {
-  self.x >= 0 &&
-  self.x.reinterpret_as_uint() < SCREEN_WIDTH &&
-  self.y >= 0 &&
-  self.y.reinterpret_as_uint() < SCREEN_HEIGHT
+  self.x >= 0 && self.x < SCREEN_WIDTH && self.y >= 0 && self.y < SCREEN_HEIGHT
 }
 
 ///|

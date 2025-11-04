@@ -53,6 +53,6 @@ pub fn File::load(path : Bytes) -> File? {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn File::dump(self : File, path : Bytes) -> UInt {
+pub fn File::dump(self : File, path : Bytes) -> Int {
   dump_file(path, self)
 }
