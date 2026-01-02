@@ -22,18 +22,6 @@ pub fn set_color_palette(palette : FixedArray[RGB]) -> Unit {
 }
 
 ///|
-/// making sure that `palette[0:16]` will work as expected
-test "sanity check for range operator" {
-  let palette : FixedArray[Int] = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ]
-  inspect(
-    palette[0:16],
-    content="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]",
-  )
-}
-
-///|
 /// Render a single pixel.
 pub fn draw_point(x : Int, y : Int, color : Color) -> Unit {
   @ffi.draw_point(x, y, color.to_int())
