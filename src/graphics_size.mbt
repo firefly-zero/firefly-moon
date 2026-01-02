@@ -43,10 +43,50 @@ pub fn Size::component_min(self : Size, other : Size) -> Size {
 }
 
 ///|
+test "size.component_min" {
+  inspect(
+    Size::new(20, 30).component_min(Size::new(0, 10)),
+    content="{w: 0, h: 10}",
+  )
+  inspect(
+    Size::new(20, 30).component_min(Size::new(10, 40)),
+    content="{w: 10, h: 30}",
+  )
+  inspect(
+    Size::new(20, 30).component_min(Size::new(50, 10)),
+    content="{w: 20, h: 10}",
+  )
+  inspect(
+    Size::new(20, 30).component_min(Size::new(50, 40)),
+    content="{w: 20, h: 30}",
+  )
+}
+
+///|
 /// Returns a new `Size` where both `x` and `h` are set to the maximum
 /// of their respective values between both sizes.
 pub fn Size::component_max(self : Size, other : Size) -> Size {
   Size::{ w: @cmp.maximum(self.w, other.w), h: @cmp.maximum(self.h, other.h) }
+}
+
+///|
+test "size.component_max" {
+  inspect(
+    Size::new(20, 30).component_max(Size::new(0, 10)),
+    content="{w: 20, h: 30}",
+  )
+  inspect(
+    Size::new(20, 30).component_max(Size::new(10, 40)),
+    content="{w: 20, h: 40}",
+  )
+  inspect(
+    Size::new(20, 30).component_max(Size::new(50, 10)),
+    content="{w: 50, h: 30}",
+  )
+  inspect(
+    Size::new(20, 30).component_max(Size::new(50, 40)),
+    content="{w: 50, h: 40}",
+  )
 }
 
 ///|

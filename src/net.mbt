@@ -8,7 +8,27 @@
 #valtype
 struct Peer {
   raw : Int
-} derive(Show, Eq, Compare, Hash)
+} derive(Eq, Compare, Hash)
+
+///|
+pub impl Show for Peer with to_string(self) -> String {
+  match self.raw {
+    0xFF => "Peer(*)"
+    _ => "Peer(\{self.raw})"
+  }
+}
+
+///|
+pub impl Show for Peer with output(self, logger : &Logger) -> Unit {
+  match self.raw {
+    0xFF => logger.write_string("Peer(*)")
+    _ => {
+      logger.write_string("Peer(")
+      logger.write_char((self.raw + '0').to_char().unwrap_or('?'))
+      logger.write_char(')')
+    }
+  }
+}
 
 ///|
 /// Returns a `Peer` with a special ID that represents a combined input of all peers.
@@ -68,6 +88,20 @@ pub fn Peers::to_array(self : Peers) -> Array[Peer] {
     }
   }
   res
+}
+
+///|
+test "peers to array" {
+  inspect(Peers::{ raw: 0b0000_0000 }.to_array(), content="[]")
+  inspect(Peers::{ raw: 0b0000_0001 }.to_array(), content="[Peer(0)]")
+  inspect(
+    Peers::{ raw: 0b0010_1101 }.to_array(),
+    content="[Peer(0), Peer(2), Peer(3), Peer(5)]",
+  )
+  inspect(
+    Peers::{ raw: 0b1111_1111 }.to_array(),
+    content="[Peer(0), Peer(1), Peer(2), Peer(3), Peer(4), Peer(5), Peer(6), Peer(7)]",
+  )
 }
 
 ///|
