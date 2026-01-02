@@ -135,7 +135,7 @@ fn draw_dpad_sector(pad_pos : Point, index : Int, pressed : Bool) -> Unit {
   @firefly.draw_sector(
     pad_pos,
     31,
-    @firefly.Angle::from_deg(45 - 90 * index.to_float()),
+    @firefly.Angle::from_deg(45 - 90 * Float::from_int(index)),
     @firefly.Angle::from_deg(-90),
     @firefly.Style::{
       fill: button_bg_color(pressed),
