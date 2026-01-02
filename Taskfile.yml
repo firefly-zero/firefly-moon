@@ -35,9 +35,7 @@ tasks:
         cmd: moon fmt -C {{.ITEM}} --check
 
   test:
-    cmds:
-      - task: test:moonbit
-      - task: test:firefly
+    deps: [task:moonbit, task:firefly]
 
   test:moonbit:
     cmds:
