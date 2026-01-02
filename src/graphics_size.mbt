@@ -43,7 +43,7 @@ pub fn Size::component_min(self : Size, other : Size) -> Size {
 }
 
 ///|
-test "size.component_min" {
+test "Size.component_min" {
   inspect(
     Size::new(20, 30).component_min(Size::new(0, 10)),
     content="{w: 0, h: 10}",
@@ -70,7 +70,7 @@ pub fn Size::component_max(self : Size, other : Size) -> Size {
 }
 
 ///|
-test "size.component_max" {
+test "Size.component_max" {
   inspect(
     Size::new(20, 30).component_max(Size::new(0, 10)),
     content="{w: 20, h: 30}",
