@@ -75,7 +75,9 @@ pub fn Pad::as_dpad(self : Pad) -> DPad {
 ///
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
 pub fn Pad::as_angle(self : Pad) -> Angle {
-  Angle::from_rad(PI / 2 * @math.atan2f(self.y.to_float(), self.x.to_float()))
+  Angle::from_rad(
+    PI / 2 * @math.atan2f(Float::from_int(self.y), Float::from_int(self.x)),
+  )
 }
 
 ///|
@@ -83,7 +85,7 @@ pub fn Pad::as_angle(self : Pad) -> Angle {
 ///
 /// If the `Pad` is at `{x: 0, y: 0}`, then this returns 0.
 pub fn Pad::length(self : Pad) -> Float {
-  (self.x * self.x + self.y * self.y).to_float().sqrt()
+  Float::from_int(self.x * self.x + self.y * self.y).sqrt()
 }
 
 ///|

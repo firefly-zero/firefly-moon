@@ -9,7 +9,7 @@
 /// ```text
 /// @firefly.load_file("font")
 /// ```
-pub typealias Bytes as Path
+pub type Path = Bytes
 
 ///|
 /// Get size (in bytes) of a file from ROM or the data directory.
