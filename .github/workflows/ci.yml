@@ -42,6 +42,6 @@ jobs:
             ${{ runner.os }}-moonbit-
       - uses: hustcer/setup-moonbit@66fdadf7f54f35045a7dc6357f43b1fdd1909405 # v1
       - run: moon update
-      - run: task lint
+      - run: task lint test:moonbit
       # TODO(@orsinium): Install firefly_cli on CI and enable tests.
       # - run: task test
