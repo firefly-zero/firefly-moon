@@ -26,6 +26,27 @@ pub fn Image::new(size : Size, bpp? : Byte = 4) -> Image {
 }
 
 ///|
+test "new image has correct bpp" {
+  inspect(Image::new(Size::new(20, 10), bpp=1).bpp(), content="1")
+  inspect(Image::new(Size::new(20, 10), bpp=2).bpp(), content="2")
+  inspect(Image::new(Size::new(20, 10), bpp=4).bpp(), content="4")
+}
+
+///|
+test "new image has correct size" {
+  inspect(Image::new(Size::new(20, 10), bpp=1).size(), content="{w: 20, h: 10}")
+  inspect(Image::new(Size::new(20, 10), bpp=2).size(), content="{w: 20, h: 10}")
+  inspect(Image::new(Size::new(20, 10), bpp=4).size(), content="{w: 20, h: 10}")
+}
+
+///|
+test "new image has correct pixel count" {
+  inspect(Image::new(Size::new(20, 10), bpp=1).pixels(), content="200")
+  inspect(Image::new(Size::new(20, 10), bpp=2).pixels(), content="200")
+  inspect(Image::new(Size::new(20, 10), bpp=4).pixels(), content="200")
+}
+
+///|
 /// Convert the `Image` to a `File`.
 pub fn Image::as_file(self : Image) -> File {
   File(self.0)
@@ -76,7 +97,7 @@ pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
 ///|
 /// Returns the number of pixels the image has
 pub fn Image::pixels(self : Image) -> Int {
-  let header_size = 5 + self.bpp()
+  let header_size = 5 + self.bpp() * 2
   (self.0.length() - header_size) * 8 / self.bpp()
 }
 

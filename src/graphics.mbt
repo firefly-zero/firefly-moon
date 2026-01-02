@@ -16,7 +16,7 @@ pub fn set_color(color : Color, rgb : RGB) -> Unit {
 /// The `palette` fixed array is expected to have 16 elements.
 /// If it has more, then only the first 16 values in the palette are used.
 pub fn set_color_palette(palette : FixedArray[RGB]) -> Unit {
-  for i, color in palette.iter().take(16).iter2() {
+  for i, color in palette[0:16] {
     set_color(Color::from_int(i), color)
   }
 }

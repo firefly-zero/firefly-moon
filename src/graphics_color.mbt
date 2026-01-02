@@ -96,3 +96,35 @@ pub fn Color::from_byte(byte : Byte) -> Color {
 pub fn Color::from_int(int : Int) -> Color {
   Color::from_byte(int.to_byte())
 }
+
+///|
+test "color roundtrip" {
+  let colors = [
+    Color::Black,
+    Color::Blue,
+    Color::Cyan,
+    Color::DarkBlue,
+    Color::DarkGray,
+    Color::DarkGreen,
+    Color::Gray,
+    Color::Green,
+    Color::LightBlue,
+    Color::LightGray,
+    Color::LightGreen,
+    Color::None,
+    Color::Orange,
+    Color::Purple,
+    Color::Red,
+    Color::White,
+    Color::Yellow,
+  ]
+  let already_seen : Array[Color] = []
+  for c in colors {
+    let new_value = Color::from_byte(c.to_byte())
+    assert_eq(c, new_value)
+    if already_seen.contains(new_value) {
+      fail("color \{new_value} appeared multiple times")
+    }
+    already_seen.push(new_value)
+  }
+}

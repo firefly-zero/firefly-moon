@@ -44,10 +44,50 @@ pub fn Point::component_min(self : Point, other : Point) -> Point {
 }
 
 ///|
+test "Point.component_min" {
+  inspect(
+    Point::new(20, 30).component_min(Point::new(0, 10)),
+    content="{x: 0, y: 10}",
+  )
+  inspect(
+    Point::new(20, 30).component_min(Point::new(10, 40)),
+    content="{x: 10, y: 30}",
+  )
+  inspect(
+    Point::new(20, 30).component_min(Point::new(50, 10)),
+    content="{x: 20, y: 10}",
+  )
+  inspect(
+    Point::new(20, 30).component_min(Point::new(50, 40)),
+    content="{x: 20, y: 30}",
+  )
+}
+
+///|
 /// Returns a new `Point` where both `x` and `y` are set to the maximum
 /// of their respective values between both points.
 pub fn Point::component_max(self : Point, other : Point) -> Point {
   Point::{ x: @cmp.maximum(self.x, other.x), y: @cmp.maximum(self.y, other.y) }
+}
+
+///|
+test "Point.component_max" {
+  inspect(
+    Point::new(20, 30).component_max(Point::new(0, 10)),
+    content="{x: 20, y: 30}",
+  )
+  inspect(
+    Point::new(20, 30).component_max(Point::new(10, 40)),
+    content="{x: 20, y: 40}",
+  )
+  inspect(
+    Point::new(20, 30).component_max(Point::new(50, 10)),
+    content="{x: 50, y: 30}",
+  )
+  inspect(
+    Point::new(20, 30).component_max(Point::new(50, 40)),
+    content="{x: 50, y: 40}",
+  )
 }
 
 ///|
@@ -84,6 +124,17 @@ pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
 /// Checks if this point is inside the screen bounds.
 pub fn Point::is_in_bounds(self : Point) -> Bool {
   self.x >= 0 && self.x < SCREEN_WIDTH && self.y >= 0 && self.y < SCREEN_HEIGHT
+}
+
+///|
+test "Point.is_in_bounds" {
+  inspect(Point::new(20, 30).is_in_bounds(), content="true")
+  inspect(Point::new(-20, 30).is_in_bounds(), content="false")
+  inspect(Point::new(20, -30).is_in_bounds(), content="false")
+  inspect(Point::new(-20, -30).is_in_bounds(), content="false")
+  inspect(Point::new(260, 30).is_in_bounds(), content="false")
+  inspect(Point::new(20, 300).is_in_bounds(), content="false")
+  inspect(Point::new(260, 300).is_in_bounds(), content="false")
 }
 
 ///|
