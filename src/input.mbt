@@ -8,8 +8,8 @@ pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
     0xffff => None
     raw =>
       Some(Pad::{
-        x: (raw >> 16).reinterpret_as_int().to_int16().to_int(),
-        y: raw.reinterpret_as_int().to_int16().to_int(),
+        x: Int16::from_int((raw >> 16).reinterpret_as_int()).to_int(),
+        y: Int16::from_int(raw.reinterpret_as_int()).to_int(),
       })
   }
 }

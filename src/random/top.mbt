@@ -8,7 +8,7 @@ pub fn double() -> Double {
 ///|
 /// Returns a random 32-bit `Float` in the range `[0.0, 1.0)`
 pub fn float() -> Float {
-  (uint() << 8 >> 8).to_float() / (1U << 24).to_float()
+  Float::from_uint(uint() << 8 >> 8) / Float::from_uint(1U << 24)
 }
 
 ///|
