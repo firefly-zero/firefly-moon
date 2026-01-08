@@ -7,3 +7,5 @@ target/
 .mooncakes/
 .moonagent/
 .task/
+target
+_build/

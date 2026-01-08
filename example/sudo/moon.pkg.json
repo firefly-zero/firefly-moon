@@ -6,5 +6,6 @@
       "exports": ["boot", "update", "render"],
       "export-memory-name": "memory"
     }
-  }
+  },
+  "overrides": ["firefly/firefly/example/sudo/internal/abort"]
 }
