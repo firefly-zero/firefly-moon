@@ -47,7 +47,7 @@ tasks:
   test:firefly:
     cmds:
       - for: { var: EXAMPLES }
-        cmd: firefly_cli build {{.ITEM}}
+        cmd: ff build {{.ITEM}}
 
   all:
     cmds:
