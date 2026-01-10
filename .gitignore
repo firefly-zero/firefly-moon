@@ -3,8 +3,10 @@
 # SPDX-License-Identifier: CC0-1.0
 
 .DS_Store
-target/
 .mooncakes/
 .moonagent/
 .task/
+
+# since MoonBit v0.7.x, `target` is a symlink to `_build` and not a directory
+target
 _build/

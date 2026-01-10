@@ -1,0 +1,10 @@
+{
+  "is-main": true,
+  "import": ["firefly/firefly/audio"],
+  "link": {
+    "wasm": {
+      "exports": ["boot", "update", "render"],
+      "export-memory-name": "memory"
+    }
+  }
+}
