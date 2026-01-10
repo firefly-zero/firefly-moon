@@ -114,6 +114,12 @@ pub fn audio_reset_all(node_id : UInt) -> Unit = "audio" "reset_all"
 pub fn audio_clear_node(node_id : UInt) -> Unit = "audio" "clear_node"
 
 ///|
+/// Linear (ramp up or down) envelope.
+///
+/// It looks like this: `⎽╱⎺` or `⎺╲⎽`.
+///
+/// The value before `start_at` is `start`, the value after `end_at` is `end`,
+/// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
 pub fn audio_mod_linear(
   node_id : UInt,
   param : UInt,
@@ -121,22 +127,33 @@ pub fn audio_mod_linear(
   end : Float,
   start_at : UInt,
   end_at : UInt,
-) -> Unit = "audio" "mod_linear"
+) = "audio" "mod_linear"
 
 ///|
+/// Hold envelope.
+///
+/// It looks like this: `⎽│⎺` or `⎺│⎽`.
+///
+/// The value before `time` is `before` and the value after `time` is `after`.
+/// Equivalent to [`LinearModulator`] with `start_at` being equal to `end_at`.
 pub fn audio_mod_hold(
   node_id : UInt,
   param : UInt,
   v1 : Float,
   v2 : Float,
   time : UInt,
-) -> Unit = "audio" "mod_hold"
+) = "audio" "mod_hold"
 
 ///|
+/// Sine wave low-frequency oscillator.
+///
+/// It looks like this: `∿`.
+///
+/// `low` is the lowest produced value, `high` is the highest.
 pub fn audio_mod_sine(
   node_id : UInt,
   param : UInt,
   freq : Float,
   low : Float,
   high : Float,
-) -> Unit = "audio" "mod_sine"
+) = "audio" "mod_sine"

@@ -9,16 +9,8 @@ fn main {
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  @audio.out
-  .add_sine(@audio.A4, 0)
-  .next()
-  .add_gain(2)
-  .modulate(@audio.LinearModulator::{
-    start: 0,
-    end: 1,
-    start_at: Time::zero(),
-    end_at: Time::seconds(2),
-  })
+  @audio.out.add_file("pickupCoin") |> ignore
+  @audio.out.add_gain(0.5).next().add_sine(@audio.A4, 1) |> ignore
 }
 
 ///|
