@@ -2,6 +2,6 @@
   "import": [
     "firefly/firefly/internal/ffi",
     "firefly/firefly/internal/memory",
-    "firefly/firefly/micromath"
+    "applejag/micromath"
   ]
 }
