@@ -101,7 +101,7 @@ fn draw_pad_input() -> Unit {
   let center = pad_pos + Point::new(15, 15)
   match input_pad.val {
     Some(pad) => {
-      let dpad = pad.as_dpad()
+      let dpad = pad.as_dpad8()
       draw_dpad_sector(pad_pos, 0, dpad.right)
       draw_dpad_sector(pad_pos, 1, dpad.up)
       draw_dpad_sector(pad_pos, 2, dpad.left)

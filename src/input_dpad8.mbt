@@ -1,7 +1,5 @@
 ///|
-/// DPad (directional-pad) representation of the `Pad`, where instead of an
-/// `x` and `y` vector it is instead 4 booleans stating if the user is pressing
-/// left, right, up, or down on the pad.
+/// 8-directional DPad-like representation of the `Pad`.
 ///
 /// Useful for simple games and ports.
 /// The middle of the pad is a "dead zone", which will not activate any direction.
@@ -13,7 +11,7 @@
 ///
 /// A `DPad` can be obtained from the `Pad::as_dpad()` method.
 #valtype
-pub(all) struct DPad {
+pub(all) struct DPad8 {
   left : Bool
   right : Bool
   up : Bool
@@ -25,14 +23,14 @@ pub(all) struct DPad {
 ///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn DPad::read(peer? : Peer = Peer::default()) -> DPad? {
-  read_pad(peer~).map(pad => pad.as_dpad())
+pub fn DPad8::read(peer? : Peer = Peer::default()) -> DPad8? {
+  read_pad(peer~).map(pad => pad.as_dpad8())
 }
 
 ///|
 /// Given the old state, get directions that were not pressed previously but are
 /// pressed now.
-pub fn DPad::just_pressed(self : DPad, old : DPad) -> DPad {
+pub fn DPad8::just_pressed(self : DPad8, old : DPad8) -> DPad8 {
   {
     left: self.left && !old.left,
     right: self.right && !old.right,
@@ -44,7 +42,7 @@ pub fn DPad::just_pressed(self : DPad, old : DPad) -> DPad {
 ///|
 /// Given the old state, get directions that were pressed previously but are
 /// no longer pressed now.
-pub fn DPad::just_released(self : DPad, old : DPad) -> DPad {
+pub fn DPad8::just_released(self : DPad8, old : DPad8) -> DPad8 {
   {
     left: !self.left && old.left,
     right: !self.right && old.right,
@@ -56,7 +54,7 @@ pub fn DPad::just_released(self : DPad, old : DPad) -> DPad {
 ///|
 /// Given the old state, get directions that were both pressed previously and
 /// are still pressed now.
-pub fn DPad::held(self : DPad, old : DPad) -> DPad {
+pub fn DPad8::held(self : DPad8, old : DPad8) -> DPad8 {
   {
     left: self.left && old.left,
     right: self.right && old.right,
@@ -67,6 +65,6 @@ pub fn DPad::held(self : DPad, old : DPad) -> DPad {
 
 ///|
 /// Check if any direction is currently pressed.
-pub fn DPad::any_pressed(self : DPad) -> Bool {
+pub fn DPad8::any(self : DPad8) -> Bool {
   self.left || self.right || self.up || self.down
 }
