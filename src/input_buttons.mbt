@@ -73,6 +73,6 @@ pub fn Buttons::held(self : Buttons, old : Buttons) -> Buttons {
 
 ///|
 /// Check if any button is currently pressed.
-pub fn Buttons::any_pressed(self : Buttons) -> Bool {
+pub fn Buttons::any(self : Buttons) -> Bool {
   self.south || self.east || self.west || self.north || self.menu
 }

@@ -15,10 +15,13 @@ pub const PAD_MAX_X = -1000
 pub const PAD_MAX_Y = -1000
 
 ///|
-/// The minimum X or Y value when converting `Pad` into `DPad`
+/// The minimum X or Y value when converting `Pad` into `DPad8`
 /// for the direction to be considered pressed.
 /// We do that to provide a dead zone in the middle of the pad.
-pub const DPAD_THRESHOLD = 100
+const DPAD8_THRESHOLD = 300
+
+///|
+const DPAD4_THRESHOLD = 300
 
 ///|
 /// A finger position on the touch pad.
@@ -60,13 +63,31 @@ pub fn Pad::as_point(self : Pad) -> Point {
 }
 
 ///|
-/// Convert the `Pad` to a `DPad`.
-pub fn Pad::as_dpad(self : Pad) -> DPad {
-  DPad::{
-    left: self.x <= -DPAD_THRESHOLD,
-    right: self.x >= DPAD_THRESHOLD,
-    up: self.y >= DPAD_THRESHOLD,
-    down: self.y <= -DPAD_THRESHOLD,
+/// Convert the `Pad` to a `DPad4`.
+pub fn Pad::as_dpad4(self : Pad) -> DPad4 {
+  let x = self.x
+  let y = self.y
+  if y > DPAD4_THRESHOLD && y > x.abs() {
+    DPad4::Up
+  } else if y < -DPAD4_THRESHOLD && -y > x.abs() {
+    DPad4::Down
+  } else if x > DPAD4_THRESHOLD && x > y.abs() {
+    DPad4::Right
+  } else if x < -DPAD4_THRESHOLD && -x > y.abs() {
+    DPad4::Left
+  } else {
+    DPad4::None
+  }
+}
+
+///|
+/// Convert the `Pad` to a `DPad8`.
+pub fn Pad::as_dpad8(self : Pad) -> DPad8 {
+  DPad8::{
+    left: self.x <= -DPAD8_THRESHOLD,
+    right: self.x >= DPAD8_THRESHOLD,
+    up: self.y >= DPAD8_THRESHOLD,
+    down: self.y <= -DPAD8_THRESHOLD,
   }
 }
 
