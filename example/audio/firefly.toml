@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+author_id = "demo"
+app_id = "moonbit-audio"
+author_name = "Demo"
+app_name = "Audio demo (MoonBit)"
+
+[files]
+pickupCoin = { path = "assets/pickupCoin.wav"}

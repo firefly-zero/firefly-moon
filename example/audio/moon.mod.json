@@ -1,0 +1,9 @@
+{
+  "name": "firefly/firefly/example/audio",
+  "deps": {
+    "firefly/firefly": {
+      "path": "../.."
+    }
+  },
+  "preferred-target": "wasm"
+}
