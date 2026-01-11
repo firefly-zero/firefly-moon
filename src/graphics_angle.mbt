@@ -1,15 +1,4 @@
 ///|
-/// Mathematical constant pi (π).
-///
-/// `PI` also exists as `@math.PI`, but as a `Double`.
-/// This `PI` is a `Float`.
-const PI : Float = 3.1415927410125732
-
-///|
-/// Mathematical constant tau (τ), i.e 2*PI
-const TAU : Float = 6.2831854820251465
-
-///|
 /// An angle between two vectors, internally represented as radians.
 struct Angle(Float) derive(Show, Eq, Compare, Hash, Default)
 
@@ -22,16 +11,28 @@ pub fn Angle::from_rad(self : Float) -> Angle {
 ///|
 /// Define an Angle in degrees (0-360°).
 pub fn Angle::from_deg(self : Float) -> Angle {
-  Angle(self * PI / 180)
+  Angle(self * @micromath.DEG_TO_RAD)
 }
 
 ///|
 test "angle from degrees" {
-  inspect(Angle::from_deg(0), content="Angle(0)")
-  inspect(Angle::from_deg(360), content="Angle(6.2831854820251465)")
-  inspect(Angle::from_deg(720), content="Angle(12.566370964050293)")
-  inspect(Angle::from_deg(-360), content="Angle(-6.2831854820251465)")
-  inspect(Angle::from_deg(180 / PI), content="Angle(1)")
+  let max_error : Float = 0.00001
+  let vectors : FixedArray[(Float, Angle)] = [
+    (0, Angle(0)),
+    (360, Angle(6.2831854820251465)),
+    (720, Angle(12.566370964050293)),
+    (-360, Angle(-6.2831854820251465)),
+    (180 / @micromath.PI, Angle(1)),
+  ]
+  for v in vectors {
+    let (deg, expected) = v
+    let actual = Angle::from_deg(deg)
+    let delta = actual.0 - expected.0
+    assert_true(
+      delta <= max_error,
+      msg="Angle::from_deg(\{deg}): delta \{delta} too large: \{actual} vs \{expected}",
+    )
+  }
 }
 
 ///|
@@ -43,16 +44,28 @@ pub fn Angle::to_rad(self : Angle) -> Float {
 ///|
 /// Get the angle value in degrees (0-360°).
 pub fn Angle::to_deg(self : Angle) -> Float {
-  180 * self.0 / PI
+  self.0 * @micromath.RAD_TO_DEG
 }
 
 ///|
 test "angle to degrees" {
-  inspect(Angle(0).to_deg(), content="0")
-  inspect(Angle(TAU).to_deg(), content="360")
-  inspect(Angle(TAU * 2).to_deg(), content="720")
-  inspect(Angle(-PI * 2).to_deg(), content="-360")
-  inspect(Angle(1).to_deg(), content="57.2957763671875")
+  let max_error : Float = 0.00001
+  let vectors : FixedArray[(Angle, Float)] = [
+    (Angle(0), 0),
+    (Angle(@micromath.TAU), 360),
+    (Angle(@micromath.TAU * 2), 720),
+    (Angle(-@micromath.PI * 2), -360),
+    (Angle(1), 57.295780181884766),
+  ]
+  for v in vectors {
+    let (angle, expected) = v
+    let actual = angle.to_deg()
+    let delta = actual - expected
+    assert_true(
+      delta <= max_error,
+      msg="\{angle}: delta \{delta} too large: \{actual} vs \{expected}",
+    )
+  }
 }
 
 ///|
@@ -88,15 +101,15 @@ pub impl Neg for Angle with neg(self : Angle) -> Angle {
 ///|
 /// Ensure the angle is within 0-2π radians, i.e within 0-360°.
 pub fn Angle::normalize(self : Angle) -> Angle {
-  if self.0 <= -TAU {
-    let rad = self.0 % TAU
-    if rad <= -TAU {
-      rad + TAU
+  if self.0 <= -@micromath.TAU {
+    let rad = self.0 % @micromath.TAU
+    if rad <= -@micromath.TAU {
+      rad + @micromath.TAU
     } else {
       rad
     }
   } else {
-    self.0 % TAU
+    self.0 % @micromath.TAU
   }
 }
 
@@ -113,11 +126,11 @@ test "angle normalized" {
   }
 
   inspect(format(Angle(0).normalize()), content="0")
-  inspect(format(Angle(PI).normalize()), content="3.14")
-  inspect(format(Angle(2 * PI).normalize()), content="0")
-  inspect(format(Angle(3 * PI).normalize()), content="3.14")
-  inspect(format(Angle(-PI).normalize()), content="-3.14")
-  inspect(format(Angle(-2 * PI).normalize()), content="0")
-  inspect(format(Angle(-3 * PI).normalize()), content="-3.14")
-  inspect(format(Angle(-4 * PI).normalize()), content="0")
+  inspect(format(Angle(@micromath.PI).normalize()), content="3.14")
+  inspect(format(Angle(2 * @micromath.PI).normalize()), content="0")
+  inspect(format(Angle(3 * @micromath.PI).normalize()), content="3.14")
+  inspect(format(Angle(-@micromath.PI).normalize()), content="-3.14")
+  inspect(format(Angle(-2 * @micromath.PI).normalize()), content="0")
+  inspect(format(Angle(-3 * @micromath.PI).normalize()), content="-3.14")
+  inspect(format(Angle(-4 * @micromath.PI).normalize()), content="0")
 }

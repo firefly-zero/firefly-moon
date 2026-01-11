@@ -94,10 +94,14 @@ pub fn Pad::as_dpad8(self : Pad) -> DPad8 {
 ///|
 /// The angle of the [polar coordinate] of the touch point.
 ///
+/// Uses [@micromath] for faster but less precise calculations.
+///
+/// [@micromath]: https://github.com/applejag/micromath
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
 pub fn Pad::as_angle(self : Pad) -> Angle {
   Angle::from_rad(
-    PI / 2 * @math.atan2f(Float::from_int(self.y), Float::from_int(self.x)),
+    @micromath.FRAC_PI_2 *
+    @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
   )
 }
 
