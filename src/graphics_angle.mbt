@@ -101,9 +101,9 @@ pub impl Neg for Angle with neg(self : Angle) -> Angle {
 ///|
 /// Ensure the angle is within 0-2π radians, i.e within 0-360°.
 pub fn Angle::normalize(self : Angle) -> Angle {
-  if self.0 <= -@micromath.TAU {
+  if self.0 < 0 {
     let rad = self.0 % @micromath.TAU
-    if rad <= -@micromath.TAU {
+    if rad < 0 {
       rad + @micromath.TAU
     } else {
       rad
@@ -115,22 +115,32 @@ pub fn Angle::normalize(self : Angle) -> Angle {
 
 ///|
 test "angle normalized" {
-  // very inefficient way to format a Float to 2 decimal places,
-  // but the standard library doesn't expose its float formatting functions.
-  fn format(a : Angle) -> StringView raise {
-    let str = a.0.to_string()
-    match str.find(".") {
-      None => str
-      Some(index) => str[:@cmp.minimum(index + 3, str.length())]
-    }
+  let values : ReadOnlyArray[(Float, Float)] = [
+    (0, 0),
+    (1, 45),
+    (2, 90),
+    (3, 135),
+    (4, 180),
+    (5, 225),
+    (6, 270),
+    (7, 315),
+    (8, 0),
+    (-1, 315),
+    (-2, 270),
+    (-3, 225),
+    (-4, 180),
+    (-5, 135),
+    (-6, 90),
+    (-7, 45),
+    (-8, 0),
+  ]
+  for v in values {
+    let (angle, expected) = v
+    let actual = Angle(angle * @micromath.PI / 4).normalize().to_deg().round()
+    assert_eq(
+      actual,
+      expected,
+      msg="Angle(\{angle} * PI / 4) should equal \{expected}, but got \{actual}",
+    )
   }
-
-  inspect(format(Angle(0).normalize()), content="0")
-  inspect(format(Angle(@micromath.PI).normalize()), content="3.14")
-  inspect(format(Angle(2 * @micromath.PI).normalize()), content="0")
-  inspect(format(Angle(3 * @micromath.PI).normalize()), content="3.14")
-  inspect(format(Angle(-@micromath.PI).normalize()), content="-3.14")
-  inspect(format(Angle(-2 * @micromath.PI).normalize()), content="0")
-  inspect(format(Angle(-3 * @micromath.PI).normalize()), content="-3.14")
-  inspect(format(Angle(-4 * @micromath.PI).normalize()), content="0")
 }
