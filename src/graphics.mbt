@@ -250,14 +250,14 @@ pub fn draw_image(image : Image, point : Point) -> Unit {
 ///
 /// Useful for sprite sheets.
 pub fn draw_sub_image(
-  image : Image,
+  sub_image : SubImage,
   point : Point,
   sub_offset : Point,
   sub_size : Size,
 ) -> Unit {
   @ffi.draw_sub_image(
-    @memory.fixedbytes_addr(image.0),
-    @memory.fixedbytes_size(image.0),
+    @memory.fixedbytes_addr(sub_image.image.0),
+    @memory.fixedbytes_size(sub_image.image.0),
     point.x,
     point.y,
     sub_offset.x,
