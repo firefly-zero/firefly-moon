@@ -98,11 +98,19 @@ pub fn Pad::as_dpad8(self : Pad) -> DPad8 {
 ///
 /// [@micromath]: https://github.com/applejag/micromath
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
-pub fn Pad::as_angle(self : Pad) -> Angle {
+pub fn Pad::to_angle(self : Pad) -> Angle {
   Angle::from_rad(
     @micromath.FRAC_PI_2 *
     @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
   )
+}
+
+///|
+test "to_angle" {
+  inspect(Pad::new(1, 0).to_angle().to_deg(), content="0")
+  inspect(Pad::new(0, 1).to_angle().to_deg(), content="90")
+  inspect(Pad::new(-1, 0).to_angle().to_deg(), content="180")
+  inspect(Pad::new(0, -1).to_angle().to_deg(), content="-90")
 }
 
 ///|

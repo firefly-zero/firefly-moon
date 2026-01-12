@@ -37,6 +37,19 @@ pub fn Point::as_pad(self : Point) -> Pad {
 }
 
 ///|
+/// The angle of the [polar coordinate] of the touch point.
+///
+/// Uses [@micromath] for faster but less precise calculations.
+///
+/// [@micromath]: https://github.com/applejag/micromath
+/// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
+pub fn Point::to_angle(self : Point) -> Angle {
+  Angle::from_rad(
+    @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
+  )
+}
+
+///|
 /// Returns a new `Point` where both `x` and `y` are set to the minimum
 /// of their respective values between both points.
 pub fn Point::component_min(self : Point, other : Point) -> Point {
