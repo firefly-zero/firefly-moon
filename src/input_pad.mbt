@@ -100,7 +100,6 @@ pub fn Pad::as_dpad8(self : Pad) -> DPad8 {
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
 pub fn Pad::to_angle(self : Pad) -> Angle {
   Angle::from_rad(
-    @micromath.FRAC_PI_2 *
     @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
   )
 }
