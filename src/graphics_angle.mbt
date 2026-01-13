@@ -144,3 +144,40 @@ test "angle normalized" {
     )
   }
 }
+
+///|
+/// Returns the difference between the two angles, in the range of `[-PI, +PI]`.
+/// When `self` and `to` are opposite,
+/// returns `-PI` if `self` is smaller than `to`, or `PI` otherwise.
+///
+/// Input angles do not need to be normalized.
+pub fn Angle::difference(self : Angle, to : Angle) -> Angle {
+  // Based on the Godot `angle_difference` (licensed under MIT):
+  // https://github.com/godotengine/godot/blob/50277787eacaf4bc4d8683a706fe54dc65762020/core/math/math_funcs.h#L482-L489
+  let diff = (to - self).to_rad() % @micromath.TAU
+  Angle::from_rad(2 * diff % @micromath.TAU - diff)
+}
+
+///|
+test "angle diff" {
+  let inputs : ReadOnlyArray[(Angle, Angle, Angle)] = [
+    (Angle::from_deg(0), Angle::from_deg(0), Angle::from_deg(0)),
+    (Angle::from_deg(0), Angle::from_deg(90), Angle::from_deg(90)),
+    (Angle::from_deg(45), Angle::from_deg(90), Angle::from_deg(45)),
+    (Angle::from_deg(0), Angle::from_deg(180), Angle::from_deg(-180)),
+    (Angle::from_deg(180), Angle::from_deg(0), Angle::from_deg(180)),
+    (Angle::from_deg(0), Angle::from_deg(-180), Angle::from_deg(180)),
+    (Angle::from_deg(-180), Angle::from_deg(0), Angle::from_deg(-180)),
+    (Angle::from_deg(720), Angle::from_deg(360), Angle::from_deg(0)),
+    (Angle::from_deg(700), Angle::from_deg(650), Angle::from_deg(-50)),
+  ]
+  for input in inputs {
+    let (from, to, expected) = input
+    let actual = from.difference(to).to_deg().round()
+    assert_eq(
+      actual,
+      expected.to_deg().round(),
+      msg="angle_difference(\{from.to_deg().round()}°, \{to.to_deg().round()}°) = \{actual}°, but want \{expected.to_deg().round()}°",
+    )
+  }
+}
