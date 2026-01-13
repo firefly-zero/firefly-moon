@@ -108,7 +108,7 @@ pub fn Pad::azimuth(self : Pad) -> Angle {
 }
 
 ///|
-test "to_angle" {
+test "azimuth" {
   inspect(Pad::new(1, 0).azimuth().to_deg(), content="0")
   inspect(Pad::new(0, 1).azimuth().to_deg(), content="90")
   inspect(Pad::new(-1, 0).azimuth().to_deg(), content="180")
