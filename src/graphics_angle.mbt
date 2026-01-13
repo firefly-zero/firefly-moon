@@ -77,7 +77,7 @@ pub impl Add for Angle with add(self : Angle, other : Angle) -> Angle {
 ///|
 /// Subtract one angle from another.
 pub impl Sub for Angle with sub(self : Angle, other : Angle) -> Angle {
-  self.0 + other.0
+  self.0 - other.0
 }
 
 ///|
