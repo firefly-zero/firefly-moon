@@ -2,12 +2,15 @@
   "name": "firefly/firefly",
   "version": "0.5.0",
   "deps": {
-    "applejag/micromath": "0.1.0"
+    "applejag/micromath": "0.2.0"
   },
   "readme": "README.md",
   "repository": "https://github.com/firefly-zero/firefly-moon",
   "license": "MIT",
-  "keywords": ["game", "firefly-zero"],
+  "keywords": [
+    "game",
+    "firefly-zero"
+  ],
   "description": "MoonBit SDK for making Firefly Zero games",
   "source": "src",
   "preferred-target": "wasm"
