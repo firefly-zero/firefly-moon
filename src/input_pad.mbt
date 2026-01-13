@@ -98,7 +98,10 @@ pub fn Pad::as_dpad8(self : Pad) -> DPad8 {
 ///
 /// [@micromath]: https://github.com/applejag/micromath
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
-pub fn Pad::to_angle(self : Pad) -> Angle {
+#inline
+#alias(to_angle, deprecated)
+#alias(as_angle, deprecated)
+pub fn Pad::azimuth(self : Pad) -> Angle {
   Angle::from_rad(
     @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
   )
@@ -106,18 +109,24 @@ pub fn Pad::to_angle(self : Pad) -> Angle {
 
 ///|
 test "to_angle" {
-  inspect(Pad::new(1, 0).to_angle().to_deg(), content="0")
-  inspect(Pad::new(0, 1).to_angle().to_deg(), content="90")
-  inspect(Pad::new(-1, 0).to_angle().to_deg(), content="180")
-  inspect(Pad::new(0, -1).to_angle().to_deg(), content="-90")
+  inspect(Pad::new(1, 0).azimuth().to_deg(), content="0")
+  inspect(Pad::new(0, 1).azimuth().to_deg(), content="90")
+  inspect(Pad::new(-1, 0).azimuth().to_deg(), content="180")
+  inspect(Pad::new(0, -1).azimuth().to_deg(), content="-90")
 }
 
 ///|
 /// The distance from the pad center to the touch point.
 ///
 /// If the `Pad` is at `{x: 0, y: 0}`, then this returns 0.
-pub fn Pad::length(self : Pad) -> Float {
-  Float::from_int(self.x * self.x + self.y * self.y).sqrt()
+///
+/// Uses [@micromath] for faster but less precise calculations.
+///
+/// [@micromath]: https://github.com/applejag/micromath
+#inline
+#alias(length, deprecated)
+pub fn Pad::radius(self : Pad) -> Float {
+  @micromath.sqrt(Float::from_int(self.x * self.x + self.y * self.y))
 }
 
 ///|
@@ -126,7 +135,9 @@ pub fn Pad::length(self : Pad) -> Float {
 ///
 /// This also returns an `Int` instead of a `Float` as it's guaranteed that
 /// the result will be an integer.
-pub fn Pad::length_squared(self : Pad) -> Int {
+#inline
+#alias(length_squared, deprecated)
+pub fn Pad::radius_squared(self : Pad) -> Int {
   self.x * self.x + self.y * self.y
 }
 
