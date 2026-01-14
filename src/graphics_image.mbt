@@ -65,7 +65,13 @@ pub fn Image::draw(self : Image, point : Point) -> Unit {
 ///
 /// The point defines the upper-left corner of the subregion within the image.
 pub fn Image::sub(self : Image, point : Point, size : Size) -> SubImage {
-  { image: self, point, size }
+  {
+    image: self,
+    point_x: point.x,
+    point_y: point.y,
+    size_w: size.w,
+    size_h: size.h,
+  }
 }
 
 ///|

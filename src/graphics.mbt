@@ -249,22 +249,18 @@ pub fn draw_image(image : Image, point : Point) -> Unit {
 /// Render a sub-image, meaning a part of an image.
 ///
 /// Useful for sprite sheets.
-pub fn draw_sub_image(
-  image : Image,
-  point : Point,
-  sub_offset : Point,
-  sub_size : Size,
-) -> Unit {
+pub fn draw_sub_image(sub_image : SubImage, point : Point) -> Unit {
   @ffi.draw_sub_image(
-    @memory.fixedbytes_addr(image.0),
-    @memory.fixedbytes_size(image.0),
+    @memory.fixedbytes_addr(sub_image.image.0),
+    @memory.fixedbytes_size(sub_image.image.0),
     point.x,
     point.y,
-    sub_offset.x,
-    sub_offset.y,
-    sub_size.w,
-    sub_size.h,
+    sub_image.point_x,
+    sub_image.point_y,
+    sub_image.size_w,
+    sub_image.size_h,
   )
+  sub_image.image |> @memory.keep
 }
 
 ///|
