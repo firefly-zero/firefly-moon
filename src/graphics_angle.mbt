@@ -146,7 +146,9 @@ test "angle normalized" {
 }
 
 ///|
-/// Returns the difference between the two angles, in the range of `[-PI, +PI]`.
+/// Returns the minimum rotation needed to go from the `self` Angle to `to`.
+/// Return value is positive for counter-clockwise rotations and negative for
+/// clockwise rotations, and will be in the range of `[-PI, +PI]`.
 /// When `self` and `to` are opposite,
 /// returns `-PI` if `self` is smaller than `to`, or `PI` otherwise.
 ///
@@ -164,6 +166,7 @@ test "angle diff" {
     (Angle::from_deg(0), Angle::from_deg(0), Angle::from_deg(0)),
     (Angle::from_deg(0), Angle::from_deg(90), Angle::from_deg(90)),
     (Angle::from_deg(45), Angle::from_deg(90), Angle::from_deg(45)),
+    (Angle::from_deg(45 + 360), Angle::from_deg(90), Angle::from_deg(45)),
     (Angle::from_deg(0), Angle::from_deg(180), Angle::from_deg(-180)),
     (Angle::from_deg(180), Angle::from_deg(0), Angle::from_deg(180)),
     (Angle::from_deg(0), Angle::from_deg(-180), Angle::from_deg(180)),
