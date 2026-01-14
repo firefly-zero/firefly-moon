@@ -43,10 +43,21 @@ pub fn Point::as_pad(self : Point) -> Pad {
 ///
 /// [@micromath]: https://github.com/applejag/micromath
 /// [polar coordinate]: https://en.wikipedia.org/wiki/Polar_coordinate_system
-pub fn Point::to_angle(self : Point) -> Angle {
+#inline
+#alias(to_angle, deprecated)
+#alias(as_angle, deprecated)
+pub fn Point::azimuth(self : Point) -> Angle {
   Angle::from_rad(
     @micromath.atan2(Float::from_int(self.y), Float::from_int(self.x)),
   )
+}
+
+///|
+test "azimuth" {
+  inspect(Point::new(1, 0).azimuth().to_deg(), content="0")
+  inspect(Point::new(0, 1).azimuth().to_deg(), content="90")
+  inspect(Point::new(-1, 0).azimuth().to_deg(), content="180")
+  inspect(Point::new(0, -1).azimuth().to_deg(), content="-90")
 }
 
 ///|
