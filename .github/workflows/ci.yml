@@ -49,7 +49,7 @@ jobs:
         run: bash -c "$(curl https://fireflyzero.com/install.sh)"
 
       - name: Setup MoonBit
-        uses: hustcer/setup-moonbit@66fdadf7f54f35045a7dc6357f43b1fdd1909405 # v1.17
+        uses: hustcer/setup-moonbit@530086df82b240bec92955d3562f43a2783f21af # v1.18
 
       - name: Update MoonBit package registry
         run: moon update
