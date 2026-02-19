@@ -131,3 +131,22 @@ pub fn Language::code(lang : Language) -> Bytes {
     TokiPona => "tp"
   }
 }
+
+///|
+/// ISO 8859 encoding slug for the language.
+///
+/// Useful for dynamically loading the correct font for the given language.
+pub fn Language::encoding(lang : Language) -> Bytes {
+  match lang {
+    // Just like English, Dutch has very little non-ASCII characters
+    // which can be avoided in translations to make it possible to stick
+    // to the smaller fonts.
+    English | Dutch | TokiPona => "ascii"
+    Italian | Spanish | Swedish => "iso_8859_1"
+    German | French => "iso_8859_2"
+    Russian | Ukrainian => "iso_8859_5"
+    Turkish => "iso_8859_9"
+    Polish => "iso_8859_13"
+    Romanian => "iso_8859_16"
+  }
+}
