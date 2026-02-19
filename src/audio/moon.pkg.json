@@ -1,3 +1,0 @@
-{
-  "import": ["firefly/firefly/internal/ffi", "firefly/firefly/internal/memory"]
-}

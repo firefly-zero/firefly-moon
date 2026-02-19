@@ -58,5 +58,5 @@ pub fn render() -> Unit {
 
 ///|
 fn[T : Show] format(v : T) -> Bytes {
-  @encoding/utf8.encode(v.to_string())
+  @utf8.encode(v.to_string())
 }
