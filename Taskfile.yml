@@ -25,14 +25,14 @@ tasks:
   format:
     cmds:
       - for: { var: MOON_MODULES }
-        cmd: moon fmt -C {{.ITEM}}
+        cmd: cd {{.ITEM}} && moon fmt
 
   lint:
     cmds:
       - for: { var: MOON_MODULES }
-        cmd: moon check -C {{.ITEM}}
+        cmd: cd {{.ITEM}} && moon check
       - for: { var: MOON_MODULES }
-        cmd: moon fmt -C {{.ITEM}} --check
+        cmd: cd {{.ITEM}} && moon fmt --check
 
   test:
     cmds:
@@ -42,7 +42,7 @@ tasks:
   test:moonbit:
     cmds:
       - for: { var: MOON_MODULES }
-        cmd: moon test -C {{.ITEM}}
+        cmd: cd {{.ITEM}} && moon test
 
   test:firefly:
     cmds:

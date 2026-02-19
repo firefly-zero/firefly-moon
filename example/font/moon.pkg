@@ -1,0 +1,13 @@
+import {
+  "firefly/firefly",
+}
+
+options(
+  "is-main": true,
+  link: {
+    "wasm": {
+      "export-memory-name": "memory",
+      "exports": [ "boot", "update", "render" ],
+    },
+  },
+)

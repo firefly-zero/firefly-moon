@@ -1,0 +1,14 @@
+import {
+  "firefly/firefly",
+  "firefly/firefly/sudo",
+}
+
+options(
+  "is-main": true,
+  link: {
+    "wasm": {
+      "export-memory-name": "memory",
+      "exports": [ "boot", "update", "render" ],
+    },
+  },
+)

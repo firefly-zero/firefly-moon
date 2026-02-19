@@ -23,4 +23,4 @@ moon add firefly/firefly
 
 MIT License. You can do whatever you want with the SDK, modify it, embed into any apps and games. Have fun!
 
-The SDK is created by [Kalle Fagerberg](https://github.com/applejag/) and is currently officially maintained by the [Firefly Zero core team](https://github.com/firefly-zero/).
+The SDK was created by [Kalle Fagerberg](https://github.com/applejag/) and is now officially maintained by the [Firefly Zero core team](https://github.com/firefly-zero/).
