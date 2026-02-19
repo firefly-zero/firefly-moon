@@ -19,6 +19,10 @@ pub fn get_random() -> UInt = "misc" "get_random"
 pub fn get_name(peer : Int, buf : UInt) -> Int = "misc" "get_name"
 
 ///|
+/// Get system settings.
+pub fn get_settings(peer : Int) -> UInt64 = "misc" "get_settings"
+
+///|
 /// Restart the app after the current update is finished.
 pub fn restart() = "misc" "restart"
 

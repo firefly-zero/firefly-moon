@@ -48,6 +48,36 @@ pub fn get_name(peer : Peer) -> Bytes {
 }
 
 ///|
+/// Get system settings.
+pub fn get_settings(peer : Peer) -> Settings {
+  let raw = @ffi.get_settings(peer.raw)
+  let code = raw.to_uint16()
+  let language = Language::from_raw(code).unwrap_or_default()
+  let flags = raw >> 16
+  let theme = raw >> 32
+  let theme = Theme::{
+    id: theme.to_uint16(),
+    primary: parse_color(theme >> 20),
+    secondary: parse_color(theme >> 16),
+    accent: parse_color(theme >> 12),
+    bg: parse_color(theme >> 8),
+  }
+  Settings::{
+    theme,
+    language,
+    rotate_screen: (flags & 0b0001) != 0,
+    reduce_flashing: (flags & 0b0010) != 0,
+    contrast: (flags & 0b0100) != 0,
+    easter_eggs: (flags & 0b1000) != 0,
+  }
+}
+
+///|
+fn parse_color(c : UInt64) -> Color {
+  Color::from_int((c.to_int() & 0xf) + 1)
+}
+
+///|
 /// Restart the app after the current update is finished.
 #inline
 pub fn restart() -> Unit {
