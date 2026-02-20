@@ -13,6 +13,7 @@ SPDX-License-Identifier = "MIT"
 path = [
   "**/moon.mod.json",
   "**/moon.pkg.json",
+  "**/moon.pkg",
 ]
 SPDX-FileCopyrightText = "2025 Kalle Fagerberg"
 SPDX-License-Identifier = "CC0-1.0"
