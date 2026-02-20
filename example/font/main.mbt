@@ -69,7 +69,7 @@ pub fn render() -> Unit {
 ///|
 /// Example implementation of drawing text with a drop shadow
 fn draw_text_shadow(
-  text : Bytes,
+  text : BytesView,
   font : @firefly.Font,
   point : Point,
   text_color : Color,
@@ -83,7 +83,7 @@ fn draw_text_shadow(
 ///|
 /// Example implementation of drawing text with a drop shadow
 fn draw_text_rainbow(
-  text : Bytes,
+  text : BytesView,
   font : @firefly.Font,
   point : Point,
   text_colors? : FixedArray[Color] = [

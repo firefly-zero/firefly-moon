@@ -198,14 +198,14 @@ pub fn draw_sector(
 /// ignore(utf8)
 /// ```
 pub fn draw_text(
-  text : Bytes,
+  text : Utf8View,
   font : Font,
   point : Point,
   color : Color,
 ) -> Unit {
   @ffi.draw_text(
-    @memory.bytes_addr(text),
-    @memory.bytes_size(text),
+    @memory.bytesview_addr(text),
+    @memory.bytesview_size(text),
     @memory.fixedbytes_addr(font.0),
     @memory.fixedbytes_size(font.0),
     point.x,
@@ -218,14 +218,14 @@ pub fn draw_text(
 ///|
 /// Render a QR-code.
 pub fn draw_qr(
-  text : Bytes,
+  text : Utf8View,
   point : Point,
   black : Color,
   white : Color,
 ) -> Unit {
   @ffi.draw_qr(
-    @memory.bytes_addr(text),
-    @memory.bytes_size(text),
+    @memory.bytesview_addr(text),
+    @memory.bytesview_size(text),
     point.x,
     point.y,
     black.to_int(),
