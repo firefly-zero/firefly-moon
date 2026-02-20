@@ -1,9 +1,0 @@
-# SPDX-FileCopyrightText: 2025 Kalle Fagerberg
-#
-# SPDX-License-Identifier: CC0-1.0
-
-author_id = "demo"
-app_id = "moonbit-sudo"
-author_name = "Demo"
-app_name = "Sudo demo (MoonBit)"
-sudo = true

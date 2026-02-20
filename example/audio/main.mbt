@@ -1,7 +1,4 @@
 ///|
-using @audio {type Time}
-
-///|
 fn main {
 
 }

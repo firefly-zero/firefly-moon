@@ -10,7 +10,7 @@ struct Canvas(FixedArray[Byte]) derive(Default)
 ///|
 /// Create a new blank canvas.
 pub fn Canvas::new(size : Size) -> Canvas {
-  Canvas(Image::new(size, bpp=4).0)
+  Canvas(Image::new(size).0)
 }
 
 ///|
