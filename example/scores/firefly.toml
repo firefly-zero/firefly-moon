@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2026 Kalle Fagerberg
+#
+# SPDX-License-Identifier: CC0-1.0
+
+author_id = "demo"
+app_id = "moonbit-scores"
+author_name = "Demo"
+app_name = "Scores demo (MoonBit)"
+
+[files]
+font = { path = "assets/eg_6x10.fff" }
+
+[boards]
+1 = { name = "default" }
