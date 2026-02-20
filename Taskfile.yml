@@ -47,7 +47,7 @@ tasks:
   test:firefly:
     cmds:
       - for: { var: EXAMPLES }
-        cmd: ff build {{.ITEM}}
+        cmd: ff build --no-tip {{.ITEM}}
 
   all:
     cmds:
