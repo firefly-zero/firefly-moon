@@ -1,4 +1,5 @@
 import {
+  "firefly/firefly",
   "firefly/firefly/internal/ffi",
   "firefly/firefly/internal/memory",
 }
