@@ -1,0 +1,9 @@
+{
+  "name": "example-scores",
+  "deps": {
+    "firefly/firefly": {
+      "path": "../.."
+    }
+  },
+  "preferred-target": "wasm"
+}
