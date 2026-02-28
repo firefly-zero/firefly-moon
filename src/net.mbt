@@ -1,14 +1,43 @@
 ///|
-/// Multi-player peer/player ID.
+/// A peer obtained either from `Peers` (`get_peers`) or from `get_me`.
+pub trait AnyPeer {
+  to_int(self : Self) -> Int
+}
+
+///|
+/// The peer representing the current device.
 ///
-/// Firefly does not document a maximum number of players, however this SDK
-/// (as well as many other Firefly SDKs for other languages) store the list
-/// of peers in a 32-bit bitmap.
-/// Meaning the `Peer` ID must be lower than 32 (`0x20`)
+/// Can be compared to `Peer` or used to `get_settings`.
+///
+/// **IMPORTANT:** Using this type may cause state drift between device in multiplayer.
+/// See [the docs](https://docs.fireflyzero.com/dev/net/) for more info.
+#valtype
+struct Me {
+  raw : Int
+} derive(Hash)
+
+///|
+pub impl AnyPeer for Me with to_int(self : Me) -> Int {
+  self.raw
+}
+
+///|
+/// Check if the given `Peer` represents the current device.
+pub fn Me::equal(self : Self, peer : Peer) -> Bool {
+  self.raw == peer.raw
+}
+
+///|
+/// Multi-player peer/player ID.
 #valtype
 struct Peer {
   raw : Int
 } derive(Eq, Compare, Hash)
+
+///|
+pub impl AnyPeer for Peer with to_int(self : Peer) -> Int {
+  self.raw
+}
 
 ///|
 pub impl Show for Peer with to_string(self) -> String {
@@ -36,13 +65,6 @@ pub impl Show for Peer with output(self, logger : &Logger) -> Unit {
 /// Useful for single-player games that don't have any special logic for multiplayer.
 pub fn Peer::combined() -> Peer {
   Peer::{ raw: 0xFF }
-}
-
-///|
-/// Get the `Peer` representing the local device.
-#inline
-pub fn Peer::me() -> Peer {
-  get_me()
 }
 
 ///|
@@ -106,8 +128,8 @@ test "peers to array" {
 
 ///|
 /// Get the `Peer` representing the local device.
-pub fn get_me() -> Peer {
-  Peer::{ raw: @ffi.get_me() }
+pub fn get_me() -> Me {
+  Me::{ raw: @ffi.get_me() }
 }
 
 ///|

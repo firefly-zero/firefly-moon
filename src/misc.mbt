@@ -86,8 +86,12 @@ pub fn get_name(peer : Peer) -> Utf8 {
 
 ///|
 /// Get system settings.
-pub fn get_settings(peer : Peer) -> Settings {
-  let raw = @ffi.get_settings(peer.raw)
+///
+/// **IMPORTANT:** This is the only function that accepts as input not only [`Peer`]
+/// but also [`Me`], which might lead to a state drift if used incorrectly.
+/// See [the docs](https://docs.fireflyzero.com/dev/net/) for more info.
+pub fn[P : AnyPeer] get_settings(peer : P) -> Settings {
+  let raw = @ffi.get_settings(peer.to_int())
   let code = raw.to_uint16()
   let language = Language::from_raw(code).unwrap_or_default()
   let flags = raw >> 16
