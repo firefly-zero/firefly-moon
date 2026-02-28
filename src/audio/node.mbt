@@ -310,12 +310,12 @@ pub fn Node::add_zero(self : Node) -> Zero {
 
 ///|
 /// Add source playing audio from a file.
-pub fn Node::add_file(self : Node, path : Bytes) -> File {
+pub fn Node::add_file(self : Node, path : @firefly.Utf8View) -> File {
   let file = File(Node::{
     id: @ffi.audio_add_file(
       self.id,
-      @memory.bytes_addr(path),
-      @memory.bytes_size(path),
+      @memory.bytesview_addr(path),
+      @memory.bytesview_size(path),
     ),
   })
   @memory.keep(path)

@@ -39,7 +39,7 @@ pub fn File::as_fixed_array(self : File) -> FixedArray[Byte] {
 ///
 /// Example: loading fonts, images, or save files.
 #inline
-pub fn File::load(path : Bytes) -> File? {
+pub fn File::load(path : PathView) -> File? {
   load_file(path)
 }
 
@@ -53,6 +53,6 @@ pub fn File::load(path : Bytes) -> File? {
 ///
 /// Returns the number of bytes written.
 #inline
-pub fn File::dump(self : File, path : Bytes) -> Int {
+pub fn File::dump(self : File, path : PathView) -> Int {
   dump_file(path, self)
 }

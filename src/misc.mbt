@@ -1,14 +1,51 @@
 ///|
+/// Type hint that we need a UTF-8 formatted `Bytes`.
+///
+/// All Firefly functions that accept text only accepts UTF-8 encoded text.
+/// But MoonBit uses UTF-16 for its `string` type.
+/// Meaning, you should not be using the MoonBit `string` type with the Firefly SDK.
+///
+/// Instead, you can use string and bytes literals with `Utf8` (or `Bytes`)
+///
+/// ```mbt check
+/// test {
+///   let utf8 : @firefly.Utf8 = "hello"
+///   ignore(utf8)
+/// }
+/// ```
+pub type Utf8 = Bytes
+
+///|
+/// Type hint that we need a UTF-8 formatted `BytesView`.
+///
+/// A "view" is a reference to a part of a `Bytes`, and is more flexible
+/// to use as function parameters.
+///
+/// All Firefly functions that accept text only accepts UTF-8 encoded text.
+/// But MoonBit uses UTF-16 for its `string` type.
+/// Meaning, you should not be using the MoonBit `string` type with the Firefly SDK.
+///
+/// Instead, you can use string and bytes literals with `Utf8View` (or `BytesView`)
+///
+/// ```mbt check
+/// test {
+///   let utf8 : @firefly.Utf8View = "hello"
+///   ignore(utf8)
+/// }
+/// ```
+pub type Utf8View = BytesView
+
+///|
 /// Log a debug message.
-pub fn log_debug(s : Bytes) -> Unit {
-  @ffi.log_debug(@memory.bytes_addr(s), @memory.bytes_size(s))
+pub fn log_debug(s : Utf8View) -> Unit {
+  @ffi.log_debug(@memory.bytesview_addr(s), @memory.bytesview_size(s))
   @memory.keep(s)
 }
 
 ///|
 /// Log an error message.
-pub fn log_error(s : Bytes) -> Unit {
-  @ffi.log_error(@memory.bytes_addr(s), @memory.bytes_size(s))
+pub fn log_error(s : Utf8View) -> Unit {
+  @ffi.log_error(@memory.bytesview_addr(s), @memory.bytesview_size(s))
   @memory.keep(s)
 }
 
@@ -41,7 +78,7 @@ pub fn get_random() -> UInt {
 
 ///|
 /// Get name of the device.
-pub fn get_name(peer : Peer) -> Bytes {
+pub fn get_name(peer : Peer) -> Utf8 {
   let arr = FixedArray::make(16, Byte::default())
   let len = @ffi.get_name(peer.raw, @memory.fixedbytes_addr(arr))
   Bytes::from_array(arr[:len])

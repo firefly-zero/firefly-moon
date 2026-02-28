@@ -54,7 +54,7 @@ pub fn Language::from_raw(raw : UInt16) -> Language? {
 }
 
 ///|
-pub fn Language::from_code(code : Bytes) -> Language? {
+pub fn Language::from_code(code : Utf8View) -> Language? {
   match code {
     "en" => Some(English)
     "nl" => Some(Dutch)
@@ -75,7 +75,7 @@ pub fn Language::from_code(code : Bytes) -> Language? {
 
 ///|
 /// The language name in English.
-pub fn Language::name_english(lang : Language) -> Bytes {
+pub fn Language::name_english(lang : Language) -> Utf8 {
   match lang {
     English => "English"
     Dutch => "Dutch"
@@ -95,7 +95,7 @@ pub fn Language::name_english(lang : Language) -> Bytes {
 
 ///|
 /// The language name in the language itself (endonym).
-pub fn Language::name_native(lang : Language) -> Bytes {
+pub fn Language::name_native(lang : Language) -> Utf8 {
   match lang {
     English => "English"
     Dutch => "Nederlands"
@@ -114,7 +114,7 @@ pub fn Language::name_native(lang : Language) -> Bytes {
 }
 
 ///|
-pub fn Language::code(lang : Language) -> Bytes {
+pub fn Language::code(lang : Language) -> Utf8 {
   match lang {
     English => "en"
     Dutch => "nl"
@@ -136,7 +136,7 @@ pub fn Language::code(lang : Language) -> Bytes {
 /// ISO 8859 encoding slug for the language.
 ///
 /// Useful for dynamically loading the correct font for the given language.
-pub fn Language::encoding(lang : Language) -> Bytes {
+pub fn Language::encoding(lang : Language) -> Utf8 {
   match lang {
     // Just like English, Dutch has very little non-ASCII characters
     // which can be avoided in translations to make it possible to stick

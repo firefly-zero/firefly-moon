@@ -4,6 +4,7 @@
 /// Firefly Zero runtime enforces flat structure for app data and ROMs,
 /// so the path cannot contain path separators (`/`).
 ///
+/// Must be UTF-8 encoded.
 /// Any String literal or Bytes literal is a valid ASCII string:
 ///
 /// ```text
@@ -12,13 +13,16 @@
 pub type Path = Bytes
 
 ///|
+pub type PathView = BytesView
+
+///|
 /// Get size (in bytes) of a file from ROM or the data directory.
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path : Path) -> Int {
+pub fn get_file_size(path : PathView) -> Int {
   let size = @ffi.get_file_size(
-    @memory.bytes_addr(path),
-    @memory.bytes_size(path),
+    @memory.bytesview_addr(path),
+    @memory.bytesview_size(path),
   )
   @memory.keep(path)
   size
@@ -27,7 +31,7 @@ pub fn get_file_size(path : Path) -> Int {
 ///|
 /// Check if the given path points to a file in ROM or the data directory.
 #inline
-pub fn is_file(path : Path) -> Bool {
+pub fn is_file(path : PathView) -> Bool {
   get_file_size(path) != 0
 }
 
@@ -35,16 +39,16 @@ pub fn is_file(path : Path) -> Bool {
 /// Load a file from ROM or the data directory.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file(path : Path) -> File? {
+pub fn load_file(path : PathView) -> File? {
   let size = @ffi.get_file_size(
-    @memory.bytes_addr(path),
-    @memory.bytes_size(path),
+    @memory.bytesview_addr(path),
+    @memory.bytesview_size(path),
   )
   guard size != 0 else { None }
   let buf = FixedArray::make(size, Byte::default())
   let _ = @ffi.load_file(
-    @memory.bytes_addr(path),
-    @memory.bytes_size(path),
+    @memory.bytesview_addr(path),
+    @memory.bytesview_size(path),
     @memory.fixedbytes_addr(buf),
     @memory.fixedbytes_size(buf),
   )
@@ -58,10 +62,10 @@ pub fn load_file(path : Path) -> File? {
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> Int {
+pub fn load_file_to(path : PathView, output : FixedArray[Byte]) -> Int {
   let size = @ffi.load_file(
-    @memory.bytes_addr(path),
-    @memory.bytes_size(path),
+    @memory.bytesview_addr(path),
+    @memory.bytesview_size(path),
     @memory.fixedbytes_addr(output),
     @memory.fixedbytes_size(output),
   )
@@ -78,10 +82,10 @@ pub fn load_file_to(path : Path, output : FixedArray[Byte]) -> Int {
 /// Example: writing save files.
 ///
 /// Returns the number of bytes written.
-pub fn dump_file(path : Path, file : File) -> Int {
+pub fn dump_file(path : PathView, file : File) -> Int {
   let size = @ffi.load_file(
-    @memory.bytes_addr(path),
-    @memory.bytes_size(path),
+    @memory.bytesview_addr(path),
+    @memory.bytesview_size(path),
     @memory.fixedbytes_addr(file.0),
     @memory.fixedbytes_size(file.0),
   )
@@ -93,7 +97,7 @@ pub fn dump_file(path : Path, file : File) -> Int {
 /// Removes a file (if exists) from the data directory.
 ///
 /// Example: removing save files.
-pub fn remove_file(path : Path) -> Unit {
-  @ffi.remove_file(@memory.bytes_addr(path), @memory.bytes_size(path))
+pub fn remove_file(path : PathView) -> Unit {
+  @ffi.remove_file(@memory.bytesview_addr(path), @memory.bytesview_size(path))
   @memory.keep(path)
 }
