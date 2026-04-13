@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 author_id = "demo"
-app_id = "moonbit-text"
+app_id = "moonbit-font"
 author_name = "Demo"
 app_name = "Text example (MoonBit)"
 
