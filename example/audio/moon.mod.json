@@ -1,5 +1,5 @@
 {
-  "name": "firefly/firefly/example/audio",
+  "name": "example-audio",
   "deps": {
     "firefly/firefly": {
       "path": "../.."
