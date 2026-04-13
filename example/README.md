@@ -14,8 +14,14 @@ You need these to run the examples:
 - Firefly Zero CLI (`ff`): <https://docs.fireflyzero.com/user/installation/#-cli>
 - Firefly Zero emulator (`firefly-emulator`): <https://docs.fireflyzero.com/user/installation/#-emulator>
 
-To run one of the examples then execute the listed command from the root of
-this repository.
+To run one of the examples then navigate to its directory and run:
+
+```bash
+ff build
+
+# replace $NAME with the name shown in the `ff build` output
+firefly-emulator --id demo.moonbit-$NAME
+```
 
 ## Example: [audio](./audio)
 
