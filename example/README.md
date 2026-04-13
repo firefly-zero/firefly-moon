@@ -17,42 +17,30 @@ You need these to run the examples:
 To run one of the examples then execute the listed command from the root of
 this repository.
 
-## Example: [font](./font)
+## Example: [audio](./audio)
 
-```bash
-task example/font:run
-```
+> *(no screenshot, it only plays some sounds)*
+
+## Example: [font](./font)
 
 [![font screenshot](./font/screenshot.png)](./font)
 
 ## Example: [image](./image)
 
-```bash
-task example/image:run
-```
-
 [![image screenshot](./image/screenshot.png)](./image)
 
 ## Example: [input](./input)
-
-```bash
-task example/input:run
-```
 
 [![input screenshot](./input/screenshot.png)](./input)
 
 ## Example: [random](./random)
 
-```bash
-task example/random:run
-```
-
 [![random screenshot](./random/screenshot.png)](./random)
 
-## Example: [shapes](./shapes)
+## Example: [scores](./scores)
 
-```bash
-task example/shapes:run
-```
+[![scores screenshot](./scores/screenshot.png)](./scores)
+
+## Example: [shapes](./shapes)
 
 [![shapes screenshot](./shapes/screenshot.png)](./shapes)
