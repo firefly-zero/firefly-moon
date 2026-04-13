@@ -10,7 +10,6 @@ You need these to run the examples:
 
 - Clone this Git repo: <https://github.com/firefly-zero/firefly-moon>
 - MoonBit CLI (`moon`): <https://www.moonbitlang.com/download#moonbit-cli-tools>
-- Taskfile CLI (`task`): <https://taskfile.dev/>
 - Firefly Zero CLI (`ff`): <https://docs.fireflyzero.com/user/installation/#-cli>
 - Firefly Zero emulator (`firefly-emulator`): <https://docs.fireflyzero.com/user/installation/#-emulator>
 
