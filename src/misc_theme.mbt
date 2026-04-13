@@ -10,7 +10,7 @@ pub(all) struct Theme {
   accent : Color
   /// The background color, the most contrast color to primary.
   bg : Color
-} derive(Show, Eq)
+} derive(Debug, Eq)
 
 ///|
 pub impl Default for Theme with default() -> Theme {

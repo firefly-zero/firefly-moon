@@ -6,7 +6,7 @@ pub(all) struct Sector {
   start : Angle
   sweep : Angle
   style : Style
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this circle sector to the screen (or the current canvas, if one is set).

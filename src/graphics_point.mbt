@@ -6,7 +6,7 @@
 pub(all) struct Point {
   x : Int
   y : Int
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a `Point`.
@@ -69,21 +69,29 @@ pub fn Point::component_min(self : Point, other : Point) -> Point {
 
 ///|
 test "Point.component_min" {
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_min(Point::new(0, 10)),
-    content="{x: 0, y: 10}",
+    content=(
+      #|{ x: 0, y: 10 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_min(Point::new(10, 40)),
-    content="{x: 10, y: 30}",
+    content=(
+      #|{ x: 10, y: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_min(Point::new(50, 10)),
-    content="{x: 20, y: 10}",
+    content=(
+      #|{ x: 20, y: 10 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_min(Point::new(50, 40)),
-    content="{x: 20, y: 30}",
+    content=(
+      #|{ x: 20, y: 30 }
+    ),
   )
 }
 
@@ -96,21 +104,29 @@ pub fn Point::component_max(self : Point, other : Point) -> Point {
 
 ///|
 test "Point.component_max" {
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_max(Point::new(0, 10)),
-    content="{x: 20, y: 30}",
+    content=(
+      #|{ x: 20, y: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_max(Point::new(10, 40)),
-    content="{x: 20, y: 40}",
+    content=(
+      #|{ x: 20, y: 40 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_max(Point::new(50, 10)),
-    content="{x: 50, y: 30}",
+    content=(
+      #|{ x: 50, y: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Point::new(20, 30).component_max(Point::new(50, 40)),
-    content="{x: 50, y: 40}",
+    content=(
+      #|{ x: 50, y: 40 }
+    ),
   )
 }
 

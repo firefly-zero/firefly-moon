@@ -19,7 +19,12 @@ pub fn Image::new(size : Size) -> Image {
 
 ///|
 test "new image has correct size" {
-  inspect(Image::new(Size::new(20, 10)).size(), content="{w: 20, h: 10}")
+  debug_inspect(
+    Image::new(Size::new(20, 10)).size(),
+    content=(
+      #|{ w: 20, h: 10 }
+    ),
+  )
 }
 
 ///|

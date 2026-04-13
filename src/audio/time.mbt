@@ -1,5 +1,5 @@
 ///|
-pub struct Time(UInt) derive(Show, Eq, Compare, Hash, Default)
+pub struct Time(UInt) derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Create a `Time` value of 0.

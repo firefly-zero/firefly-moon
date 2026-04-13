@@ -16,7 +16,7 @@ pub(all) struct DPad8 {
   right : Bool
   up : Bool
   down : Bool
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand function for reading the pad input and converting it into a `DPad`.

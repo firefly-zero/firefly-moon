@@ -24,7 +24,7 @@ pub(all) struct Buttons {
   /// Therefore, you may never detect when this button is pressed, as the
   /// console will instead pause the game or exit to the console's main menu.
   menu : Bool
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Get the currently pressed buttons.

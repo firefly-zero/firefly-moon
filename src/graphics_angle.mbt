@@ -1,6 +1,12 @@
 ///|
 /// An angle between two vectors, internally represented as radians.
-struct Angle(Float) derive(Show, Eq, Compare, Hash, Default)
+struct Angle(Float) derive(Debug, Eq, Compare, Hash, Default)
+
+///|
+pub impl Show for Angle with output(self : Angle, logger : &Logger) -> Unit {
+  self.to_deg().to_int().output(logger)
+  logger.write_char('°')
+}
 
 ///|
 /// Define an Angle in radians (0-2π).

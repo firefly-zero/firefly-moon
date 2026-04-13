@@ -20,4 +20,4 @@ pub(all) struct Settings {
   contrast : Bool
   /// If true, the player wants to see easter eggs, holiday effects, and weird jokes.
   easter_eggs : Bool
-} derive(Show, Eq)
+} derive(Debug, Eq)

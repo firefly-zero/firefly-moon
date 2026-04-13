@@ -16,7 +16,7 @@ pub(all) enum Pitch {
   A
   As
   B
-} derive(Show, Eq, Compare, Hash)
+} derive(Debug, Eq, Compare, Hash)
 
 ///|
 pub fn Pitch::from_char(char : Char) -> Pitch? {

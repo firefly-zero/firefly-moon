@@ -4,7 +4,7 @@ pub(all) struct Ellipse {
   point : Point
   size : Size
   style : Style
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this ellipse to the screen (or the current canvas, if one is set).

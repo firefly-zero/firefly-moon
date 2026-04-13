@@ -5,7 +5,7 @@ pub(all) struct RoundedRect {
   size : Size
   corner : Size
   style : Style
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this rounded rectangle to the screen (or the current canvas, if one is set).
