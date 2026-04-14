@@ -32,7 +32,7 @@ pub fn uint64(limit? : UInt64) -> UInt64 {
   }
 
   match limit {
-    Some(lim) if lim <= @uint.max_value.to_uint64() =>
+    Some(lim) if lim <= @uint.MAX_VALUE.to_uint64() =>
       @firefly.get_random().to_uint64() % lim
     Some(lim) => rand() % lim
     None => rand()
@@ -43,7 +43,7 @@ pub fn uint64(limit? : UInt64) -> UInt64 {
 /// Returns a random 32-bit `Int` in the range `[0, 2^31)`,
 /// or `[0, limit)` if limit is provided.
 pub fn int(limit? : Int) -> Int {
-  let res = (@firefly.get_random() & @int.max_value.reinterpret_as_uint()).reinterpret_as_int()
+  let res = (@firefly.get_random() & @int.MAX_VALUE.reinterpret_as_uint()).reinterpret_as_int()
   match limit {
     Some(lim) => res % lim
     None => res
@@ -57,11 +57,11 @@ pub fn int64(limit? : Int64) -> Int64 {
   fn rand() -> Int64 {
     let hi = @firefly.get_random()
     let lo = @firefly.get_random()
-    (((hi.to_uint64() & @int.max_value.to_uint64()) << 32) | lo.to_uint64()).reinterpret_as_int64()
+    (((hi.to_uint64() & @int.MAX_VALUE.to_uint64()) << 32) | lo.to_uint64()).reinterpret_as_int64()
   }
 
   match limit {
-    Some(lim) if lim <= @uint.max_value.to_int64() =>
+    Some(lim) if lim <= @uint.MAX_VALUE.to_int64() =>
       @firefly.get_random().to_uint64().reinterpret_as_int64() % lim
     Some(lim) => rand() % lim
     None => rand()

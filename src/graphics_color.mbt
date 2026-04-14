@@ -34,7 +34,35 @@ pub(all) enum Color {
   Gray
   /// Dark gray color: #333C57.
   DarkGray
-} derive(Show, Eq, Compare, Hash)
+} derive(Debug, Eq, Compare, Hash)
+
+///|
+pub impl Show for Color with output(self : Color, logger : &Logger) -> Unit {
+  logger.write_string(self.to_string())
+}
+
+///|
+pub impl Show for Color with to_string(self : Color) -> String {
+  match self {
+    None => "none"
+    Black => "black"
+    Purple => "purple"
+    Red => "red"
+    Orange => "orange"
+    Yellow => "yellow"
+    LightGreen => "light green"
+    Green => "green"
+    DarkGreen => "dark green"
+    DarkBlue => "dark blue"
+    Blue => "blue"
+    LightBlue => "light blue"
+    Cyan => "cyan"
+    White => "white"
+    LightGray => "light gray"
+    Gray => "gray"
+    DarkGray => "dark gray"
+  }
+}
 
 ///|
 pub impl Default for Color with default() -> Color {

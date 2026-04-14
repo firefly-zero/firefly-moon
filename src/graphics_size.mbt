@@ -14,7 +14,7 @@ pub const SCREEN_HEIGHT : Int = 160
 pub(all) struct Size {
   w : Int
   h : Int
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a Size.
@@ -44,21 +44,29 @@ pub fn Size::component_min(self : Size, other : Size) -> Size {
 
 ///|
 test "Size.component_min" {
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_min(Size::new(0, 10)),
-    content="{w: 0, h: 10}",
+    content=(
+      #|{ w: 0, h: 10 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_min(Size::new(10, 40)),
-    content="{w: 10, h: 30}",
+    content=(
+      #|{ w: 10, h: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_min(Size::new(50, 10)),
-    content="{w: 20, h: 10}",
+    content=(
+      #|{ w: 20, h: 10 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_min(Size::new(50, 40)),
-    content="{w: 20, h: 30}",
+    content=(
+      #|{ w: 20, h: 30 }
+    ),
   )
 }
 
@@ -71,21 +79,29 @@ pub fn Size::component_max(self : Size, other : Size) -> Size {
 
 ///|
 test "Size.component_max" {
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_max(Size::new(0, 10)),
-    content="{w: 20, h: 30}",
+    content=(
+      #|{ w: 20, h: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_max(Size::new(10, 40)),
-    content="{w: 20, h: 40}",
+    content=(
+      #|{ w: 20, h: 40 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_max(Size::new(50, 10)),
-    content="{w: 50, h: 30}",
+    content=(
+      #|{ w: 50, h: 30 }
+    ),
   )
-  inspect(
+  debug_inspect(
     Size::new(20, 30).component_max(Size::new(50, 40)),
-    content="{w: 50, h: 40}",
+    content=(
+      #|{ w: 50, h: 40 }
+    ),
   )
 }
 

@@ -12,7 +12,7 @@ pub(all) enum DPad4 {
   Right
   Up
   Down
-} derive(Show, Eq, Compare, Hash)
+} derive(Debug, Eq, Compare, Hash)
 
 ///|
 /// Given the old state, get directions that were not pressed previously but are

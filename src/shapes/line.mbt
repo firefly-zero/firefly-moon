@@ -4,7 +4,7 @@ pub(all) struct Line {
   a : Point
   b : Point
   style : LineStyle
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this line to the screen (or the current canvas, if one is set).

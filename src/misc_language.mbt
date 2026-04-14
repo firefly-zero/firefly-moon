@@ -26,7 +26,7 @@ pub(all) enum Language {
   Ukrainian
   /// tp 🇨🇦 🙂
   TokiPona
-} derive(Show, Eq, Hash)
+} derive(Debug, Eq, Hash)
 
 ///|
 pub impl Default for Language with default() -> Language {

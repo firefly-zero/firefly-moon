@@ -6,7 +6,7 @@ pub(all) struct Arc {
   start : Angle
   sweep : Angle
   style : Style
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this arc to the screen (or the current canvas, if one is set).

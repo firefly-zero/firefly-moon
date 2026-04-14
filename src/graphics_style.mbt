@@ -5,7 +5,7 @@ pub(all) struct Style {
   fill : Color
   stroke : Color
   stroke_width : Int
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Create a new style transparent and empty style.

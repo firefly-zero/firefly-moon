@@ -1,10 +1,10 @@
 ///|
 /// A badge (aka achievement) ID.
-pub(all) struct Badge(Byte) derive(Eq, Compare, Hash, Default, Show)
+pub(all) struct Badge(Byte) derive(Eq, Compare, Hash, Default, Debug)
 
 ///|
 /// A board (aka score board / leader board) ID.
-pub(all) struct Board(Byte) derive(Eq, Compare, Hash, Default, Show)
+pub(all) struct Board(Byte) derive(Eq, Compare, Hash, Default, Debug)
 
 ///|
 #valtype
@@ -13,7 +13,7 @@ struct Progress {
   done : UInt16
   /// How many points the player needs to earn the badge.
   goal : UInt16
-} derive(Show, Eq, Default)
+} derive(Debug, Eq, Default)
 
 ///|
 /// True if the player got enough points to unlock the badge.
@@ -57,7 +57,12 @@ fn Progress::parse(result : UInt) -> Progress {
 
 ///|
 test "parse" {
-  inspect(Progress::parse((87 << 16) + 391), content="{done: 87, goal: 391}")
+  debug_inspect(
+    Progress::parse((87 << 16) + 391),
+    content=(
+      #|{ done: 87, goal: 391 }
+    ),
+  )
 }
 
 ///|

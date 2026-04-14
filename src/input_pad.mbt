@@ -36,7 +36,7 @@ const DPAD4_THRESHOLD = 300
 pub(all) struct Pad {
   x : Int
   y : Int
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand for creating a new `Pad`.

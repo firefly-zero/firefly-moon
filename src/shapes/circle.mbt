@@ -4,7 +4,7 @@ pub(all) struct Circle {
   point : Point
   diameter : Int
   style : Style
-} derive(Show, Eq, Compare, Hash, Default)
+} derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Draw this circle to the screen (or the current canvas, if one is set).
