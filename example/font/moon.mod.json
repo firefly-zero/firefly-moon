@@ -1,5 +1,5 @@
 {
-  "name": "example-text",
+  "name": "example-font",
   "deps": {
     "firefly/firefly": {
       "path": "../.."
