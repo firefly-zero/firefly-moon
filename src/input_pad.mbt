@@ -18,7 +18,7 @@ pub const PAD_MAX_Y = -1000
 /// The minimum X or Y value when converting `Pad` into `DPad8`
 /// for the direction to be considered pressed.
 /// We do that to provide a dead zone in the middle of the pad.
-const DPAD8_THRESHOLD = 300
+const DPAD8_THRESHOLD = 400
 
 ///|
 const DPAD4_THRESHOLD = 300
