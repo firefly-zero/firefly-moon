@@ -1,6 +1,6 @@
 ///|
 pub trait Modulator {
-  fn modulate(Self, node_id : UInt, param : UInt) -> Unit
+  fn modulate(Self, node_id : UInt, param : UInt, low : Float, high : Float) -> Unit
 }
 
 ///|
@@ -12,8 +12,6 @@ pub trait Modulator {
 /// and the value between `start_at` and `end_at` changes linearly from `start` to `end`.
 #valtype
 pub(all) struct LinearModulator {
-  start : Float
-  end : Float
   start_at : Time
   end_at : Time
 }
@@ -24,12 +22,14 @@ pub impl Modulator for LinearModulator with fn modulate(
   self : LinearModulator,
   node_id : UInt,
   param : UInt,
+  low : Float,
+  high : Float,
 ) -> Unit {
   @ffi.audio_mod_linear(
     node_id,
     param,
-    self.start,
-    self.end,
+    low,
+    high,
     self.start_at.0,
     self.end_at.0,
   )
@@ -44,8 +44,6 @@ pub impl Modulator for LinearModulator with fn modulate(
 /// Equivalent to [`LinearModulator`] with `start_at` being equal to `end_at`.
 #valtype
 pub(all) struct HoldModulator {
-  before : Float
-  after : Float
   time : Time
 }
 
@@ -55,8 +53,10 @@ pub impl Modulator for HoldModulator with fn modulate(
   self : HoldModulator,
   node_id : UInt,
   param : UInt,
+  low : Float,
+  high : Float,
 ) -> Unit {
-  @ffi.audio_mod_hold(node_id, param, self.before, self.after, self.time.0)
+  @ffi.audio_mod_hold(node_id, param, low, high, self.time.0)
 }
 
 ///|
@@ -68,8 +68,6 @@ pub impl Modulator for HoldModulator with fn modulate(
 #valtype
 pub(all) struct SineModulator {
   freq : Hz
-  low : Float
-  high : Float
 }
 
 ///|
@@ -78,6 +76,8 @@ pub impl Modulator for SineModulator with fn modulate(
   self : SineModulator,
   node_id : UInt,
   param : UInt,
+  low : Float,
+  high : Float,
 ) -> Unit {
-  @ffi.audio_mod_sine(node_id, param, self.freq, self.low, self.high)
+  @ffi.audio_mod_sine(node_id, param, self.freq, low, high)
 }
