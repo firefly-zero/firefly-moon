@@ -100,18 +100,18 @@ pub fn audio_add_clip(parent_id : UInt, low : Float, high : Float) -> UInt = "au
 
 ///|
 /// Reset the node state to how it was when it was just added.
-pub fn audio_reset(node_id : UInt) = "audio" "reset"
+pub fn audio_reset(node_id : UInt) -> Unit = "audio" "reset"
 
 ///|
 /// Reset the node and all child nodes to the state to how it was when they were just added.
-pub fn audio_reset_all(node_id : UInt) = "audio" "reset_all"
+pub fn audio_reset_all(node_id : UInt) -> Unit = "audio" "reset_all"
 
 ///|
 ///  Remove all child nodes.
 ///
 /// After it is called, you should make sure to discard all references to the
 /// old child nodes.
-pub fn audio_clear(node_id : UInt) = "audio" "clear_node"
+pub fn audio_clear(node_id : UInt) -> Unit = "audio" "clear"
 
 ///|
 /// Linear (ramp up or down) envelope.
