@@ -111,7 +111,7 @@ pub fn audio_reset_all(node_id : UInt) -> Unit = "audio" "reset_all"
 ///
 /// After it is called, you should make sure to discard all references to the
 /// old child nodes.
-pub fn audio_clear_node(node_id : UInt) -> Unit = "audio" "clear_node"
+pub fn audio_clear(node_id : UInt) -> Unit = "audio" "clear"
 
 ///|
 /// Linear (ramp up or down) envelope.
