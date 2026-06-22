@@ -88,24 +88,44 @@ pub impl SourceNode for File with fn id(self) -> UInt {
 
 ///|
 /// Modulate oscillation frequency.
-pub fn[Mod : Modulator] Sine::modulate(self : Sine, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Sine::modulate(
+  self : Sine,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate oscillation frequency.
-pub fn[Mod : Modulator] Square::modulate(self : Square, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Square::modulate(
+  self : Square,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate oscillation frequency.
-pub fn[Mod : Modulator] Sawtooth::modulate(self : Sawtooth, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Sawtooth::modulate(
+  self : Sawtooth,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate oscillation frequency.
-pub fn[Mod : Modulator] Triangle::modulate(self : Triangle, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Triangle::modulate(
+  self : Triangle,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }

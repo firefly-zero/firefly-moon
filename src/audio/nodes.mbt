@@ -177,60 +177,105 @@ pub impl Node for Clip with fn id(self) -> UInt {
 
 ///|
 /// Modulate the gain level.
-pub fn[Mod : Modulator] Gain::modulate(self : Gain, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Gain::modulate(
+  self : Gain,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the pan value (from 0. to 1.: 0. is only left, 1. is only right).
-pub fn[Mod : Modulator] Pan::modulate(self : Pan, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Pan::modulate(
+  self : Pan,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the muted state.
 ///
 /// Below 0.5 is muted, above is unmuted.
-pub fn[Mod : Modulator] Mute::modulate(self : Mute, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Mute::modulate(
+  self : Mute,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the paused state.
 ///
 /// Below 0.5 is paused, above is playing.
-pub fn[Mod : Modulator] Pause::modulate(self : Pause, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Pause::modulate(
+  self : Pause,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the cut-off frequency.
-pub fn[Mod : Modulator] LowPass::modulate(self : LowPass, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] LowPass::modulate(
+  self : LowPass,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the cut-off frequency.
-pub fn[Mod : Modulator] HighPass::modulate(self : HighPass, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] HighPass::modulate(
+  self : HighPass,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the low cut amplitude and adjust the high amplitude to keep the gap.
 ///
 /// In other words, the difference between low and high cut points will stay the same.
-pub fn[Mod : Modulator] Clip::modulate_both(self : Clip, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 0)
+pub fn[Mod : Modulator] Clip::modulate_both(
+  self : Clip,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 0, low, high)
 }
 
 ///|
 /// Modulate the low cut amplitude.
-pub fn[Mod : Modulator] Clip::modulate_low(self : Clip, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 1)
+pub fn[Mod : Modulator] Clip::modulate_low(
+  self : Clip,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 1, low, high)
 }
 
 ///|
 /// Modulate the high cut amplitude.
-pub fn[Mod : Modulator] Clip::modulate_high(self : Clip, mod : Mod) -> Unit {
-  mod.modulate(self.id(), 2)
+pub fn[Mod : Modulator] Clip::modulate_high(
+  self : Clip,
+  low : Float,
+  high : Float,
+  mod : Mod,
+) -> Unit {
+  mod.modulate(self.id(), 2, low, high)
 }
