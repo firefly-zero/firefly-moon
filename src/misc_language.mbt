@@ -56,19 +56,19 @@ pub fn Language::from_raw(raw : UInt16) -> Language? {
 ///|
 pub fn Language::from_code(code : Utf8View) -> Language? {
   match code {
-    "en" => Some(English)
-    "nl" => Some(Dutch)
-    "fr" => Some(French)
-    "de" => Some(German)
-    "it" => Some(Italian)
-    "pl" => Some(Polish)
-    "ro" => Some(Romanian)
-    "ru" => Some(Russian)
-    "es" => Some(Spanish)
-    "sv" => Some(Swedish)
-    "tr" => Some(Turkish)
-    "uk" => Some(Ukrainian)
-    "tp" => Some(TokiPona)
+    b"en" => Some(English)
+    b"nl" => Some(Dutch)
+    b"fr" => Some(French)
+    b"de" => Some(German)
+    b"it" => Some(Italian)
+    b"pl" => Some(Polish)
+    b"ro" => Some(Romanian)
+    b"ru" => Some(Russian)
+    b"es" => Some(Spanish)
+    b"sv" => Some(Swedish)
+    b"tr" => Some(Turkish)
+    b"uk" => Some(Ukrainian)
+    b"tp" => Some(TokiPona)
     _ => None
   }
 }
@@ -77,19 +77,19 @@ pub fn Language::from_code(code : Utf8View) -> Language? {
 /// The language name in English.
 pub fn Language::name_english(lang : Language) -> Utf8 {
   match lang {
-    English => "English"
-    Dutch => "Dutch"
-    French => "French"
-    German => "German"
-    Italian => "Italian"
-    Polish => "Polish"
-    Romanian => "Romanian"
-    Russian => "Russian"
-    Spanish => "Spanish"
-    Swedish => "Swedish"
-    Turkish => "Turkish"
-    Ukrainian => "Ukrainian"
-    TokiPona => "TokiPona"
+    English => b"English"
+    Dutch => b"Dutch"
+    French => b"French"
+    German => b"German"
+    Italian => b"Italian"
+    Polish => b"Polish"
+    Romanian => b"Romanian"
+    Russian => b"Russian"
+    Spanish => b"Spanish"
+    Swedish => b"Swedish"
+    Turkish => b"Turkish"
+    Ukrainian => b"Ukrainian"
+    TokiPona => b"TokiPona"
   }
 }
 
@@ -97,38 +97,38 @@ pub fn Language::name_english(lang : Language) -> Utf8 {
 /// The language name in the language itself (endonym).
 pub fn Language::name_native(lang : Language) -> Utf8 {
   match lang {
-    English => "English"
-    Dutch => "Nederlands"
-    French => "Français"
-    German => "Deutsch"
-    Italian => "Italiano"
-    Polish => "Polski"
-    Romanian => "Română"
-    Russian => "Русский"
-    Spanish => "Español"
-    Swedish => "Svenska"
-    Turkish => "Türkçe"
-    Ukrainian => "Українська"
-    TokiPona => "toki pona"
+    English => b"English"
+    Dutch => b"Nederlands"
+    French => b"Français"
+    German => b"Deutsch"
+    Italian => b"Italiano"
+    Polish => b"Polski"
+    Romanian => b"Română"
+    Russian => b"Русский"
+    Spanish => b"Español"
+    Swedish => b"Svenska"
+    Turkish => b"Türkçe"
+    Ukrainian => b"Українська"
+    TokiPona => b"toki pona"
   }
 }
 
 ///|
 pub fn Language::code(lang : Language) -> Utf8 {
   match lang {
-    English => "en"
-    Dutch => "nl"
-    French => "fr"
-    German => "de"
-    Italian => "it"
-    Polish => "po"
-    Romanian => "ro"
-    Russian => "ru"
-    Spanish => "es"
-    Swedish => "sv"
-    Turkish => "tr"
-    Ukrainian => "uk"
-    TokiPona => "tp"
+    English => b"en"
+    Dutch => b"nl"
+    French => b"fr"
+    German => b"de"
+    Italian => b"it"
+    Polish => b"po"
+    Romanian => b"ro"
+    Russian => b"ru"
+    Spanish => b"es"
+    Swedish => b"sv"
+    Turkish => b"tr"
+    Ukrainian => b"uk"
+    TokiPona => b"tp"
   }
 }
 
@@ -141,12 +141,12 @@ pub fn Language::encoding(lang : Language) -> Utf8 {
     // Just like English, Dutch has very little non-ASCII characters
     // which can be avoided in translations to make it possible to stick
     // to the smaller fonts.
-    English | Dutch | TokiPona => "ascii"
-    Italian | Spanish | Swedish => "iso_8859_1"
-    German | French => "iso_8859_2"
-    Russian | Ukrainian => "iso_8859_5"
-    Turkish => "iso_8859_9"
-    Polish => "iso_8859_13"
-    Romanian => "iso_8859_16"
+    English | Dutch | TokiPona => b"ascii"
+    Italian | Spanish | Swedish => b"iso_8859_1"
+    German | French => b"iso_8859_2"
+    Russian | Ukrainian => b"iso_8859_5"
+    Turkish => b"iso_8859_9"
+    Polish => b"iso_8859_13"
+    Romanian => b"iso_8859_16"
   }
 }

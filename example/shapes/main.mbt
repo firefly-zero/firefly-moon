@@ -3,13 +3,13 @@ using @firefly {type Angle, type LineStyle, type Point, type Size, type Style}
 
 ///|
 fn main {
-  @firefly.log_debug("main")
+  @firefly.log_debug(b"main")
 }
 
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  @firefly.log_debug("boot")
+  @firefly.log_debug(b"boot")
   @firefly.draw_rect(
     Point::new(10, 10),
     Size::new(40, 15),

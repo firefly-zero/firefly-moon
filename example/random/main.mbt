@@ -9,12 +9,12 @@ fn main {
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  @firefly.log_debug(("random float: " : Utf8) + format(@random.float()))
-  @firefly.log_debug(("random double: " : Utf8) + format(@random.double()))
-  @firefly.log_debug(("random int: " : Utf8) + format(@random.int()))
-  @firefly.log_debug(("random uint: " : Utf8) + format(@random.uint()))
-  @firefly.log_debug(("random int64: " : Utf8) + format(@random.int64()))
-  @firefly.log_debug(("random uint64: " : Utf8) + format(@random.uint64()))
+  @firefly.log_debug(b"random float: " + format(@random.float()))
+  @firefly.log_debug(b"random double: " + format(@random.double()))
+  @firefly.log_debug(b"random int: " + format(@random.int()))
+  @firefly.log_debug(b"random uint: " + format(@random.uint()))
+  @firefly.log_debug(b"random int64: " + format(@random.int64()))
+  @firefly.log_debug(b"random uint64: " + format(@random.uint64()))
   let colors : FixedArray[@firefly.Color] = [
     Red,
     Orange,

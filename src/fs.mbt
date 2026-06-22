@@ -8,7 +8,7 @@
 /// Any String literal or Bytes literal is a valid ASCII string:
 ///
 /// ```text
-/// @firefly.load_file("font")
+/// @firefly.load_file(b"font")
 /// ```
 pub type Path = Bytes
 

@@ -3,20 +3,20 @@ using @firefly {type Color, type Point}
 
 ///|
 fn main {
-  @firefly.log_debug("main")
+  @firefly.log_debug(b"main")
 }
 
 ///|
-let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
+let my_font : Ref[@firefly.Font] = Ref(@firefly.Font::default())
 
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  my_font.val = @firefly.load_file("font").unwrap().as_font()
+  my_font.val = @firefly.load_file(b"font").unwrap().as_font()
 }
 
 ///|
-let frame : Ref[Int] = Ref::new(0)
+let frame : Ref[Int] = Ref(0)
 
 ///|
 /// update is called ~60 times per second.
@@ -33,33 +33,33 @@ pub fn update() -> Unit {
 pub fn render() -> Unit {
   @firefly.clear_screen(Black)
   let line_height = my_font.val.char_height()
-  @firefly.draw_text("hello world", my_font.val, Point::new(30, 20), Orange)
+  @firefly.draw_text(b"hello world", my_font.val, Point::new(30, 20), Orange)
   @firefly.draw_text(
-    "special chars: åäöáâ§ß",
+    b"special chars: åäöáâ§ß",
     my_font.val,
     Point::new(30, 20 + line_height * 2),
     Yellow,
   )
   @firefly.draw_text(
-    "emoji fail: 🖖",
+    b"emoji fail: 🖖",
     my_font.val,
     Point::new(30, 20 + line_height * 3),
     Yellow,
   )
   @firefly.draw_text(
-    "multiline\ntext",
+    b"multiline\ntext",
     my_font.val,
     Point::new(30, 20 + line_height * 5),
     Cyan,
   )
   draw_text_shadow(
-    "text with shadow",
+    b"text with shadow",
     my_font.val,
     Point::new(30, 20 + line_height * 8),
     White,
   )
   draw_text_rainbow(
-    "rainbow text",
+    b"rainbow text",
     my_font.val,
     Point::new(30, 20 + line_height * 10),
     index_offset=frame.val / 6,

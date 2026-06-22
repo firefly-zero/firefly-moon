@@ -10,38 +10,36 @@ using @firefly {
 
 ///|
 fn main {
-  @firefly.log_debug("main")
+  @firefly.log_debug(b"main")
 }
 
 ///|
-let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
+let my_font : Ref[@firefly.Font] = Ref(@firefly.Font::default())
 
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  my_font.val = @firefly.load_file("font").unwrap().as_font()
+  my_font.val = @firefly.load_file(b"font").unwrap().as_font()
 }
 
 ///|
 /// The most recent touch pad value.
-let input_pad : Ref[@firefly.Pad?] = Ref::new(None)
+let input_pad : Ref[@firefly.Pad?] = Ref(None)
 
 ///|
 /// Pad value from when the user started touching the touch pad.
-let input_pad_start : Ref[@firefly.Pad] = Ref::new(@firefly.Pad::default())
+let input_pad_start : Ref[@firefly.Pad] = Ref(@firefly.Pad::default())
 
 ///|
-let input_buttons : Ref[@firefly.Buttons] = Ref::new(
-  @firefly.Buttons::default(),
-)
+let input_buttons : Ref[@firefly.Buttons] = Ref(@firefly.Buttons::default())
 
 ///|
-let cursor : Ref[Point] = Ref::new(
+let cursor : Ref[Point] = Ref(
   Point::new(@firefly.SCREEN_WIDTH / 2, @firefly.SCREEN_HEIGHT / 2 + 40),
 )
 
 ///|
-let cursor_old : Ref[Point] = Ref::new(cursor.val)
+let cursor_old : Ref[Point] = Ref(cursor.val)
 
 ///|
 /// Arbitrary value used to control the sensitivity of the cursor
@@ -83,7 +81,7 @@ pub fn update() -> Unit {
 pub fn render() -> Unit {
   @firefly.clear_screen(Black)
   @firefly.draw_text(
-    "MoonBit input example",
+    b"MoonBit input example",
     my_font.val,
     Point::new(55, 50),
     LightGray,
@@ -157,7 +155,7 @@ fn draw_menu_input() -> Unit {
     Style::new_solid(button_bg_color(input_buttons.val.menu)),
   )
   @firefly.draw_text(
-    "menu",
+    b"menu",
     my_font.val,
     Point::new(105, 84),
     button_color(input_buttons.val.menu),
@@ -166,10 +164,10 @@ fn draw_menu_input() -> Unit {
 
 ///|
 fn draw_abxy_input() -> Unit {
-  draw_button("A", Point::new(170, 95), input_buttons.val.south)
-  draw_button("B", Point::new(180, 85), input_buttons.val.east)
-  draw_button("X", Point::new(160, 85), input_buttons.val.west)
-  draw_button("Y", Point::new(170, 75), input_buttons.val.north)
+  draw_button(b"A", Point::new(170, 95), input_buttons.val.south)
+  draw_button(b"B", Point::new(180, 85), input_buttons.val.east)
+  draw_button(b"X", Point::new(160, 85), input_buttons.val.west)
+  draw_button(b"Y", Point::new(170, 75), input_buttons.val.north)
 }
 
 ///|

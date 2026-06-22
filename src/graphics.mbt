@@ -266,7 +266,7 @@ pub fn draw_sub_image(sub_image : SubImage, point : Point) -> Unit {
 ///|
 /// Reference to the current image. Kept to make sure the image doesn't
 /// get garbage collected.
-let current_canvas : Ref[Canvas?] = Ref::new(None)
+let current_canvas : Ref[Canvas?] = Ref(None)
 
 ///|
 /// Set the target canvas for all subsequent drawing operations.

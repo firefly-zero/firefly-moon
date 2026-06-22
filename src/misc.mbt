@@ -9,7 +9,7 @@
 ///
 /// ```mbt check
 /// test {
-///   let utf8 : @firefly.Utf8 = "hello"
+///   let utf8 : @firefly.Utf8 = b"hello"
 ///   ignore(utf8)
 /// }
 /// ```
@@ -29,7 +29,7 @@ pub type Utf8 = Bytes
 ///
 /// ```mbt check
 /// test {
-///   let utf8 : @firefly.Utf8View = "hello"
+///   let utf8 : @firefly.Utf8View = b"hello"
 ///   ignore(utf8)
 /// }
 /// ```
