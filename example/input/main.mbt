@@ -19,7 +19,7 @@ let my_font : Ref[@firefly.Font] = Ref(@firefly.Font::default())
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  my_font.val = @firefly.load_file("font").unwrap().as_font()
+  my_font.val = @firefly.load_file(b"font").unwrap().as_font()
 }
 
 ///|
@@ -81,7 +81,7 @@ pub fn update() -> Unit {
 pub fn render() -> Unit {
   @firefly.clear_screen(Black)
   @firefly.draw_text(
-    "MoonBit input example",
+    b"MoonBit input example",
     my_font.val,
     Point::new(55, 50),
     LightGray,
@@ -155,7 +155,7 @@ fn draw_menu_input() -> Unit {
     Style::new_solid(button_bg_color(input_buttons.val.menu)),
   )
   @firefly.draw_text(
-    "menu",
+    b"menu",
     my_font.val,
     Point::new(105, 84),
     button_color(input_buttons.val.menu),
@@ -164,10 +164,10 @@ fn draw_menu_input() -> Unit {
 
 ///|
 fn draw_abxy_input() -> Unit {
-  draw_button("A", Point::new(170, 95), input_buttons.val.south)
-  draw_button("B", Point::new(180, 85), input_buttons.val.east)
-  draw_button("X", Point::new(160, 85), input_buttons.val.west)
-  draw_button("Y", Point::new(170, 75), input_buttons.val.north)
+  draw_button(b"A", Point::new(170, 95), input_buttons.val.south)
+  draw_button(b"B", Point::new(180, 85), input_buttons.val.east)
+  draw_button(b"X", Point::new(160, 85), input_buttons.val.west)
+  draw_button(b"Y", Point::new(170, 75), input_buttons.val.north)
 }
 
 ///|

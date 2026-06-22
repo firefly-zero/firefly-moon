@@ -27,7 +27,7 @@ struct Player {
 ///|
 /// boot is only called once, after all the memory is initialized.
 pub fn boot() -> Unit {
-  font.val = @firefly.load_file("font").unwrap().as_font()
+  font.val = @firefly.load_file(b"font").unwrap().as_font()
   let peers = @firefly.get_peers().to_fixed_array()
   for peer in peers {
     players.push(Player::{
