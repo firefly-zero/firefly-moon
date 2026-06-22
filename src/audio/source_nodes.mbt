@@ -129,3 +129,34 @@ pub fn[Mod : Modulator] Triangle::modulate(
 ) -> Unit {
   mod.modulate(self.id(), 0, low, high)
 }
+
+///|
+/// Set oscillation frequency.
+pub fn Sine::set(self : Sine, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set oscillation frequency.
+pub fn Square::set(self : Square, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set oscillation frequency.
+pub fn Sawtooth::set(self : Sawtooth, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set oscillation frequency.
+pub fn Triangle::set(self : Triangle, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Go to the specified timestamp in the file.
+pub fn File::seek(self : File, t : Time) -> Unit {
+  let val = Float::from_uint(t.0)
+  @ffi.audio_set_param(self.id(), 0, val)
+}
