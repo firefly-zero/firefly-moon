@@ -60,6 +60,54 @@ pub impl Modulator for HoldModulator with fn modulate(
 }
 
 ///|
+/// ADSR envelope.
+///
+/// It looks like this: `🭋🭍🬹🬿`
+///
+///  1. Until `attack`, the value goes from 0 to 1;
+///  2. Until `decay`, it goes from 1 to `sustain_level`;
+///  3. Until `sustain`, it holds `sustain_level`;
+///  4. Until `release`, it goes from `sustain_level` to 0;
+///  5. After `release`, it holds 0.
+///
+/// Most commonly used with `Gain`.
+#valtype
+pub(all) struct AdsrModulator {
+  /// When the value reaches 1.
+  attack : Time
+  /// When the value reaches `sustain_level`.
+  decay : Time
+  /// Until when the value holds `sustain_level`.
+  sustain : Time
+  /// The value generated from `decay` until `sustain`.
+  sustain_level : Float
+  /// When the value drops to 0.
+  release : Time
+}
+
+///|
+#inline
+pub impl Modulator for AdsrModulator with fn modulate(
+  self : AdsrModulator,
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+) -> Unit {
+  @ffi.audio_mod_adsr(
+    node_id,
+    param,
+    low,
+    high,
+    self.attack.0,
+    self.decay.0,
+    self.sustain.0,
+    self.sustain_level,
+    self.release.0,
+  )
+}
+
+///|
 /// Sine wave low-frequency oscillator.
 ///
 /// It looks like this: `∿`.
@@ -80,4 +128,46 @@ pub impl Modulator for SineModulator with fn modulate(
   high : Float,
 ) -> Unit {
   @ffi.audio_mod_sine(node_id, param, self.freq, low, high)
+}
+
+///|
+/// Square wave low-frequency oscillator.
+///
+/// It looks like this: `🭿🭾🭿🭾🭿🭾🭿🭾`.
+#valtype
+pub(all) struct SquareModulator {
+  period : Time
+}
+
+///|
+#inline
+pub impl Modulator for SquareModulator with fn modulate(
+  self : SquareModulator,
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+) -> Unit {
+  @ffi.audio_mod_square(node_id, param, low, high, self.period.0)
+}
+
+///|
+/// Sawtooth wave low-frequency oscillator.
+///
+/// It looks like this: `╱│╱│╱│╱│`.
+#valtype
+pub(all) struct SawtoothModulator {
+  period : Time
+}
+
+///|
+#inline
+pub impl Modulator for SawtoothModulator with fn modulate(
+  self : SawtoothModulator,
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+) -> Unit {
+  @ffi.audio_mod_sawtooth(node_id, param, low, high, self.period.0)
 }

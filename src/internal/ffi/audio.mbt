@@ -145,6 +145,19 @@ pub fn audio_mod_hold(
 ) = "audio" "mod_hold"
 
 ///|
+pub fn audio_mod_adsr(
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+  attack : UInt,
+  decay : UInt,
+  sustain : UInt,
+  sustain_level : Float,
+  release : UInt,
+) = "audio" "mod_adsr"
+
+///|
 /// Sine wave low-frequency oscillator.
 ///
 /// It looks like this: `∿`.
@@ -157,3 +170,21 @@ pub fn audio_mod_sine(
   low : Float,
   high : Float,
 ) = "audio" "mod_sine"
+
+///|
+pub fn audio_mod_square(
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+  period : UInt,
+) = "audio" "mod_square"
+
+///|
+pub fn audio_mod_sawtooth(
+  node_id : UInt,
+  param : UInt,
+  low : Float,
+  high : Float,
+  period : UInt,
+) = "audio" "mod_sawtooth"
