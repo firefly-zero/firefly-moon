@@ -10,7 +10,7 @@ pub(all) struct RoundedRect {
 ///|
 /// Draw this rounded rectangle to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for RoundedRect with draw(self : RoundedRect) -> Unit {
+pub impl Shape for RoundedRect with fn draw(self : RoundedRect) -> Unit {
   @firefly.draw_rounded_rect(self.point, self.size, self.corner, self.style)
 }
 

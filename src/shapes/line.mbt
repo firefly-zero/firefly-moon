@@ -9,6 +9,6 @@ pub(all) struct Line {
 ///|
 /// Draw this line to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Line with draw(self : Line) -> Unit {
+pub impl Shape for Line with fn draw(self : Line) -> Unit {
   @firefly.draw_line(self.a, self.b, self.style)
 }

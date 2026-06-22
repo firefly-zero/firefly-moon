@@ -11,7 +11,7 @@ pub(all) struct Sector {
 ///|
 /// Draw this circle sector to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Sector with draw(self : Sector) -> Unit {
+pub impl Shape for Sector with fn draw(self : Sector) -> Unit {
   @firefly.draw_sector(
     self.point,
     self.diameter,

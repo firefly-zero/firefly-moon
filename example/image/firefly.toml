@@ -6,6 +6,7 @@ author_id = "demo"
 app_id = "moonbit-image"
 author_name = "Demo"
 app_name = "Image demo (MoonBit)"
+lang = "moon"
 
 [files]
 smile1 = { path = "assets/smile-1.png" }

@@ -9,7 +9,7 @@ pub(all) struct Rect {
 ///|
 /// Draw this rectangle to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Rect with draw(self : Rect) -> Unit {
+pub impl Shape for Rect with fn draw(self : Rect) -> Unit {
   @firefly.draw_rect(self.point, self.size, self.style)
 }
 

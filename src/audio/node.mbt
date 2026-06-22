@@ -6,7 +6,7 @@ struct Node {
 
 ///|
 pub trait Marker {
-  next(Self) -> Node
+  fn next(Self) -> Node
 }
 
 ///|
@@ -20,7 +20,7 @@ pub struct Sine(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Sine with next(self : Sine) -> Node {
+pub impl Marker for Sine with fn next(self : Sine) -> Node {
   self.0
 }
 
@@ -31,7 +31,7 @@ struct Mix(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Mix with next(self : Mix) -> Node {
+pub impl Marker for Mix with fn next(self : Mix) -> Node {
   self.0
 }
 
@@ -42,7 +42,7 @@ struct AllForOne(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for AllForOne with next(self : AllForOne) -> Node {
+pub impl Marker for AllForOne with fn next(self : AllForOne) -> Node {
   self.0
 }
 
@@ -53,7 +53,7 @@ struct Gain(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Gain with next(self : Gain) -> Node {
+pub impl Marker for Gain with fn next(self : Gain) -> Node {
   self.0
 }
 
@@ -64,7 +64,7 @@ struct Loop(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Loop with next(self : Loop) -> Node {
+pub impl Marker for Loop with fn next(self : Loop) -> Node {
   self.0
 }
 
@@ -75,7 +75,7 @@ struct Concat(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Concat with next(self : Concat) -> Node {
+pub impl Marker for Concat with fn next(self : Concat) -> Node {
   self.0
 }
 
@@ -86,7 +86,7 @@ struct Pan(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Pan with next(self : Pan) -> Node {
+pub impl Marker for Pan with fn next(self : Pan) -> Node {
   self.0
 }
 
@@ -97,7 +97,7 @@ struct Mute(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Mute with next(self : Mute) -> Node {
+pub impl Marker for Mute with fn next(self : Mute) -> Node {
   self.0
 }
 
@@ -108,7 +108,7 @@ struct Pause(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Pause with next(self : Pause) -> Node {
+pub impl Marker for Pause with fn next(self : Pause) -> Node {
   self.0
 }
 
@@ -119,7 +119,7 @@ struct TrackPosition(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for TrackPosition with next(self : TrackPosition) -> Node {
+pub impl Marker for TrackPosition with fn next(self : TrackPosition) -> Node {
   self.0
 }
 
@@ -130,7 +130,7 @@ struct LowPass(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for LowPass with next(self : LowPass) -> Node {
+pub impl Marker for LowPass with fn next(self : LowPass) -> Node {
   self.0
 }
 
@@ -141,7 +141,7 @@ struct HighPass(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for HighPass with next(self : HighPass) -> Node {
+pub impl Marker for HighPass with fn next(self : HighPass) -> Node {
   self.0
 }
 
@@ -152,7 +152,7 @@ struct TakeLeft(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for TakeLeft with next(self : TakeLeft) -> Node {
+pub impl Marker for TakeLeft with fn next(self : TakeLeft) -> Node {
   self.0
 }
 
@@ -163,7 +163,7 @@ struct TakeRight(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for TakeRight with next(self : TakeRight) -> Node {
+pub impl Marker for TakeRight with fn next(self : TakeRight) -> Node {
   self.0
 }
 
@@ -174,7 +174,7 @@ struct Swap(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Swap with next(self : Swap) -> Node {
+pub impl Marker for Swap with fn next(self : Swap) -> Node {
   self.0
 }
 
@@ -185,7 +185,7 @@ struct Clip(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Clip with next(self : Clip) -> Node {
+pub impl Marker for Clip with fn next(self : Clip) -> Node {
   self.0
 }
 
@@ -196,7 +196,7 @@ struct Square(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Square with next(self : Square) -> Node {
+pub impl Marker for Square with fn next(self : Square) -> Node {
   self.0
 }
 
@@ -207,7 +207,7 @@ struct Sawtooth(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Sawtooth with next(self : Sawtooth) -> Node {
+pub impl Marker for Sawtooth with fn next(self : Sawtooth) -> Node {
   self.0
 }
 
@@ -218,7 +218,7 @@ struct Triangle(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Triangle with next(self : Triangle) -> Node {
+pub impl Marker for Triangle with fn next(self : Triangle) -> Node {
   self.0
 }
 
@@ -229,7 +229,7 @@ struct Noise(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Noise with next(self : Noise) -> Node {
+pub impl Marker for Noise with fn next(self : Noise) -> Node {
   self.0
 }
 
@@ -240,7 +240,7 @@ struct Empty(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Empty with next(self : Empty) -> Node {
+pub impl Marker for Empty with fn next(self : Empty) -> Node {
   self.0
 }
 
@@ -251,7 +251,7 @@ struct Zero(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for Zero with next(self : Zero) -> Node {
+pub impl Marker for Zero with fn next(self : Zero) -> Node {
   self.0
 }
 
@@ -262,7 +262,7 @@ struct File(Node)
 ///|
 /// Get the next node for applying more effects.
 #inline
-pub impl Marker for File with next(self : File) -> Node {
+pub impl Marker for File with fn next(self : File) -> Node {
   self.0
 }
 

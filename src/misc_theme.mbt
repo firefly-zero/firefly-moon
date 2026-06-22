@@ -13,7 +13,7 @@ pub(all) struct Theme {
 } derive(Debug, Eq)
 
 ///|
-pub impl Default for Theme with default() -> Theme {
+pub impl Default for Theme with fn default() -> Theme {
   Theme::{
     id: 0,
     primary: Color::Black,

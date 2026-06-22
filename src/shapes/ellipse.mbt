@@ -9,7 +9,7 @@ pub(all) struct Ellipse {
 ///|
 /// Draw this ellipse to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Ellipse with draw(self : Ellipse) -> Unit {
+pub impl Shape for Ellipse with fn draw(self : Ellipse) -> Unit {
   @firefly.draw_ellipse(self.point, self.size, self.style)
 }
 

@@ -1,9 +1,0 @@
-{
-  "name": "example-image",
-  "deps": {
-    "firefly/firefly": {
-      "path": "../.."
-    }
-  },
-  "preferred-target": "wasm"
-}

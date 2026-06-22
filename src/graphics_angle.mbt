@@ -3,7 +3,7 @@
 struct Angle(Float) derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
-pub impl Show for Angle with output(self : Angle, logger : &Logger) -> Unit {
+pub impl Show for Angle with fn output(self : Angle, logger : &Logger) -> Unit {
   self.to_deg().to_int().output(logger)
   logger.write_char('°')
 }
@@ -76,31 +76,31 @@ test "angle to degrees" {
 
 ///|
 /// Add together two angles.
-pub impl Add for Angle with add(self : Angle, other : Angle) -> Angle {
+pub impl Add for Angle with fn add(self : Angle, other : Angle) -> Angle {
   self.0 + other.0
 }
 
 ///|
 /// Subtract one angle from another.
-pub impl Sub for Angle with sub(self : Angle, other : Angle) -> Angle {
+pub impl Sub for Angle with fn sub(self : Angle, other : Angle) -> Angle {
   self.0 - other.0
 }
 
 ///|
 /// Multiply one angle with another.
-pub impl Mul for Angle with mul(self : Angle, other : Angle) -> Angle {
+pub impl Mul for Angle with fn mul(self : Angle, other : Angle) -> Angle {
   self.0 * other.0
 }
 
 ///|
 /// Divide one angle with another.
-pub impl Div for Angle with div(self : Angle, other : Angle) -> Angle {
+pub impl Div for Angle with fn div(self : Angle, other : Angle) -> Angle {
   self.0 / other.0
 }
 
 ///|
 /// Negate an angle
-pub impl Neg for Angle with neg(self : Angle) -> Angle {
+pub impl Neg for Angle with fn neg(self : Angle) -> Angle {
   -self.0
 }
 

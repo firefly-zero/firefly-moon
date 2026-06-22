@@ -1,6 +1,6 @@
 ///|
 pub trait Modulator {
-  modulate(Self, node_id : UInt, param : UInt) -> Unit
+  fn modulate(Self, node_id : UInt, param : UInt) -> Unit
 }
 
 ///|
@@ -20,7 +20,7 @@ pub(all) struct LinearModulator {
 
 ///|
 #inline
-pub impl Modulator for LinearModulator with modulate(
+pub impl Modulator for LinearModulator with fn modulate(
   self : LinearModulator,
   node_id : UInt,
   param : UInt,
@@ -51,7 +51,7 @@ pub(all) struct HoldModulator {
 
 ///|
 #inline
-pub impl Modulator for HoldModulator with modulate(
+pub impl Modulator for HoldModulator with fn modulate(
   self : HoldModulator,
   node_id : UInt,
   param : UInt,
@@ -74,7 +74,7 @@ pub(all) struct SineModulator {
 
 ///|
 #inline
-pub impl Modulator for SineModulator with modulate(
+pub impl Modulator for SineModulator with fn modulate(
   self : SineModulator,
   node_id : UInt,
   param : UInt,

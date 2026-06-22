@@ -6,6 +6,7 @@ author_id = "demo"
 app_id = "moonbit-audio"
 author_name = "Demo"
 app_name = "Audio demo (MoonBit)"
+lang = "moon"
 
 [files]
-pickupCoin = { path = "assets/pickupCoin.wav"}
+pickupCoin = { path = "assets/pickupCoin.wav" }

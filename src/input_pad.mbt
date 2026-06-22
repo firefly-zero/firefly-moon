@@ -149,18 +149,18 @@ pub fn Pad::abs(self : Pad) -> Pad {
 
 ///|
 /// Add together two Pads.
-pub impl Add for Pad with add(self : Pad, other : Pad) -> Pad {
+pub impl Add for Pad with fn add(self : Pad, other : Pad) -> Pad {
   { x: self.x + other.x, y: self.y + other.y }
 }
 
 ///|
 /// Subtract one Pad from another.
-pub impl Sub for Pad with sub(self : Pad, other : Pad) -> Pad {
+pub impl Sub for Pad with fn sub(self : Pad, other : Pad) -> Pad {
   { x: self.x - other.x, y: self.y - other.y }
 }
 
 ///|
 /// Negate a Pad.
-pub impl Neg for Pad with neg(self : Pad) -> Pad {
+pub impl Neg for Pad with fn neg(self : Pad) -> Pad {
   { x: -self.x, y: -self.y }
 }
