@@ -227,8 +227,8 @@ pub fn[Mod : Modulator] Pause::modulate(
 /// Modulate the cut-off frequency.
 pub fn[Mod : Modulator] LowPass::modulate(
   self : LowPass,
-  low : Float,
-  high : Float,
+  low : Hz,
+  high : Hz,
   mod : Mod,
 ) -> Unit {
   mod.modulate(self.id(), 0, low, high)
@@ -238,8 +238,8 @@ pub fn[Mod : Modulator] LowPass::modulate(
 /// Modulate the cut-off frequency.
 pub fn[Mod : Modulator] HighPass::modulate(
   self : HighPass,
-  low : Float,
-  high : Float,
+  low : Hz,
+  high : Hz,
   mod : Mod,
 ) -> Unit {
   mod.modulate(self.id(), 0, low, high)
@@ -278,4 +278,68 @@ pub fn[Mod : Modulator] Clip::modulate_high(
   mod : Mod,
 ) -> Unit {
   mod.modulate(self.id(), 2, low, high)
+}
+
+///|
+/// Set the gain level.
+pub fn Gain::set(self : Gain, val : Float) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set the pan value (from 0. to 1.: 0. is only left, 1. is only right).
+pub fn Pan::set(self : Pan, val : Float) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+pub fn Mute::mute(self : Mute) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, 0)
+}
+
+///|
+pub fn Mute::unmute(self : Mute) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, 1)
+}
+
+///|
+pub fn Pause::pause(self : Pause) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, 0)
+}
+
+///|
+pub fn Pause::play(self : Pause) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, 1)
+}
+
+///|
+/// Set the cut-off frequency.
+pub fn LowPass::set(self : LowPass, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set the cut-off frequency.
+pub fn HighPass::set(self : HighPass, val : Hz) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set the low cut amplitude and adjust the high amplitude to keep the gap.
+///
+/// In other words, the difference between low and high cut points will stay the same.
+pub fn Clip::set_both(self : Clip, val : Float) -> Unit {
+  @ffi.audio_set_param(self.id(), 0, val)
+}
+
+///|
+/// Set the low cut amplitude.
+pub fn Clip::set_low(self : Clip, val : Float) -> Unit {
+  @ffi.audio_set_param(self.id(), 1, val)
+}
+
+///|
+/// Set the high cut amplitude.
+pub fn Clip::set_high(self : Clip, val : Float) -> Unit {
+  @ffi.audio_set_param(self.id(), 2, val)
 }
