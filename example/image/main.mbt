@@ -3,7 +3,7 @@ using @firefly {type Point}
 
 ///|
 fn main {
-  @firefly.log_debug("main")
+  @firefly.log_debug(b"main")
 }
 
 ///|
