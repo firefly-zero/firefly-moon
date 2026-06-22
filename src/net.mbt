@@ -1,7 +1,7 @@
 ///|
 /// A peer obtained either from `Peers` (`get_peers`) or from `get_me`.
 pub trait AnyPeer {
-  to_int(self : Self) -> Int
+  fn to_int(self : Self) -> Int
 }
 
 ///|
@@ -17,7 +17,7 @@ struct Me {
 } derive(Hash)
 
 ///|
-pub impl AnyPeer for Me with to_int(self : Me) -> Int {
+pub impl AnyPeer for Me with fn to_int(self : Me) -> Int {
   self.raw
 }
 
@@ -35,12 +35,12 @@ struct Peer {
 } derive(Eq, Compare, Hash)
 
 ///|
-pub impl AnyPeer for Peer with to_int(self : Peer) -> Int {
+pub impl AnyPeer for Peer with fn to_int(self : Peer) -> Int {
   self.raw
 }
 
 ///|
-pub impl Show for Peer with to_string(self) -> String {
+pub impl Show for Peer with fn to_string(self) -> String {
   match self.raw {
     0xFF => "Peer(*)"
     _ => "Peer(\{self.raw})"
@@ -48,7 +48,7 @@ pub impl Show for Peer with to_string(self) -> String {
 }
 
 ///|
-pub impl Show for Peer with output(self, logger : &Logger) -> Unit {
+pub impl Show for Peer with fn output(self, logger : &Logger) -> Unit {
   match self.raw {
     0xFF => logger.write_string("Peer(*)")
     _ => {
@@ -70,7 +70,7 @@ pub fn Peer::combined() -> Peer {
 ///|
 /// `Peer` type default value, which is `Peer::combined`.
 #inline
-pub impl Default for Peer with default() -> Peer {
+pub impl Default for Peer with fn default() -> Peer {
   Peer::combined()
 }
 

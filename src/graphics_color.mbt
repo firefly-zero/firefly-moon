@@ -37,12 +37,12 @@ pub(all) enum Color {
 } derive(Debug, Eq, Compare, Hash)
 
 ///|
-pub impl Show for Color with output(self : Color, logger : &Logger) -> Unit {
+pub impl Show for Color with fn output(self : Color, logger : &Logger) -> Unit {
   logger.write_string(self.to_string())
 }
 
 ///|
-pub impl Show for Color with to_string(self : Color) -> String {
+pub impl Show for Color with fn to_string(self : Color) -> String {
   match self {
     None => "none"
     Black => "black"
@@ -65,7 +65,7 @@ pub impl Show for Color with to_string(self : Color) -> String {
 }
 
 ///|
-pub impl Default for Color with default() -> Color {
+pub impl Default for Color with fn default() -> Color {
   Color::None
 }
 

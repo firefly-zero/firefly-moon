@@ -107,12 +107,12 @@ test "Size.component_max" {
 
 ///|
 /// Add together two sizes.
-pub impl Add for Size with add(self : Size, other : Size) -> Size {
+pub impl Add for Size with fn add(self : Size, other : Size) -> Size {
   { w: self.w + other.w, h: self.h + other.h }
 }
 
 ///|
 /// Subtract one size from another.
-pub impl Sub for Size with sub(self : Size, other : Size) -> Size {
+pub impl Sub for Size with fn sub(self : Size, other : Size) -> Size {
   { w: self.w - other.w, h: self.h - other.h }
 }

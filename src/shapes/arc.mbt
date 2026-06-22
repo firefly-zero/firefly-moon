@@ -11,7 +11,7 @@ pub(all) struct Arc {
 ///|
 /// Draw this arc to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Arc with draw(self : Arc) -> Unit {
+pub impl Shape for Arc with fn draw(self : Arc) -> Unit {
   @firefly.draw_arc(
     self.point,
     self.diameter,

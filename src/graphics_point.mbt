@@ -138,19 +138,19 @@ pub fn Point::abs(self : Point) -> Point {
 
 ///|
 /// Add together two points.
-pub impl Add for Point with add(self : Point, other : Point) -> Point {
+pub impl Add for Point with fn add(self : Point, other : Point) -> Point {
   { x: self.x + other.x, y: self.y + other.y }
 }
 
 ///|
 /// Subtract one point from another.
-pub impl Sub for Point with sub(self : Point, other : Point) -> Point {
+pub impl Sub for Point with fn sub(self : Point, other : Point) -> Point {
   { x: self.x - other.x, y: self.y - other.y }
 }
 
 ///|
 /// Negate a Point.
-pub impl Neg for Point with neg(self : Point) -> Point {
+pub impl Neg for Point with fn neg(self : Point) -> Point {
   { x: -self.x, y: -self.y }
 }
 

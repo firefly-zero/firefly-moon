@@ -9,7 +9,7 @@ pub(all) struct Circle {
 ///|
 /// Draw this circle to the screen (or the current canvas, if one is set).
 #inline
-pub impl Shape for Circle with draw(self : Circle) -> Unit {
+pub impl Shape for Circle with fn draw(self : Circle) -> Unit {
   @firefly.draw_circle(self.point, self.diameter, self.style)
 }
 

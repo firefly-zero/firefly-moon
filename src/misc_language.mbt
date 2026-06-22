@@ -29,7 +29,7 @@ pub(all) enum Language {
 } derive(Debug, Eq, Hash)
 
 ///|
-pub impl Default for Language with default() -> Language {
+pub impl Default for Language with fn default() -> Language {
   Language::English
 }
 
