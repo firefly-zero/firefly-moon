@@ -7,7 +7,7 @@ fn main {
 }
 
 ///|
-let my_font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
+let my_font : Ref[@firefly.Font] = Ref(@firefly.Font::default())
 
 ///|
 /// boot is only called once, after all the memory is initialized.
@@ -16,7 +16,7 @@ pub fn boot() -> Unit {
 }
 
 ///|
-let frame : Ref[Int] = Ref::new(0)
+let frame : Ref[Int] = Ref(0)
 
 ///|
 /// update is called ~60 times per second.

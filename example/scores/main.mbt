@@ -11,7 +11,7 @@ fn main {
 let board : Board = 1
 
 ///|
-let font : Ref[@firefly.Font] = Ref::new(@firefly.Font::default())
+let font : Ref[@firefly.Font] = Ref(@firefly.Font::default())
 
 ///|
 let players : Array[Player] = Array::new(capacity=4)
