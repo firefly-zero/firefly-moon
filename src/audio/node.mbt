@@ -1,4 +1,11 @@
 ///|
+pub trait SourceNode {
+  fn id(Self) -> UInt
+  /// Reset the node state to how it was when it was just added.
+  fn reset(Self) -> Unit = _
+}
+
+///|
 pub trait Node {
   fn id(Self) -> UInt
   /// Add sine wave oscillator source (`∿`).
@@ -47,6 +54,15 @@ pub trait Node {
   fn add_swap(Self) -> Swap = _
   /// Add node clamping the input amplitude. Can be used for hard distortion.
   fn add_clip(Self, low : Float, high : Float) -> Clip = _
+  /// Reset the node state to how it was when it was just added.
+  fn reset(Self) -> Unit = _
+  /// Reset the node and all child nodes to the state to how it was when they were just added.
+  fn reset_all(Self) -> Unit = _
+  ///  Remove all child nodes.
+  ///
+  /// After it is called, you should make sure to discard all references to the
+  /// old child nodes.
+  fn clear(Self) -> Unit = _
 }
 
 ///|
@@ -170,4 +186,24 @@ impl Node with fn add_swap(self) -> Swap {
 ///|
 impl Node with fn add_clip(self, low : Float, high : Float) -> Clip {
   Clip::{ id: @ffi.audio_add_clip(self.id(), low, high) }
+}
+
+///|
+impl SourceNode with fn reset(self) {
+  @ffi.audio_reset(self.id())
+}
+
+///|
+impl Node with fn reset(self) {
+  @ffi.audio_reset(self.id())
+}
+
+///|
+impl Node with fn reset_all(self) {
+  @ffi.audio_reset_all(self.id())
+}
+
+///|
+impl Node with fn clear(self) {
+  @ffi.audio_clear(self.id())
 }
