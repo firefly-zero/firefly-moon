@@ -1,9 +1,0 @@
-{
-  "name": "example-input",
-  "deps": {
-    "firefly/firefly": {
-      "path": "../.."
-    }
-  },
-  "preferred-target": "wasm"
-}

@@ -6,6 +6,7 @@ author_id = "demo"
 app_id = "moonbit-scores"
 author_name = "Demo"
 app_name = "Scores demo (MoonBit)"
+lang = "moon"
 
 [files]
 font = { path = "assets/eg_6x10.fff" }

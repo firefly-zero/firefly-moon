@@ -6,9 +6,14 @@ version: 3
 
 vars:
   MOON_MODULES:
-    sh: echo ./src && find ./example -maxdepth 1 -mindepth 1 -type d
+    sh: >
+      echo ./src &&
+      find ./example -maxdepth 1 -mindepth 1 -type d
+      | grep -vE '(_build|.mooncakes)'
   EXAMPLES:
-    sh: find ./example -maxdepth 1 -mindepth 1 -type d
+    sh: >
+      find ./example -maxdepth 1 -mindepth 1 -type d
+      | grep -vE '(_build|.mooncakes)'
 
 tasks:
   release:
