@@ -165,6 +165,34 @@ pub fn draw_sub_image(
 ) = "graphics" "draw_sub_image"
 
 ///|
+pub fn draw_sub_tile(
+  image_ptr : UInt,
+  image_len : Int,
+  x : Int,
+  y : Int,
+  w : Int,
+  h : Int,
+  sub_x : Int,
+  sub_y : Int,
+  sub_width : Int,
+  sub_height : Int,
+) = "graphics" "draw_sub_tile"
+
+///|
+pub fn draw_nine_slice(
+  image_ptr : UInt,
+  image_len : Int,
+  x : Int,
+  y : Int,
+  w : Int,
+  h : Int,
+  sub_x : Int,
+  sub_y : Int,
+  sub_width : Int,
+  sub_height : Int,
+) = "graphics" "draw_nine_slice"
+
+///|
 /// Set the target image for all subsequent drawing operations.
 ///
 /// To draw to the screen again, call `unset_canvas`.

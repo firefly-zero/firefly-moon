@@ -264,6 +264,56 @@ pub fn draw_sub_image(sub_image : SubImage, point : Point) -> Unit {
 }
 
 ///|
+/// Tile the given screen area with the provided sub-image.
+pub fn draw_sub_tile(sub_image : SubImage, point : Point, size : Size) -> Unit {
+  @ffi.draw_sub_tile(
+    @memory.fixedbytes_addr(sub_image.image.0),
+    @memory.fixedbytes_size(sub_image.image.0),
+    point.x,
+    point.y,
+    size.w,
+    size.h,
+    sub_image.point_x,
+    sub_image.point_y,
+    sub_image.size_w,
+    sub_image.size_h,
+  )
+  sub_image.image |> @memory.keep
+}
+
+///|
+/// Fill the given area with the given 9-slice.
+///
+/// A 9-slice is used to tile an area with 9 sub-images: 4 corners,
+/// 4 edges, and 1 middle segment. It is useful for speech bubbles
+/// and other stylish boxes.
+///
+/// The whole image is the 9-slice. The sub-image is the center area of the 9-slice.
+///
+/// If the target area is bigger than the 9-slice segments,
+/// all the segments (except corners) are repeated ("tiled")
+/// without stretching or mirroring.
+pub fn draw_nine_slice(
+  sub_image : SubImage,
+  point : Point,
+  size : Size,
+) -> Unit {
+  @ffi.draw_nine_slice(
+    @memory.fixedbytes_addr(sub_image.image.0),
+    @memory.fixedbytes_size(sub_image.image.0),
+    point.x,
+    point.y,
+    size.w,
+    size.h,
+    sub_image.point_x,
+    sub_image.point_y,
+    sub_image.size_w,
+    sub_image.size_h,
+  )
+  sub_image.image |> @memory.keep
+}
+
+///|
 /// Reference to the current image. Kept to make sure the image doesn't
 /// get garbage collected.
 let current_canvas : Ref[Canvas?] = Ref(None)
