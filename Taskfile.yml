@@ -20,7 +20,7 @@ tasks:
     desc: build and publish release
     cmds:
       - test {{.CLI_ARGS}}
-      - grep -F '"{{.CLI_ARGS}}"' moon.mod.json
+      - grep -F '"{{.CLI_ARGS}}"' moon.mod
       - moon publish
       - git tag {{.CLI_ARGS}}
       - git push
