@@ -7,6 +7,9 @@ pub impl Node for Out with fn id(_self) -> UInt {
 }
 
 ///|
+pub extend Out with Node::{id}
+
+///|
 /// The output audio node. Mixes all inputs and plays them on the device's speaker.
 pub let out : Out = Out::{ }
 
@@ -22,6 +25,9 @@ pub impl Node for Mix with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Mix with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_all_for_one`.
 struct AllForOne {
   id : UInt
@@ -31,6 +37,9 @@ struct AllForOne {
 pub impl Node for AllForOne with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend AllForOne with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_gain`.
@@ -44,6 +53,9 @@ pub impl Node for Gain with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Gain with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_loop`.
 struct Loop {
   id : UInt
@@ -53,6 +65,9 @@ struct Loop {
 pub impl Node for Loop with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Loop with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_concat`.
@@ -66,6 +81,9 @@ pub impl Node for Concat with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Concat with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_pan`.
 struct Pan {
   id : UInt
@@ -75,6 +93,9 @@ struct Pan {
 pub impl Node for Pan with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Pan with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_mute`.
@@ -88,6 +109,9 @@ pub impl Node for Mute with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Mute with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_pause`.
 struct Pause {
   id : UInt
@@ -97,6 +121,9 @@ struct Pause {
 pub impl Node for Pause with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Pause with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_track_position`.
@@ -110,6 +137,9 @@ pub impl Node for TrackPosition with fn id(self) -> UInt {
 }
 
 ///|
+pub extend TrackPosition with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_low_pass`.
 struct LowPass {
   id : UInt
@@ -119,6 +149,9 @@ struct LowPass {
 pub impl Node for LowPass with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend LowPass with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_high_pass`.
@@ -132,6 +165,9 @@ pub impl Node for HighPass with fn id(self) -> UInt {
 }
 
 ///|
+pub extend HighPass with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_take_left`.
 struct TakeLeft {
   id : UInt
@@ -141,6 +177,9 @@ struct TakeLeft {
 pub impl Node for TakeLeft with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend TakeLeft with Node::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_take_right`.
@@ -154,6 +193,9 @@ pub impl Node for TakeRight with fn id(self) -> UInt {
 }
 
 ///|
+pub extend TakeRight with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_swap`.
 struct Swap {
   id : UInt
@@ -165,6 +207,9 @@ pub impl Node for Swap with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Swap with Node::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_clip`.
 struct Clip {
   id : UInt
@@ -174,6 +219,9 @@ struct Clip {
 pub impl Node for Clip with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Clip with Node::{id}
 
 ///|
 /// Modulate the gain level.

@@ -10,6 +10,9 @@ pub impl SourceNode for Sine with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Sine with SourceNode::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_square`.
 struct Square {
   id : UInt
@@ -19,6 +22,9 @@ struct Square {
 pub impl SourceNode for Square with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Square with SourceNode::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_sawtooth`.
@@ -32,6 +38,9 @@ pub impl SourceNode for Sawtooth with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Sawtooth with SourceNode::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_triangle`.
 struct Triangle {
   id : UInt
@@ -41,6 +50,9 @@ struct Triangle {
 pub impl SourceNode for Triangle with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Triangle with SourceNode::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_noise`.
@@ -54,6 +66,9 @@ pub impl SourceNode for Noise with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Noise with SourceNode::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_empty`.
 struct Empty {
   id : UInt
@@ -63,6 +78,9 @@ struct Empty {
 pub impl SourceNode for Empty with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend Empty with SourceNode::{id}
 
 ///|
 /// A marker for a specific node type. See `Node::add_zero`.
@@ -76,6 +94,9 @@ pub impl SourceNode for Zero with fn id(self) -> UInt {
 }
 
 ///|
+pub extend Zero with SourceNode::{id}
+
+///|
 /// A marker for a specific node type. See `Node::add_file`.
 struct File {
   id : UInt
@@ -85,6 +106,9 @@ struct File {
 pub impl SourceNode for File with fn id(self) -> UInt {
   return self.id
 }
+
+///|
+pub extend File with SourceNode::{id}
 
 ///|
 /// Modulate oscillation frequency.

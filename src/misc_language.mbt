@@ -34,6 +34,9 @@ pub impl Default for Language with fn default() -> Language {
 }
 
 ///|
+pub extend Language with Default::{default}
+
+///|
 pub fn Language::from_raw(raw : UInt16) -> Language? {
   match raw {
     0x656e => Some(English)

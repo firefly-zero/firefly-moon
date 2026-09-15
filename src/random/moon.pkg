@@ -1,5 +1,4 @@
 import {
-  "moonbitlang/core/cmp",
   "moonbitlang/core/uint",
   "moonbitlang/core/int",
   "firefly/firefly",

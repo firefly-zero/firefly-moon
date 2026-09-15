@@ -65,9 +65,15 @@ pub impl Show for Color with fn to_string(self : Color) -> String {
 }
 
 ///|
+pub extend Color with Show::{output, to_string}
+
+///|
 pub impl Default for Color with fn default() -> Color {
   Color::None
 }
+
+///|
+pub extend Color with Default::{default}
 
 ///|
 pub fn Color::to_byte(color : Color) -> Byte {

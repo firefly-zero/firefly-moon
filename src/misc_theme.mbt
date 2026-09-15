@@ -22,3 +22,6 @@ pub impl Default for Theme with fn default() -> Theme {
     bg: Color::White,
   }
 }
+
+///|
+pub extend Theme with Default::{default}
