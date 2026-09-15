@@ -21,5 +21,10 @@ pub fn Rect::as_rect(
   self : Rect,
   corner? : Size = Size::default(),
 ) -> RoundedRect {
-  RoundedRect::{ point: self.point, size: self.size, corner, style: self.style }
+  RoundedRect::{
+    point: self.point,
+    size: self.size,
+    corner,
+    style: self.style,
+  }
 }

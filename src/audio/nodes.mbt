@@ -8,7 +8,7 @@ pub impl Node for Out with fn id(_self) -> UInt {
 
 ///|
 /// The output audio node. Mixes all inputs and plays them on the device's speaker.
-pub let out : Out = Out::{  }
+pub let out : Out = Out::{ }
 
 ///|
 /// A marker for a specific node type. See `Node::add_mix`.

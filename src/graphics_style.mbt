@@ -14,17 +14,17 @@ pub fn Style::new(
   stroke? : Color = None,
   stroke_width? : Int = 1,
 ) -> Style {
-  Style::{ fill, stroke, stroke_width }
+  Style::{ fill, stroke, stroke_width, }
 }
 
 ///|
 /// Create a style for a solid shape (without stroke).
 pub fn Style::new_solid(color : Color) -> Style {
-  Style::{ fill: color, stroke: None, stroke_width: 0 }
+  Style::{ fill: color, stroke: None, stroke_width: 0, }
 }
 
 ///|
 /// Create a style for an outlined shape (without fill).
 pub fn Style::new_outlined(color : Color, width? : Int = 1) -> Style {
-  Style::{ fill: None, stroke: color, stroke_width: width }
+  Style::{ fill: None, stroke: color, stroke_width: width, }
 }

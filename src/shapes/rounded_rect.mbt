@@ -19,5 +19,5 @@ pub impl Shape for RoundedRect with fn draw(self : RoundedRect) -> Unit {
 ///
 /// The corner size information is dropped in this conversion.
 pub fn RoundedRect::as_rect(self : RoundedRect) -> Rect {
-  Rect::{ point: self.point, size: self.size, style: self.style }
+  Rect::{ point: self.point, size: self.size, style: self.style, }
 }

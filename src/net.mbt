@@ -64,7 +64,7 @@ pub impl Show for Peer with fn output(self, logger : &Logger) -> Unit {
 ///
 /// Useful for single-player games that don't have any special logic for multiplayer.
 pub fn Peer::combined() -> Peer {
-  Peer::{ raw: 0xFF }
+  Peer::{ raw: 0xFF, }
 }
 
 ///|
@@ -104,7 +104,7 @@ pub fn Peers::to_fixed_array(self : Peers) -> FixedArray[Peer] {
 pub fn Peers::to_array(self : Peers) -> Array[Peer] {
   let res : Array[Peer] = Array::new()
   for peer in 0..<32 {
-    let peer = Peer::{ raw: peer }
+    let peer = Peer::{ raw: peer, }
     if self.contains(peer) {
       res.push(peer)
     }
@@ -114,14 +114,14 @@ pub fn Peers::to_array(self : Peers) -> Array[Peer] {
 
 ///|
 test "peers to array" {
-  inspect(Peers::{ raw: 0b0000_0000 }.to_array(), content="[]")
-  inspect(Peers::{ raw: 0b0000_0001 }.to_array(), content="[Peer(0)]")
+  inspect(Peers::{ raw: 0b0000_0000, }.to_array(), content="[]")
+  inspect(Peers::{ raw: 0b0000_0001, }.to_array(), content="[Peer(0)]")
   inspect(
-    Peers::{ raw: 0b0010_1101 }.to_array(),
+    Peers::{ raw: 0b0010_1101, }.to_array(),
     content="[Peer(0), Peer(2), Peer(3), Peer(5)]",
   )
   inspect(
-    Peers::{ raw: 0b1111_1111 }.to_array(),
+    Peers::{ raw: 0b1111_1111, }.to_array(),
     content="[Peer(0), Peer(1), Peer(2), Peer(3), Peer(4), Peer(5), Peer(6), Peer(7)]",
   )
 }
@@ -129,7 +129,7 @@ test "peers to array" {
 ///|
 /// Get the `Peer` representing the local device.
 pub fn get_me() -> Me {
-  Me::{ raw: @ffi.get_me() }
+  Me::{ raw: @ffi.get_me(), }
 }
 
 ///|
@@ -140,7 +140,7 @@ pub fn get_me() -> Me {
 /// It can be used to detect if multiplayer is active:
 /// if there is more than 1 peer, you're playing with friends.
 pub fn get_peers() -> Peers {
-  Peers::{ raw: @ffi.get_peers() }
+  Peers::{ raw: @ffi.get_peers(), }
 }
 
 ///|

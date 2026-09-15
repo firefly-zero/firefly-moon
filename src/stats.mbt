@@ -52,7 +52,7 @@ pub fn get_score(peer : Peer, board : Board) -> Int16 {
 
 ///|
 fn Progress::parse(result : UInt) -> Progress {
-  Progress::{ done: (result >> 16).to_uint16(), goal: result.to_uint16() }
+  Progress::{ done: (result >> 16).to_uint16(), goal: result.to_uint16(), }
 }
 
 ///|
