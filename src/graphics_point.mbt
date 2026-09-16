@@ -11,7 +11,7 @@ pub(all) struct Point {
 ///|
 /// Shortcut for creating a `Point`.
 pub fn Point::new(x : Int, y : Int) -> Point {
-  Point::{ x, y }
+  Point::{ x, y, }
 }
 
 ///|
@@ -27,13 +27,13 @@ pub fn Point::new_screen() -> Point {
 /// Note that a `Size` does not allow negative values.
 /// Any negative values are clamped to zero.
 pub fn Point::to_size(self : Point) -> Size {
-  Size::{ w: self.x, h: self.y }
+  Size::{ w: self.x, h: self.y, }
 }
 
 ///|
 /// Convert the `Point` to a `Pad`.
 pub fn Point::as_pad(self : Point) -> Pad {
-  Pad::{ x: self.x, y: self.y }
+  Pad::{ x: self.x, y: self.y, }
 }
 
 ///|
@@ -64,7 +64,7 @@ test "azimuth" {
 /// Returns a new `Point` where both `x` and `y` are set to the minimum
 /// of their respective values between both points.
 pub fn Point::component_min(self : Point, other : Point) -> Point {
-  Point::{ x: @cmp.minimum(self.x, other.x), y: @cmp.minimum(self.y, other.y) }
+  Point::{ x: @cmp.minimum(self.x, other.x), y: @cmp.minimum(self.y, other.y), }
 }
 
 ///|
@@ -99,7 +99,7 @@ test "Point.component_min" {
 /// Returns a new `Point` where both `x` and `y` are set to the maximum
 /// of their respective values between both points.
 pub fn Point::component_max(self : Point, other : Point) -> Point {
-  Point::{ x: @cmp.maximum(self.x, other.x), y: @cmp.maximum(self.y, other.y) }
+  Point::{ x: @cmp.maximum(self.x, other.x), y: @cmp.maximum(self.y, other.y), }
 }
 
 ///|
@@ -133,31 +133,31 @@ test "Point.component_max" {
 ///|
 /// Returns a `Point` with absolute (non-negative) `x` and `y` values.
 pub fn Point::abs(self : Point) -> Point {
-  Point::{ x: self.x.abs(), y: self.y.abs() }
+  Point::{ x: self.x.abs(), y: self.y.abs(), }
 }
 
 ///|
 /// Add together two points.
 pub impl Add for Point with fn add(self : Point, other : Point) -> Point {
-  { x: self.x + other.x, y: self.y + other.y }
+  { x: self.x + other.x, y: self.y + other.y, }
 }
 
 ///|
 /// Subtract one point from another.
 pub impl Sub for Point with fn sub(self : Point, other : Point) -> Point {
-  { x: self.x - other.x, y: self.y - other.y }
+  { x: self.x - other.x, y: self.y - other.y, }
 }
 
 ///|
 /// Negate a Point.
 pub impl Neg for Point with fn neg(self : Point) -> Point {
-  { x: -self.x, y: -self.y }
+  { x: -self.x, y: -self.y, }
 }
 
 ///|
 /// Divide a point by a scalar.
 pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
-  { x: self.x / divisor, y: self.y / divisor }
+  { x: self.x / divisor, y: self.y / divisor, }
 }
 
 ///|

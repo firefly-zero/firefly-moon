@@ -20,7 +20,7 @@ pub impl Shape for Circle with fn draw(self : Circle) -> Unit {
 pub fn Circle::as_ellipse(self : Circle) -> Ellipse {
   Ellipse::{
     point: self.point,
-    size: Size::{ w: self.diameter, h: self.diameter },
+    size: Size::{ w: self.diameter, h: self.diameter, },
     style: self.style,
   }
 }

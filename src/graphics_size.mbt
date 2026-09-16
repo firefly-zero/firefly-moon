@@ -19,7 +19,7 @@ pub(all) struct Size {
 ///|
 /// Shortcut for creating a Size.
 pub fn Size::new(w : Int, h : Int) -> Size {
-  Size::{ w, h }
+  Size::{ w, h, }
 }
 
 ///|
@@ -32,14 +32,14 @@ pub fn Size::new_screen() -> Size {
 ///|
 /// Convert the `Size` to a `Point`.
 pub fn Size::to_point(self : Size) -> Point {
-  Point::{ x: self.w, y: self.h }
+  Point::{ x: self.w, y: self.h, }
 }
 
 ///|
 /// Returns a new `Size` where both `w` and `h` are set to the minimum
 /// of their respective values between both sizes.
 pub fn Size::component_min(self : Size, other : Size) -> Size {
-  Size::{ w: @cmp.minimum(self.w, other.w), h: @cmp.minimum(self.h, other.h) }
+  Size::{ w: @cmp.minimum(self.w, other.w), h: @cmp.minimum(self.h, other.h), }
 }
 
 ///|
@@ -74,7 +74,7 @@ test "Size.component_min" {
 /// Returns a new `Size` where both `x` and `h` are set to the maximum
 /// of their respective values between both sizes.
 pub fn Size::component_max(self : Size, other : Size) -> Size {
-  Size::{ w: @cmp.maximum(self.w, other.w), h: @cmp.maximum(self.h, other.h) }
+  Size::{ w: @cmp.maximum(self.w, other.w), h: @cmp.maximum(self.h, other.h), }
 }
 
 ///|
@@ -108,11 +108,11 @@ test "Size.component_max" {
 ///|
 /// Add together two sizes.
 pub impl Add for Size with fn add(self : Size, other : Size) -> Size {
-  { w: self.w + other.w, h: self.h + other.h }
+  { w: self.w + other.w, h: self.h + other.h, }
 }
 
 ///|
 /// Subtract one size from another.
 pub impl Sub for Size with fn sub(self : Size, other : Size) -> Size {
-  { w: self.w - other.w, h: self.h - other.h }
+  { w: self.w - other.w, h: self.h - other.h, }
 }

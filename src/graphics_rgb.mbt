@@ -10,5 +10,5 @@ pub(all) struct RGB {
 ///|
 /// Shorthand for creating a new RGB.
 pub fn RGB::new(r : Byte, g : Byte, b : Byte) -> RGB {
-  { r, g, b }
+  { r, g, b, }
 }

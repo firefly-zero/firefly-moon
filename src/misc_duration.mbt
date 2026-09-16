@@ -10,18 +10,18 @@ pub fn Duration::from_microseconds(us : Int64) -> Duration {
 
 ///|
 pub fn Duration::from_milliseconds(ms : Int64) -> Duration {
-  { us: ms * 1000 }
+  { us: ms * 1000, }
 }
 
 ///|
 pub fn Duration::from_seconds(s : Int64) -> Duration {
-  { us: s * 1_000_000 }
+  { us: s * 1_000_000, }
 }
 
 ///|
 /// Add two durations.
 pub fn Duration::add(self : Duration, rhs : Duration) -> Duration {
-  Duration::{ us: self.us + rhs.us }
+  Duration::{ us: self.us + rhs.us, }
 }
 
 ///|
@@ -44,5 +44,5 @@ pub fn Duration::to_seconds(self : Duration) -> Int64 {
 
 ///|
 pub impl Neg for Duration with fn neg(self) -> Duration {
-  { us: -self.us }
+  { us: -self.us, }
 }

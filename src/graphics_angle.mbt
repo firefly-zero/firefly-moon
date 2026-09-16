@@ -4,7 +4,7 @@ struct Angle(Float) derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 pub impl Show for Angle with fn output(self : Angle, logger : &Logger) -> Unit {
-  self.to_deg().to_int().output(logger)
+  Show::output(self.to_deg().to_int(), logger)
   logger.write_char('°')
 }
 

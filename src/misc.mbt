@@ -78,7 +78,7 @@ pub fn get_random() -> UInt {
 
 ///|
 pub fn get_time() -> Duration {
-  { us: @ffi.get_time() }
+  { us: @ffi.get_time(), }
 }
 
 ///|

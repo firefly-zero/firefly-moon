@@ -41,7 +41,7 @@ pub(all) struct Pad {
 ///|
 /// Shorthand for creating a new `Pad`.
 pub fn Pad::new(x : Int, y : Int) -> Pad {
-  Pad::{ x, y }
+  Pad::{ x, y, }
 }
 
 ///|
@@ -59,7 +59,7 @@ pub fn Pad::read(peer? : Peer = Peer::default()) -> Pad? {
 ///|
 /// Convert the `Pad` to a `Point`.
 pub fn Pad::as_point(self : Pad) -> Point {
-  Point::{ x: self.x, y: self.y }
+  Point::{ x: self.x, y: self.y, }
 }
 
 ///|
@@ -144,23 +144,23 @@ pub fn Pad::radius_squared(self : Pad) -> Int {
 ///|
 /// Returns a `Pad` with absolute (non-negative) `x` and `y` values.
 pub fn Pad::abs(self : Pad) -> Pad {
-  Pad::{ x: self.x.abs(), y: self.y.abs() }
+  Pad::{ x: self.x.abs(), y: self.y.abs(), }
 }
 
 ///|
 /// Add together two Pads.
 pub impl Add for Pad with fn add(self : Pad, other : Pad) -> Pad {
-  { x: self.x + other.x, y: self.y + other.y }
+  { x: self.x + other.x, y: self.y + other.y, }
 }
 
 ///|
 /// Subtract one Pad from another.
 pub impl Sub for Pad with fn sub(self : Pad, other : Pad) -> Pad {
-  { x: self.x - other.x, y: self.y - other.y }
+  { x: self.x - other.x, y: self.y - other.y, }
 }
 
 ///|
 /// Negate a Pad.
 pub impl Neg for Pad with fn neg(self : Pad) -> Pad {
-  { x: -self.x, y: -self.y }
+  { x: -self.x, y: -self.y, }
 }

@@ -40,22 +40,10 @@ pub impl AnyPeer for Peer with fn to_int(self : Peer) -> Int {
 }
 
 ///|
-pub impl Show for Peer with fn to_string(self) -> String {
+pub impl Debug for Peer with fn to_repr(self) -> Repr {
   match self.raw {
-    0xFF => "Peer(*)"
-    _ => "Peer(\{self.raw})"
-  }
-}
-
-///|
-pub impl Show for Peer with fn output(self, logger : &Logger) -> Unit {
-  match self.raw {
-    0xFF => logger.write_string("Peer(*)")
-    _ => {
-      logger.write_string("Peer(")
-      logger.write_char((self.raw + '0').to_char().unwrap_or('?'))
-      logger.write_char(')')
-    }
+    0xFF => Repr::opaque_("Peer", Repr::literal("any"))
+    _ => Repr::opaque_("Peer", Repr::integer(self.raw.to_string()))
   }
 }
 
@@ -64,7 +52,7 @@ pub impl Show for Peer with fn output(self, logger : &Logger) -> Unit {
 ///
 /// Useful for single-player games that don't have any special logic for multiplayer.
 pub fn Peer::combined() -> Peer {
-  Peer::{ raw: 0xFF }
+  Peer::{ raw: 0xFF, }
 }
 
 ///|
@@ -73,6 +61,9 @@ pub fn Peer::combined() -> Peer {
 pub impl Default for Peer with fn default() -> Peer {
   Peer::combined()
 }
+
+///|
+pub extend Peer with Default::{default}
 
 ///|
 /// The map of peers online.
@@ -102,9 +93,9 @@ pub fn Peers::to_fixed_array(self : Peers) -> FixedArray[Peer] {
 
 ///|
 pub fn Peers::to_array(self : Peers) -> Array[Peer] {
-  let res : Array[Peer] = Array::new()
+  let res : Array[Peer] = Array()
   for peer in 0..<32 {
-    let peer = Peer::{ raw: peer }
+    let peer = Peer::{ raw: peer, }
     if self.contains(peer) {
       res.push(peer)
     }
@@ -113,23 +104,57 @@ pub fn Peers::to_array(self : Peers) -> Array[Peer] {
 }
 
 ///|
-test "peers to array" {
-  inspect(Peers::{ raw: 0b0000_0000 }.to_array(), content="[]")
-  inspect(Peers::{ raw: 0b0000_0001 }.to_array(), content="[Peer(0)]")
-  inspect(
-    Peers::{ raw: 0b0010_1101 }.to_array(),
-    content="[Peer(0), Peer(2), Peer(3), Peer(5)]",
+test "peer debug" {
+  debug_inspect(
+    Peer::{ raw: 0xff, },
+    content=(
+      #|<Peer: any>
+    ),
   )
-  inspect(
-    Peers::{ raw: 0b1111_1111 }.to_array(),
-    content="[Peer(0), Peer(1), Peer(2), Peer(3), Peer(4), Peer(5), Peer(6), Peer(7)]",
+  debug_inspect(
+    Peer::{ raw: 1, },
+    content=(
+      #|<Peer: 1>
+    ),
+  )
+}
+
+///|
+test "peers to array" {
+  debug_inspect(Peers::{ raw: 0b0000_0000, }.to_array(), content="[]")
+  debug_inspect(
+    Peers::{ raw: 0b0000_0001, }.to_array(),
+    content=(
+      #|[<Peer: 0>]
+    ),
+  )
+  debug_inspect(
+    Peers::{ raw: 0b0010_1101, }.to_array(),
+    content=(
+      #|[<Peer: 0>, <Peer: 2>, <Peer: 3>, <Peer: 5>]
+    ),
+  )
+  debug_inspect(
+    Peers::{ raw: 0b1111_1111, }.to_array(),
+    content=(
+      #|[
+      #|  <Peer: 0>,
+      #|  <Peer: 1>,
+      #|  <Peer: 2>,
+      #|  <Peer: 3>,
+      #|  <Peer: 4>,
+      #|  <Peer: 5>,
+      #|  <Peer: 6>,
+      #|  <Peer: 7>,
+      #|]
+    ),
   )
 }
 
 ///|
 /// Get the `Peer` representing the local device.
 pub fn get_me() -> Me {
-  Me::{ raw: @ffi.get_me() }
+  Me::{ raw: @ffi.get_me(), }
 }
 
 ///|
@@ -140,7 +165,7 @@ pub fn get_me() -> Me {
 /// It can be used to detect if multiplayer is active:
 /// if there is more than 1 peer, you're playing with friends.
 pub fn get_peers() -> Peers {
-  Peers::{ raw: @ffi.get_peers() }
+  Peers::{ raw: @ffi.get_peers(), }
 }
 
 ///|

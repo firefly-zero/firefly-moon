@@ -21,5 +21,5 @@ pub fn Ellipse::as_circle(
   self : Ellipse,
   diameter? : Int = @cmp.maximum(self.size.w, self.size.h),
 ) -> Circle {
-  Circle::{ point: self.point, diameter, style: self.style }
+  Circle::{ point: self.point, diameter, style: self.style, }
 }
