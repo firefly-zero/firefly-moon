@@ -319,6 +319,15 @@ pub fn draw_nine_slice(
 let current_canvas : Ref[Image?] = Ref(None)
 
 ///|
+/// Run the function with all drawing operations being executed on the canvas.
+pub fn[R] with_canvas(c : Image, f : () -> R) -> R {
+  set_canvas(c)
+  let r = f()
+  unset_canvas()
+  r
+}
+
+///|
 /// Set the target canvas for all subsequent drawing operations.
 ///
 /// To draw to the screen again, call `unset_canvas`.
