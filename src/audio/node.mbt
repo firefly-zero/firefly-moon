@@ -23,6 +23,7 @@ pub trait Node {
   fn add_pan(Self, level : Float) -> Pan = _
   fn add_mute(Self) -> Mute = _
   fn add_pause(Self) -> Pause = _
+  fn add_peer(Self, @firefly.Peer) -> Peer = _
   fn add_track_position(Self) -> TrackPosition = _
   fn add_low_pass(Self, freq : Hz, q : Float) -> LowPass = _
   fn add_high_pass(Self, freq : Hz, q : Float) -> HighPass = _
@@ -137,6 +138,17 @@ impl Node with fn add_mute(self) -> Mute {
 /// Add node that can be paused using modulation.
 impl Node with fn add_pause(self) -> Pause {
   Pause::{ id: @ffi.audio_add_pause(self.id()), }
+}
+
+///|
+/// Add node that plays child nodes only on the device of the given peer.
+impl Node with fn add_peer(self, p : @firefly.Peer) -> Peer {
+  let id : UInt32 = if @firefly.get_me().equal(p) {
+    @ffi.audio_add_mix(self.id())
+  } else {
+    @ffi.audio_add_zero(self.id())
+  }
+  Peer::{ id, }
 }
 
 ///|

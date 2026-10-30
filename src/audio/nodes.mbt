@@ -118,6 +118,12 @@ struct Pause {
 }
 
 ///|
+/// A marker for a specific node type. See `Node::add_peer`.
+struct Peer {
+  id : UInt32
+}
+
+///|
 pub impl Node for Pause with fn id(self) -> UInt32 {
   return self.id
 }
