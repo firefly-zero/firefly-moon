@@ -5,22 +5,31 @@
 struct Image(FixedArray[Byte]) derive(Default)
 
 ///|
-/// Create a new blank image.
-pub fn Image::new(size : Size) -> Image {
+/// Create a new empty image of the given size.
+///
+/// The given color is used as the transparency color.
+/// if [ColorNone] is given, then the image will not have transparency
+/// and it will be filled with [ColorBlack] by default.
+///
+/// Use [set_canvas] (or [with_canvas]) and the drawing functions
+/// to fill the newly created image.
+pub fn Image::new(size : Size, transp : Color) -> Image {
   let header_size = 4
   let body_size = size.w * size.h / 2
-  let arr = FixedArray::make(header_size + body_size, Byte::default())
+  let t = transp.to_byte() - 1
+  let def : Byte = if t == 255 { 0 } else { t }
+  let arr = FixedArray::make(header_size + body_size, def)
   arr[0] = 0x22 // magic number
   arr[1] = size.w.to_byte()
   arr[2] = (size.w >> 8).to_byte()
-  arr[3] = 0xff // no transparency
+  arr[3] = t // no transparency
   Image(arr)
 }
 
 ///|
 test "new image has correct size" {
   debug_inspect(
-    Image::new(Size::new(20, 10)).size(),
+    Image::new(Size::new(20, 10), Color::None).size(),
     content=(
       #|{ w: 20, h: 10 }
     ),
@@ -29,7 +38,7 @@ test "new image has correct size" {
 
 ///|
 test "new image has correct pixel count" {
-  inspect(Image::new(Size::new(20, 10)).pixels(), content="200")
+  inspect(Image::new(Size::new(20, 10), Color::Black).pixels(), content="200")
 }
 
 ///|
@@ -69,8 +78,8 @@ pub fn Image::transparency(self : Image) -> Color {
 /// Pass `Color::None` to disable transparency.
 pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
   match color {
-    Color::None => self.0[4] = 16
-    _ => self.0[4] = color.to_byte() - 1
+    Color::None => self.0[3] = 255
+    _ => self.0[3] = color.to_byte() - 1
   }
 }
 

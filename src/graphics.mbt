@@ -316,13 +316,13 @@ pub fn draw_nine_slice(
 ///|
 /// Reference to the current image. Kept to make sure the image doesn't
 /// get garbage collected.
-let current_canvas : Ref[Canvas?] = Ref(None)
+let current_canvas : Ref[Image?] = Ref(None)
 
 ///|
 /// Set the target canvas for all subsequent drawing operations.
 ///
 /// To draw to the screen again, call `unset_canvas`.
-pub fn set_canvas(canvas : Canvas) -> Unit {
+pub fn set_canvas(canvas : Image) -> Unit {
   current_canvas.val = Some(canvas)
   @ffi.set_canvas(
     @memory.fixedbytes_addr(canvas.0),
