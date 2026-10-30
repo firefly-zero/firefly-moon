@@ -52,7 +52,7 @@ pub fn log_error(s : Utf8View) -> Unit {
 ///|
 /// Set the random seed.
 #inline
-pub fn set_seed(seed : UInt) -> Unit {
+pub fn set_seed(seed : UInt32) -> Unit {
   @ffi.set_seed(seed)
 }
 
@@ -72,7 +72,7 @@ pub fn set_seed(seed : UInt) -> Unit {
 /// The last called host function is misc.get_random.
 /// ```
 #inline
-pub fn get_random() -> UInt {
+pub fn get_random() -> UInt32 {
   @ffi.get_random()
 }
 

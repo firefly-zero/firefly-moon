@@ -1,6 +1,6 @@
 ///|
 /// Audio sample rate, set to a constant 44100
-pub const SAMPLE_RATE : UInt = 44_100
+pub const SAMPLE_RATE : UInt32 = 44_100
 
 ///|
 pub(all) enum Pitch {

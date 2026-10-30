@@ -14,7 +14,7 @@ pub fn float() -> Float {
 ///|
 /// Returns a random 32-bit `UInt` in the range `[0, 2^32)`,
 /// or `[0, limit)` if limit is provided.
-pub fn uint(limit? : UInt) -> UInt {
+pub fn uint(limit? : UInt32) -> UInt32 {
   match limit {
     Some(lim) => @firefly.get_random() % lim
     None => @firefly.get_random()
@@ -42,7 +42,7 @@ pub fn uint64(limit? : UInt64) -> UInt64 {
 ///|
 /// Returns a random 32-bit `Int` in the range `[0, 2^31)`,
 /// or `[0, limit)` if limit is provided.
-pub fn int(limit? : Int) -> Int {
+pub fn int(limit? : Int32) -> Int32 {
   let res = (@firefly.get_random() & @int.MAX_VALUE.reinterpret_as_uint()).reinterpret_as_int()
   match limit {
     Some(lim) => res % lim
@@ -72,7 +72,7 @@ pub fn int64(limit? : Int64) -> Int64 {
 /// Shuffles the first `limit` elements of an array using the Fisher-Yates shuffle algorithm.
 ///
 /// The limit must not be negative.
-pub fn shuffle(limit : Int, swap : (Int, Int) -> Unit) -> Unit {
+pub fn shuffle(limit : Int32, swap : (Int32, Int32) -> Unit) -> Unit {
   if limit < 0 {
     abort("@random.shuffle: invalid argument limit")
   }

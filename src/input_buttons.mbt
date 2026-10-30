@@ -28,7 +28,7 @@ pub(all) struct Buttons {
 
 ///|
 /// Get the currently pressed buttons.
-pub fn Buttons::read(peer? : Peer = Peer::default()) -> Buttons {
+pub fn Buttons::read(peer~ : Peer = Peer::default()) -> Buttons {
   read_buttons(peer~)
 }
 

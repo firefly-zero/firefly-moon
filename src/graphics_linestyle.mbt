@@ -3,12 +3,12 @@
 #valtype
 pub(all) struct LineStyle {
   color : Color
-  width : Int
+  width : Int32
 } derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand for creating a new LineStyle.
-pub fn LineStyle::new(color : Color, width? : Int = 1) -> LineStyle {
+pub fn LineStyle::new(color : Color, width~ : Int32 = 1) -> LineStyle {
   { color, width, }
 }
 

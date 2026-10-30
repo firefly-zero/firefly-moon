@@ -4,13 +4,13 @@
 /// Typically, the upper-left corner of a bounding box of a shape.
 #valtype
 pub(all) struct Point {
-  x : Int
-  y : Int
+  x : Int32
+  y : Int32
 } derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a `Point`.
-pub fn Point::new(x : Int, y : Int) -> Point {
+pub fn Point::new(x : Int32, y : Int32) -> Point {
   Point::{ x, y, }
 }
 
@@ -156,7 +156,7 @@ pub impl Neg for Point with fn neg(self : Point) -> Point {
 
 ///|
 /// Divide a point by a scalar.
-pub fn Point::scale_down(self : Point, divisor : Int) -> Point {
+pub fn Point::scale_down(self : Point, divisor : Int32) -> Point {
   { x: self.x / divisor, y: self.y / divisor, }
 }
 

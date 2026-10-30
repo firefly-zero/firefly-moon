@@ -2,7 +2,7 @@
 /// A wrapper for drawing circle sectors.
 pub(all) struct Sector {
   point : Point
-  diameter : Int
+  diameter : Int32
   start : Angle
   sweep : Angle
   style : Style

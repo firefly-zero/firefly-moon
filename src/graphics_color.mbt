@@ -99,7 +99,7 @@ pub fn Color::to_byte(color : Color) -> Byte {
 }
 
 ///|
-pub fn Color::to_int(color : Color) -> Int {
+pub fn Color::to_int(color : Color) -> Int32 {
   color.to_byte().to_int()
 }
 
@@ -127,7 +127,7 @@ pub fn Color::from_byte(byte : Byte) -> Color {
 }
 
 ///|
-pub fn Color::from_int(int : Int) -> Color {
+pub fn Color::from_int(int : Int32) -> Color {
   Color::from_byte(int.to_byte())
 }
 

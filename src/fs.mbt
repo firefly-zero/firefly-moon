@@ -19,7 +19,7 @@ pub type PathView = BytesView
 /// Get size (in bytes) of a file from ROM or the data directory.
 ///
 /// Returns 0 if the file does not exist.
-pub fn get_file_size(path : PathView) -> Int {
+pub fn get_file_size(path : PathView) -> Int32 {
   let size = @ffi.get_file_size(
     @memory.bytesview_addr(path),
     @memory.bytesview_size(path),
@@ -62,7 +62,7 @@ pub fn load_file(path : PathView) -> File? {
 /// Returns the number of bytes that has been loaded.
 ///
 /// Example: loading fonts, images, or save files.
-pub fn load_file_to(path : PathView, output : FixedArray[Byte]) -> Int {
+pub fn load_file_to(path : PathView, output : FixedArray[Byte]) -> Int32 {
   let size = @ffi.load_file(
     @memory.bytesview_addr(path),
     @memory.bytesview_size(path),
@@ -82,7 +82,7 @@ pub fn load_file_to(path : PathView, output : FixedArray[Byte]) -> Int {
 /// Example: writing save files.
 ///
 /// Returns the number of bytes written.
-pub fn dump_file(path : PathView, file : File) -> Int {
+pub fn dump_file(path : PathView, file : File) -> Int32 {
   let size = @ffi.load_file(
     @memory.bytesview_addr(path),
     @memory.bytesview_size(path),

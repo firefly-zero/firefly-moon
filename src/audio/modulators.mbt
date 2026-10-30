@@ -1,6 +1,6 @@
 ///|
 pub trait Modulator {
-  fn modulate(Self, node_id : UInt, param : UInt, low : Float, high : Float) -> Unit
+  fn modulate(Self, node_id : UInt32, param : UInt32, low : Float, high : Float) -> Unit
 }
 
 ///|
@@ -20,8 +20,8 @@ pub(all) struct LinearModulator {
 #inline
 pub impl Modulator for LinearModulator with fn modulate(
   self : LinearModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {
@@ -51,8 +51,8 @@ pub(all) struct HoldModulator {
 #inline
 pub impl Modulator for HoldModulator with fn modulate(
   self : HoldModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {
@@ -89,8 +89,8 @@ pub(all) struct AdsrModulator {
 #inline
 pub impl Modulator for AdsrModulator with fn modulate(
   self : AdsrModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {
@@ -122,8 +122,8 @@ pub(all) struct SineModulator {
 #inline
 pub impl Modulator for SineModulator with fn modulate(
   self : SineModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {
@@ -143,8 +143,8 @@ pub(all) struct SquareModulator {
 #inline
 pub impl Modulator for SquareModulator with fn modulate(
   self : SquareModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {
@@ -164,8 +164,8 @@ pub(all) struct SawtoothModulator {
 #inline
 pub impl Modulator for SawtoothModulator with fn modulate(
   self : SawtoothModulator,
-  node_id : UInt,
-  param : UInt,
+  node_id : UInt32,
+  param : UInt32,
   low : Float,
   high : Float,
 ) -> Unit {

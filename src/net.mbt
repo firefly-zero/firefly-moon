@@ -1,7 +1,7 @@
 ///|
 /// A peer obtained either from `Peers` (`get_peers`) or from `get_me`.
 pub trait AnyPeer {
-  fn to_int(self : Self) -> Int
+  fn to_int(self : Self) -> Int32
 }
 
 ///|
@@ -13,11 +13,11 @@ pub trait AnyPeer {
 /// See [the docs](https://docs.fireflyzero.com/dev/net/) for more info.
 #valtype
 struct Me {
-  raw : Int
+  raw : Int32
 } derive(Hash)
 
 ///|
-pub impl AnyPeer for Me with fn to_int(self : Me) -> Int {
+pub impl AnyPeer for Me with fn to_int(self : Me) -> Int32 {
   self.raw
 }
 
@@ -31,11 +31,11 @@ pub fn Me::equal(self : Self, peer : Peer) -> Bool {
 /// Multi-player peer/player ID.
 #valtype
 struct Peer {
-  raw : Int
+  raw : Int32
 } derive(Eq, Compare, Hash)
 
 ///|
-pub impl AnyPeer for Peer with fn to_int(self : Peer) -> Int {
+pub impl AnyPeer for Peer with fn to_int(self : Peer) -> Int32 {
   self.raw
 }
 
@@ -71,7 +71,7 @@ pub extend Peer with Default::{default}
 /// Can be obtained using `get_peers`.
 #valtype
 struct Peers {
-  raw : UInt
+  raw : UInt32
 }
 
 ///|
@@ -82,7 +82,7 @@ pub fn Peers::contains(self : Peers, peer : Peer) -> Bool {
 
 ///|
 /// Get how many peers are online.
-pub fn Peers::length(self : Peers) -> Int {
+pub fn Peers::length(self : Peers) -> Int32 {
   self.raw.popcnt()
 }
 

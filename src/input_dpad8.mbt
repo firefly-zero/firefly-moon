@@ -23,7 +23,7 @@ pub(all) struct DPad8 {
 ///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn DPad8::read(peer? : Peer = Peer::default()) -> DPad8? {
+pub fn DPad8::read(peer~ : Peer = Peer::default()) -> DPad8? {
   read_pad(peer~).map(pad => pad.as_dpad8())
 }
 

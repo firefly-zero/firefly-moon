@@ -2,7 +2,7 @@
 /// A wrapper for drawing circles.
 pub(all) struct Circle {
   point : Point
-  diameter : Int
+  diameter : Int32
   style : Style
 } derive(Debug, Eq, Compare, Hash, Default)
 

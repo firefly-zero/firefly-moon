@@ -4,15 +4,15 @@
 pub(all) struct Style {
   fill : Color
   stroke : Color
-  stroke_width : Int
+  stroke_width : Int32
 } derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Create a new style transparent and empty style.
 pub fn Style::new(
-  fill? : Color = None,
-  stroke? : Color = None,
-  stroke_width? : Int = 1,
+  fill~ : Color = None,
+  stroke~ : Color = None,
+  stroke_width~ : Int32 = 1,
 ) -> Style {
   Style::{ fill, stroke, stroke_width, }
 }
@@ -25,6 +25,6 @@ pub fn Style::new_solid(color : Color) -> Style {
 
 ///|
 /// Create a style for an outlined shape (without fill).
-pub fn Style::new_outlined(color : Color, width? : Int = 1) -> Style {
+pub fn Style::new_outlined(color : Color, width~ : Int32 = 1) -> Style {
   Style::{ fill: None, stroke: color, stroke_width: width, }
 }

@@ -1,17 +1,17 @@
 ///|
 pub trait SourceNode {
-  fn id(Self) -> UInt
+  fn id(Self) -> UInt32
   fn reset(Self) -> Unit = _
 }
 
 ///|
 pub trait Node {
-  fn id(Self) -> UInt
+  fn id(Self) -> UInt32
   fn add_sine(Self, freq : Hz, phase : Float) -> Sine = _
   fn add_square(Self, freq : Hz, phase : Float) -> Square = _
   fn add_sawtooth(Self, freq : Hz, phase : Float) -> Sawtooth = _
   fn add_triangle(Self, freq : Hz, phase : Float) -> Triangle = _
-  fn add_noise(Self, seed : Int) -> Noise = _
+  fn add_noise(Self, seed : Int32) -> Noise = _
   fn add_empty(Self) -> Empty = _
   fn add_zero(Self) -> Zero = _
   fn add_file(Self, path : @firefly.Utf8View) -> File = _
@@ -61,7 +61,7 @@ impl Node with fn add_triangle(self, freq : Hz, phase : Float) -> Triangle {
 
 ///|
 /// Add white noise source (amplitude on each tick is random).
-impl Node with fn add_noise(self, seed : Int) -> Noise {
+impl Node with fn add_noise(self, seed : Int32) -> Noise {
   Noise::{ id: @ffi.audio_add_noise(self.id(), seed), }
 }
 

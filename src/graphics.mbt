@@ -23,7 +23,7 @@ pub fn set_color_palette(palette : FixedArray[RGB]) -> Unit {
 
 ///|
 /// Render a single pixel.
-pub fn draw_point(x : Int, y : Int, color : Color) -> Unit {
+pub fn draw_point(x : Int32, y : Int32, color : Color) -> Unit {
   @ffi.draw_point(x, y, color.to_int())
 }
 
@@ -76,7 +76,7 @@ pub fn draw_rounded_rect(
 /// Render a circle.
 ///
 /// The point specifies the upper-left corner.
-pub fn draw_circle(point : Point, diameter : Int, style : Style) -> Unit {
+pub fn draw_circle(point : Point, diameter : Int32, style : Style) -> Unit {
   @ffi.draw_circle(
     point.x,
     point.y,
@@ -136,7 +136,7 @@ pub fn draw_triangle(a : Point, b : Point, c : Point, style : Style) -> Unit {
 /// wrap around. So a `sweep` of 3π is equivalent of 2π.
 pub fn draw_arc(
   point : Point,
-  diameter : Int,
+  diameter : Int32,
   start : Angle,
   sweep : Angle,
   style : Style,
@@ -166,7 +166,7 @@ pub fn draw_arc(
 /// around. So a `sweep` of 3π is equivalent of 2π.
 pub fn draw_sector(
   point : Point,
-  diameter : Int,
+  diameter : Int32,
   start : Angle,
   sweep : Angle,
   style : Style,

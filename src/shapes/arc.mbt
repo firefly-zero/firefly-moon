@@ -2,7 +2,7 @@
 /// A wrapper for drawing arcs.
 pub(all) struct Arc {
   point : Point
-  diameter : Int
+  diameter : Int32
   start : Angle
   sweep : Angle
   style : Style

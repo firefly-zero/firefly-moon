@@ -2,7 +2,7 @@
 struct Out {}
 
 ///|
-pub impl Node for Out with fn id(_self) -> UInt {
+pub impl Node for Out with fn id(_self) -> UInt32 {
   return 0
 }
 
@@ -16,11 +16,11 @@ pub let out : Out = Out::{ }
 ///|
 /// A marker for a specific node type. See `Node::add_mix`.
 struct Mix {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Mix with fn id(self) -> UInt {
+pub impl Node for Mix with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -30,11 +30,11 @@ pub extend Mix with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_all_for_one`.
 struct AllForOne {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for AllForOne with fn id(self) -> UInt {
+pub impl Node for AllForOne with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -44,11 +44,11 @@ pub extend AllForOne with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_gain`.
 struct Gain {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Gain with fn id(self) -> UInt {
+pub impl Node for Gain with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -58,11 +58,11 @@ pub extend Gain with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_loop`.
 struct Loop {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Loop with fn id(self) -> UInt {
+pub impl Node for Loop with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -72,11 +72,11 @@ pub extend Loop with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_concat`.
 struct Concat {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Concat with fn id(self) -> UInt {
+pub impl Node for Concat with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -86,11 +86,11 @@ pub extend Concat with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_pan`.
 struct Pan {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Pan with fn id(self) -> UInt {
+pub impl Node for Pan with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -100,11 +100,11 @@ pub extend Pan with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_mute`.
 struct Mute {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Mute with fn id(self) -> UInt {
+pub impl Node for Mute with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -114,11 +114,11 @@ pub extend Mute with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_pause`.
 struct Pause {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Pause with fn id(self) -> UInt {
+pub impl Node for Pause with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -128,11 +128,11 @@ pub extend Pause with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_track_position`.
 struct TrackPosition {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for TrackPosition with fn id(self) -> UInt {
+pub impl Node for TrackPosition with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -142,11 +142,11 @@ pub extend TrackPosition with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_low_pass`.
 struct LowPass {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for LowPass with fn id(self) -> UInt {
+pub impl Node for LowPass with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -156,11 +156,11 @@ pub extend LowPass with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_high_pass`.
 struct HighPass {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for HighPass with fn id(self) -> UInt {
+pub impl Node for HighPass with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -170,11 +170,11 @@ pub extend HighPass with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_take_left`.
 struct TakeLeft {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for TakeLeft with fn id(self) -> UInt {
+pub impl Node for TakeLeft with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -184,11 +184,11 @@ pub extend TakeLeft with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_take_right`.
 struct TakeRight {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for TakeRight with fn id(self) -> UInt {
+pub impl Node for TakeRight with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -198,11 +198,11 @@ pub extend TakeRight with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_swap`.
 struct Swap {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Swap with fn id(self) -> UInt {
+pub impl Node for Swap with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -212,11 +212,11 @@ pub extend Swap with Node::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_clip`.
 struct Clip {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl Node for Clip with fn id(self) -> UInt {
+pub impl Node for Clip with fn id(self) -> UInt32 {
   return self.id
 }
 

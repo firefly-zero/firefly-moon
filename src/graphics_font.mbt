@@ -18,13 +18,13 @@ pub fn Font::is_ascii(self : Font) -> Bool {
 
 ///|
 /// Get the character width used in the font (in pixels).
-pub fn Font::char_width(self : Font) -> Int {
+pub fn Font::char_width(self : Font) -> Int32 {
   self.0[2].to_int()
 }
 
 ///|
 /// Get the character height used in the font (in pixels).
-pub fn Font::char_height(self : Font) -> Int {
+pub fn Font::char_height(self : Font) -> Int32 {
   self.0[3].to_int()
 }
 

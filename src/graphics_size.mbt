@@ -1,10 +1,10 @@
 ///|
 /// The screen width in pixels.
-pub const SCREEN_WIDTH : Int = 240
+pub const SCREEN_WIDTH : Int32 = 240
 
 ///|
 /// The screen height in pixels.
-pub const SCREEN_HEIGHT : Int = 160
+pub const SCREEN_HEIGHT : Int32 = 160
 
 ///|
 /// Bounding box for a shape.
@@ -12,13 +12,13 @@ pub const SCREEN_HEIGHT : Int = 160
 /// The width and height must be positive.
 #valtype
 pub(all) struct Size {
-  w : Int
-  h : Int
+  w : Int32
+  h : Int32
 } derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shortcut for creating a Size.
-pub fn Size::new(w : Int, h : Int) -> Size {
+pub fn Size::new(w : Int32, h : Int32) -> Size {
   Size::{ w, h, }
 }
 

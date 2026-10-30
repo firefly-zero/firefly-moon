@@ -1,5 +1,5 @@
 ///|
-pub struct Time(UInt) derive(Debug, Eq, Compare, Hash, Default)
+pub struct Time(UInt32) derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Create a `Time` value of 0.
@@ -11,20 +11,20 @@ pub fn Time::zero() -> Time {
 ///|
 /// Create a `Time` value based on number of samples.
 #inline
-pub fn Time::samples(s : UInt) -> Time {
+pub fn Time::samples(s : UInt32) -> Time {
   Time(s)
 }
 
 ///|
 /// Create a `Time` value based on number of seconds.
 #inline
-pub fn Time::seconds(s : UInt) -> Time {
+pub fn Time::seconds(s : UInt32) -> Time {
   Time(s * SAMPLE_RATE)
 }
 
 ///|
 /// Create a `Time` value based on number of milliseconds.
 #inline
-pub fn Time::milliseconds(s : UInt) -> Time {
+pub fn Time::milliseconds(s : UInt32) -> Time {
   Time(s * SAMPLE_RATE / 1000)
 }

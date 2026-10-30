@@ -2,10 +2,10 @@
 #valtype
 struct SubImage {
   image : Image
-  point_x : Int
-  point_y : Int
-  size_w : Int
-  size_h : Int
+  point_x : Int32
+  point_y : Int32
+  size_w : Int32
+  size_h : Int32
 } derive(Default)
 
 ///|

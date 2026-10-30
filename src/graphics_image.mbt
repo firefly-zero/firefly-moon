@@ -76,20 +76,20 @@ pub fn Image::set_transparency(self : Image, color : Color) -> Unit {
 
 ///|
 /// Returns the number of pixels the image has
-pub fn Image::pixels(self : Image) -> Int {
+pub fn Image::pixels(self : Image) -> Int32 {
   let header_size = 4
   (self.0.length() - header_size) * 2
 }
 
 ///|
 /// Returns the width of the image (in pixels).
-pub fn Image::width(self : Image) -> Int {
+pub fn Image::width(self : Image) -> Int32 {
   self.0[1].to_int() | (self.0[2].to_int() << 8)
 }
 
 ///|
 /// Returns the height of the image (in pixels).
-pub fn Image::height(self : Image) -> Int {
+pub fn Image::height(self : Image) -> Int32 {
   match self.width() {
     0 => 0
     _ as width => self.pixels() / width

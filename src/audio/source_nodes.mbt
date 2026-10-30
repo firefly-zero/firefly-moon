@@ -1,11 +1,11 @@
 ///|
 /// A marker for a specific node type. See `Node::add_sine`.
 pub struct Sine {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Sine with fn id(self) -> UInt {
+pub impl SourceNode for Sine with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -15,11 +15,11 @@ pub extend Sine with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_square`.
 struct Square {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Square with fn id(self) -> UInt {
+pub impl SourceNode for Square with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -29,11 +29,11 @@ pub extend Square with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_sawtooth`.
 struct Sawtooth {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Sawtooth with fn id(self) -> UInt {
+pub impl SourceNode for Sawtooth with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -43,11 +43,11 @@ pub extend Sawtooth with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_triangle`.
 struct Triangle {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Triangle with fn id(self) -> UInt {
+pub impl SourceNode for Triangle with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -57,11 +57,11 @@ pub extend Triangle with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_noise`.
 struct Noise {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Noise with fn id(self) -> UInt {
+pub impl SourceNode for Noise with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -71,11 +71,11 @@ pub extend Noise with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_empty`.
 struct Empty {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Empty with fn id(self) -> UInt {
+pub impl SourceNode for Empty with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -85,11 +85,11 @@ pub extend Empty with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_zero`.
 struct Zero {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for Zero with fn id(self) -> UInt {
+pub impl SourceNode for Zero with fn id(self) -> UInt32 {
   return self.id
 }
 
@@ -99,11 +99,11 @@ pub extend Zero with SourceNode::{id}
 ///|
 /// A marker for a specific node type. See `Node::add_file`.
 struct File {
-  id : UInt
+  id : UInt32
 }
 
 ///|
-pub impl SourceNode for File with fn id(self) -> UInt {
+pub impl SourceNode for File with fn id(self) -> UInt32 {
   return self.id
 }
 

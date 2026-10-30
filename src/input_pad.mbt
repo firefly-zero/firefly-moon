@@ -34,13 +34,13 @@ const DPAD4_THRESHOLD = 300
 /// - `Pad.y == 1000` is on upwards
 #valtype
 pub(all) struct Pad {
-  x : Int
-  y : Int
+  x : Int32
+  y : Int32
 } derive(Debug, Eq, Compare, Hash, Default)
 
 ///|
 /// Shorthand for creating a new `Pad`.
-pub fn Pad::new(x : Int, y : Int) -> Pad {
+pub fn Pad::new(x : Int32, y : Int32) -> Pad {
   Pad::{ x, y, }
 }
 
@@ -52,7 +52,7 @@ pub fn Pad::new(x : Int, y : Int) -> Pad {
 ///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn Pad::read(peer? : Peer = Peer::default()) -> Pad? {
+pub fn Pad::read(peer~ : Peer = Peer::default()) -> Pad? {
   read_pad(peer~)
 }
 
@@ -137,7 +137,7 @@ pub fn Pad::radius(self : Pad) -> Float {
 /// the result will be an integer.
 #inline
 #alias(length_squared, deprecated)
-pub fn Pad::radius_squared(self : Pad) -> Int {
+pub fn Pad::radius_squared(self : Pad) -> Int32 {
   self.x * self.x + self.y * self.y
 }
 

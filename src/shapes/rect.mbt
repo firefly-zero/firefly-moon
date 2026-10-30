@@ -19,7 +19,7 @@ pub impl Shape for Rect with fn draw(self : Rect) -> Unit {
 /// The corner size defaults to `{ width: 0, height: 0 }`
 pub fn Rect::as_rect(
   self : Rect,
-  corner? : Size = Size::default(),
+  corner~ : Size = Size::default(),
 ) -> RoundedRect {
   RoundedRect::{
     point: self.point,

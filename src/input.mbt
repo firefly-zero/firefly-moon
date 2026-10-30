@@ -3,7 +3,7 @@
 ///
 /// Returns `None` when the pad has no input.
 /// Meaning, the user is not touching the touch pad at all.
-pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
+pub fn read_pad(peer~ : Peer = Peer::combined()) -> Pad? {
   match @ffi.read_pad(peer.raw) {
     0xffff => None
     raw =>
@@ -16,7 +16,7 @@ pub fn read_pad(peer? : Peer = Peer::combined()) -> Pad? {
 
 ///|
 /// Get the currently pressed buttons.
-pub fn read_buttons(peer? : Peer = Peer::combined()) -> Buttons {
+pub fn read_buttons(peer~ : Peer = Peer::combined()) -> Buttons {
   let raw = @ffi.read_buttons(peer.raw)
   Buttons::{
     south: ((raw >> 0) & 1) != 0,
