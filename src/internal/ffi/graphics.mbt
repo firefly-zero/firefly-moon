@@ -3,6 +3,12 @@
 pub fn clear_screen(color : Int32) = "graphics" "clear_screen"
 
 ///|
+pub fn flip_x() = "graphics" "flip_x"
+
+///|
+pub fn flip_y() = "graphics" "flip_y"
+
+///|
 /// Set a color value in the palette.
 pub fn set_color(c : Int32, r : Int32, g : Int32, b : Int32) = "graphics" "set_color"
 

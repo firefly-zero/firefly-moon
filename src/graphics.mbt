@@ -5,6 +5,22 @@ pub fn clear_screen(color : Color) -> Unit {
 }
 
 ///|
+/// Horizontally flip the image currently rendered on the screen.
+///
+/// Most commonly used together with [`set_canvas`] to flip images (sprites).
+pub fn flip_x() -> Unit {
+  @ffi.flip_x()
+}
+
+///|
+/// Vertically flip the image currently rendered on the screen.
+///
+/// Most commonly used together with [`set_canvas`] to flip images (sprites).
+pub fn flip_y() -> Unit {
+  @ffi.flip_y()
+}
+
+///|
 /// Set a color value in the palette.
 pub fn set_color(color : Color, rgb : RGB) -> Unit {
   @ffi.set_color(color.to_int(), rgb.r.to_int(), rgb.g.to_int(), rgb.b.to_int())
